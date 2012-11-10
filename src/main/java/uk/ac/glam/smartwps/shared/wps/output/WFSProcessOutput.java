@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.wps;
+package uk.ac.glam.smartwps.shared.wps.output;
 
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 

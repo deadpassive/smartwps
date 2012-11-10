@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Represents a complex WPS process input.
+ * Metadata for a complex WPS input or output.
  * 
  * @author Jon Britton
  */

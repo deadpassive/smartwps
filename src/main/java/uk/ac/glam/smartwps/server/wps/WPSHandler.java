@@ -40,20 +40,20 @@ import uk.ac.glam.smartwps.shared.util.StringUtils;
 import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 import uk.ac.glam.smartwps.shared.wps.ComplexData;
-import uk.ac.glam.smartwps.shared.wps.ComplexProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.Format;
-import uk.ac.glam.smartwps.shared.wps.LiteralProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
-import uk.ac.glam.smartwps.shared.wps.ProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.WCSProcessInput;
-import uk.ac.glam.smartwps.shared.wps.WCSProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.WFSOutput;
-import uk.ac.glam.smartwps.shared.wps.WFSProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.WPSData;
 import uk.ac.glam.smartwps.shared.wps.input.LiteralProcessInput;
 import uk.ac.glam.smartwps.shared.wps.input.ProcessInput;
+import uk.ac.glam.smartwps.shared.wps.input.WCSProcessInput;
 import uk.ac.glam.smartwps.shared.wps.input.WFSProcessInput;
+import uk.ac.glam.smartwps.shared.wps.output.ComplexProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.LiteralProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WCSProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WFSOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WFSProcessOutput;
 import uk.ac.glam.smartwps.xml.XMLUtils;
 import uk.ac.glam.wcsclient.StoredCoverage;
 import uk.ac.glam.wcsclient.WCS111;
@@ -467,7 +467,4 @@ public class WPSHandler {
 	
 		return null;
 	}
-	
-	
-
 }

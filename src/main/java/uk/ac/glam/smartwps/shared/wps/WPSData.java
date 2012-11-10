@@ -3,7 +3,9 @@ package uk.ac.glam.smartwps.shared.wps;
 import java.io.Serializable;
 
 /**
- * TODO: document
+ * WPS input or output metadata. Doesn't represent an actual input or output - 
+ * i.e. it doesn't describe the input data itself, just the metadata. Used to
+ * transfer process metadata between the server and the client.
  * 
  * @author Jon Britton
  */
@@ -16,15 +18,14 @@ public abstract class WPSData implements Serializable {
 	private int minOccurs;
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the maximum number of times this input/output can occur
 	 */
 	public int getMaxOccurs() {
 		return maxOccurs;
 	}
 
 	/**
-	 * TODO: document
+	 * Set the maximum number of times this
 	 * @param maxOccurs
 	 */
 	public void setMaxOccurs(int maxOccurs) {

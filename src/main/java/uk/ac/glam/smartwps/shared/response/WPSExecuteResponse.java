@@ -3,7 +3,7 @@ package uk.ac.glam.smartwps.shared.response;
 import java.util.ArrayList;
 import java.util.Date;
 
-import uk.ac.glam.smartwps.shared.wps.ProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
 
 /**
  * TODO: document

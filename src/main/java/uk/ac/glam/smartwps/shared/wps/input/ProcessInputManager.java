@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.wps;
+package uk.ac.glam.smartwps.shared.wps.input;
 
 import java.util.ArrayList;
 import java.util.Iterator;

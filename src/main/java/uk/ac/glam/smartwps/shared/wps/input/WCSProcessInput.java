@@ -1,9 +1,8 @@
-package uk.ac.glam.smartwps.shared.wps;
+package uk.ac.glam.smartwps.shared.wps.input;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
 import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
-import uk.ac.glam.smartwps.shared.wps.input.ComplexProcessInput;
 
 public class WCSProcessInput extends ComplexProcessInput {
 	

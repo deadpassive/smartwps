@@ -5,9 +5,9 @@ import java.util.Iterator;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
-import uk.ac.glam.smartwps.shared.wps.ProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.WCSProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.WFSProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WCSProcessOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WFSProcessOutput;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;

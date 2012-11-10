@@ -1,4 +1,5 @@
-package uk.ac.glam.smartwps.shared.wps;
+package uk.ac.glam.smartwps.shared.wps.output;
+
 
 
 /**
