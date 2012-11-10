@@ -21,7 +21,6 @@ import uk.ac.glam.smartwps.shared.wps.Format;
 import uk.ac.glam.smartwps.shared.wps.LiteralData;
 import uk.ac.glam.smartwps.shared.wps.WPSData;
 import uk.ac.glam.smartwps.shared.wps.input.LiteralProcessInput;
-import uk.ac.glam.smartwps.shared.wps.input.ProcessInputManager;
 import uk.ac.glam.smartwps.shared.wps.input.WCSProcessInput;
 import uk.ac.glam.smartwps.shared.wps.input.WFSProcessInput;
 

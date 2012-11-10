@@ -3,29 +3,30 @@ package uk.ac.glam.smartwps.shared.wps.input;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 
 /**
- * TODO: document
+ * A WFS input to a WPS process.
  * 
  * @author Jon Britton
  */
 public class WFSProcessInput extends ComplexProcessInput {
 
-	private static final long serialVersionUID = 7286023385684182580L;
 	private String featureTypeName;
 	private String serviceUrl;
 	private String version;
 
 	/**
-	 * TODO: document
+	 * Empty constructor for serialisation.
 	 */
-	public WFSProcessInput(){}
+	public WFSProcessInput(){
+		super(null);
+	}
 	
 	/**
-	 * TODO: document
-	 * @param identifier
-	 * @param featureType
+	 * Create a new WFS process input with the given identifier and associated WFS feature type.
+	 * @param identifier the input ID
+	 * @param featureType the WFS feature type to use as input
 	 */
 	public WFSProcessInput(String identifier, WFSFeatureType featureType) {
-		setId(identifier);
+		super(identifier);
 		this.featureTypeName = featureType.getTypeName();
 		this.version = featureType.getWfsVersion();
 		this.serviceUrl = featureType.getServiceURL();
@@ -51,5 +52,4 @@ public class WFSProcessInput extends ComplexProcessInput {
 		}
 		return null;
 	}
-
 }

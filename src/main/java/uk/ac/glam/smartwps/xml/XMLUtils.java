@@ -10,7 +10,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import uk.ac.glam.smartwps.shared.wps.output.WFSOutputData;
+import uk.ac.glam.smartwps.server.wps.WFSOutputData;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 

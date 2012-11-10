@@ -5,20 +5,14 @@ package uk.ac.glam.smartwps.shared.wps.input;
  * 
  * @author Jon Britton
  */
-public abstract class ComplexProcessInput implements ProcessInput {
+public abstract class ComplexProcessInput extends ProcessInput {
 
 	/**
 	 * TODO: document
+	 * @param id
 	 */
-	String id;
-	
-	@Override
-	public String getId() {
-		return id;
+	public ComplexProcessInput(String id) {
+		super(id);
 	}
 
-	@Override
-	public void setId(String identifier) {
-		this.id = identifier;
-	}
 }

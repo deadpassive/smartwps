@@ -3,20 +3,37 @@ package uk.ac.glam.smartwps.shared.wps.input;
 import java.io.Serializable;
 
 /**
- * TODO: document
+ * Interface for a WPS process input.
  * 
  * @author Jon Britton
  */
-public interface ProcessInput extends Serializable {
+public abstract class ProcessInput implements Serializable {
 	
 	/**
 	 * TODO: document
-	 * @param identifier
 	 */
-	public void setId(String identifier);
+	protected String id;
+	
+	/**
+	 * TODO: document
+	 * @param id
+	 */
+	public ProcessInput(String id) {
+		this.id = id;
+	}
+	
+//	/**
+//	 * Set the identifier for this input.
+//	 * @param identifier the input ID
+//	 */
+//	public void setId(String identifier) {
+//		this.id = identifier;
+//	}
 	
 	/**
 	 * @return the process input identifier
 	 */
-	public String getId();	
+	public String getId() {
+		return id;
+	}
 }

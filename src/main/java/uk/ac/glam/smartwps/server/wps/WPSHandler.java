@@ -52,7 +52,6 @@ import uk.ac.glam.smartwps.shared.wps.output.ComplexProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.LiteralProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.WCSProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.output.WFSOutputData;
 import uk.ac.glam.smartwps.shared.wps.output.WFSProcessOutput;
 import uk.ac.glam.smartwps.xml.XMLUtils;
 import uk.ac.glam.wcsclient.StoredCoverage;

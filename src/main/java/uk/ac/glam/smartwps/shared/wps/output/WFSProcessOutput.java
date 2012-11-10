@@ -3,17 +3,16 @@ package uk.ac.glam.smartwps.shared.wps.output;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 
 /**
- * A ProcessOutput containing a reference to a WFS service.
+ * A WPS process output containing a reference to a WFS service.
  * 
- * @author Jon
+ * @author Jon Britton
  */
 public class WFSProcessOutput extends ComplexProcessOutput {
 
 	private WFSFeatureType featureType;
 
 	/**
-	 * Gets the WFSFeatureType to be used for this process output.
-	 * @return
+	 * @return the WFSFeatureType to be used for this process output.
 	 */
 	public WFSFeatureType getFeatureType() {
 		return featureType;

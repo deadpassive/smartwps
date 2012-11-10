@@ -5,11 +5,10 @@ import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 /**
  * A ProcessOutput containing a reference to a WFS service.
  * 
- * @author Jon
+ * @author Jon Britton
  */
 public class WCSProcessOutput extends ComplexProcessOutput {
 
-	private static final long serialVersionUID = 7514847098440475584L;
 	private WCSCoverage wcsCoverage;
 
 	/**

@@ -6,15 +6,16 @@ package uk.ac.glam.smartwps.shared.wps.input;
  * 
  * @author Jon Britton
  */
-public class LiteralProcessInput implements ProcessInput {
+public class LiteralProcessInput extends ProcessInput {
 
 	private String literalValue;
-	private String id;
 	
 	/**
 	 * TODO: document
 	 */
-	public LiteralProcessInput(){}
+	public LiteralProcessInput(){
+		super(null);
+	}
 	
 	/**
 	 * TODO: document
@@ -22,7 +23,7 @@ public class LiteralProcessInput implements ProcessInput {
 	 * @param literalValue
 	 */
 	public LiteralProcessInput(String identifier, String literalValue) {
-		this.id = identifier;
+		super(identifier);
 		this.literalValue = literalValue;
 	}
 
@@ -41,10 +42,5 @@ public class LiteralProcessInput implements ProcessInput {
 	@Override
 	public String getId() {
 		return id;
-	}
-
-	@Override
-	public void setId(String identifier) {
-		this.id = identifier;
 	}
 }

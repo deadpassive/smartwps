@@ -1,7 +1,7 @@
-package uk.ac.glam.smartwps.shared.wps.output;
+package uk.ac.glam.smartwps.server.wps;
 
 /**
- * TODO: document
+ * Used to store the XML metadata for a WFS process output (e.i. from a WPS which supports WFS outputs directly).
  * 
  * @author Jon Britton
  */
@@ -10,7 +10,7 @@ public class WFSOutputData {
 	private String getCapsUrl;
 	
 	/**
-	 * TODO: document
+	 * Create a new WFSOutputData 
 	 * @param name
 	 * @param getCapsUrl
 	 */
