@@ -168,3 +168,9 @@ pip-log.txt
 ############
 
 target/
+
+##########
+## GWT
+##########
+
+src/main/webapp/SmartWPS

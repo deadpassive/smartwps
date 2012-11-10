@@ -252,12 +252,11 @@ public class WPSHandler {
 					} else if (format.getMimeType().equals(Format.APPLICATION_WCS)) {
 						mimeType = Format.APPLICATION_WCS;
 						break;
-					} 
-//					else if (format.getMimeType().toLowerCase().contains(Format.APPLICATION_X_ZIPPED_SHP)) {
-//						mimeType = Format.APPLICATION_X_ZIPPED_SHP;
-//						// Store
-//						//requestBuilder.setStoreSupport(outputData.getIdentifier());
-//					}
+					} else if (format.getMimeType().toLowerCase().contains(Format.APPLICATION_X_ZIPPED_SHP)) {
+						mimeType = Format.APPLICATION_X_ZIPPED_SHP;
+						// Store
+						requestBuilder.setStoreSupport(outputData.getIdentifier());
+					}
 				}
 				
 				LOGGER.info("Using mimetype " + mimeType + " for output " + complexData.getIdentifier());

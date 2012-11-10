@@ -2,13 +2,12 @@ package uk.ac.glam.smartwps.shared.wps;
 
 
 /**
- * TODO: document
+ * Represents a complex (i.e. not a literal) process output.
  * 
  * @author Jon Britton
  */
 public abstract class ComplexProcessOutput extends ProcessOutput {
 
-	private static final long serialVersionUID = 2601014296820584057L;
 	private String title;
 	private String mimeType;
 	private String layerName;
