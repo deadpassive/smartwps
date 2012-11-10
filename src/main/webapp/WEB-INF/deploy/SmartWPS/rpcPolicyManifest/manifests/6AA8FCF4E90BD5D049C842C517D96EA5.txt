@@ -1,0 +1,2 @@
+serviceClass: uk.ac.glam.smartwps.client.GreetingService
+path: BAE4410A0D81586A2587C2CC1CDA23AF.gwt.rpc

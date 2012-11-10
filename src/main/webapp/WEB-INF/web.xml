@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>owsRequestServiceImpl</servlet-name>
+		<servlet-class>uk.ac.glam.smartwps.server.OWSRequestServiceImpl</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>wmsRequestServiceImpl</servlet-name>
+		<servlet-class>uk.ac.glam.smartwps.server.WMSRequestServiceImpl</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>wcsRequestServiceImpl</servlet-name>
+		<servlet-class>uk.ac.glam.smartwps.server.WCSRequestServiceImpl</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>wfsRequestServiceImpl</servlet-name>
+		<servlet-class>uk.ac.glam.smartwps.server.WFSRequestServiceImpl</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>wpsRequestServiceImpl</servlet-name>
+		<servlet-class>uk.ac.glam.smartwps.server.WPSRequestServiceImpl</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GwtOpenlayersProxy</servlet-name>
+		<servlet-class>
+			org.gwtopenmaps.openlayers.server.GwtOpenLayersProxyServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>owsRequestServiceImpl</servlet-name>
+		<url-pattern>/SmartWPS/ows</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>wmsRequestServiceImpl</servlet-name>
+		<url-pattern>/SmartWPS/wms</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>wcsRequestServiceImpl</servlet-name>
+		<url-pattern>/SmartWPS/wcs</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>wfsRequestServiceImpl</servlet-name>
+		<url-pattern>/SmartWPS/wfs</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>wpsRequestServiceImpl</servlet-name>
+		<url-pattern>/SmartWPS/wps</url-pattern>
+	</servlet-mapping>
+		
+	<servlet-mapping>
+		<servlet-name>GwtOpenlayersProxy</servlet-name>
+		<url-pattern>/SmartWPS/gwtOpenLayersProxy/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>SmartWPS.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

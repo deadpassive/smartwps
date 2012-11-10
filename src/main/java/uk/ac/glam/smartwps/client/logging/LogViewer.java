@@ -1,0 +1,180 @@
+package uk.ac.glam.smartwps.client.logging;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
+import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.shared.response.RetrieveServerLogsResponse;
+
+import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.HTMLPane;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
+import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.toolbar.ToolStrip;
+
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
+public class LogViewer extends VLayout {
+	
+	private static Logger LOGGER = Logger.getLogger("smartwps.client");
+	private Timer timer;
+	private Handler handler;
+
+	/**
+	 * TODO: document
+	 */
+	public LogViewer() {
+		ToolStrip toolStrip = new ToolStrip();
+		toolStrip.setWidth100();
+		toolStrip.addFill();
+		
+		// Enabled server logging?
+		final CheckboxItem serverLogging = new CheckboxItem();
+		serverLogging.setTitle("Server logging?");
+		serverLogging.setDefaultValue(false);
+		serverLogging.addChangedHandler(new ChangedHandler() {
+			@Override
+			public void onChanged(ChangedEvent event) {
+				if ((Boolean) serverLogging.getValue()) {
+					startServerLogging();
+				} else {
+					stopServerLogging();
+				}
+					
+			}
+			
+		});
+		toolStrip.addFormItem(serverLogging);
+		
+		// Logging level selector
+		final SelectItem selectLevel = new SelectItem();  
+		selectLevel.setHeight(19);  
+		selectLevel.setName("selectFont");  
+		selectLevel.setWidth(120);  
+		selectLevel.setShowTitle(false);  
+		selectLevel.setValueMap("ALL", "FINEST", "FINER", "FINE", "CONFIG", "INFO", "WARNING", "SEVERE", "OFF");  
+		selectLevel.setDefaultValue(LOGGER.getLevel().getName());  
+        selectLevel.addChangedHandler(new ChangedHandler() {  
+            @Override
+			public void onChanged(ChangedEvent event) {  
+            	Level level = Level.parse((String) selectLevel.getValue());
+            	LOGGER.info("Changed logging level to " + level.getName());
+            	LOGGER.setLevel(level);
+            }  
+        });
+		toolStrip.addFormItem(selectLevel);
+
+		addMember(toolStrip);
+		
+		// Log view
+		final HTMLPane htmlPane = new HTMLPane();
+		htmlPane.setWidth100();
+		htmlPane.setHeight100();
+		htmlPane.setContents("");
+		addMember(htmlPane);
+		
+		handler = new Handler() {
+			
+			@Override
+			public void publish(LogRecord record) {
+				htmlPane.scrollToBottom();
+				String logs = htmlPane.getContents();
+				String colour = "black";
+				String message = record.getMessage();
+				// TODO: Why isn't this working?
+				message.replaceAll("<", "&lt;");
+				message.replaceAll(">", "&gt;");
+				if (record.getLevel() == Level.SEVERE)
+					colour = "darkred";
+				logs += "<span style=\"font-family:courier;color:" + colour+ "\"><b>" + record.getLoggerName() + " (" + record.getLevel() + "):</b> " + message + "</span><br/>";
+				if (record.getThrown() != null) {
+					logs += "<span style=\"font-family:courier;color:red\">";
+					Throwable t = record.getThrown();
+					logs += t.getClass().getName() + ": " + t.getMessage() + "<br/>";
+					StackTraceElement[] stes = t.getStackTrace();
+					for (int i = 0; i < stes.length; i++) {
+						StackTraceElement ste = stes[i];
+						logs += "&nbsp;&nbsp;&nbsp;" + ste.toString() + "<br/>";
+					}
+					logs += "</span>";
+				}
+				htmlPane.setContents(logs);
+				htmlPane.scrollToBottom();
+			}
+			
+			@Override
+			public void flush() {
+				// Do nothing
+			}
+			
+			@Override
+			public void close() {
+				// Do nothing
+			}
+		};
+		
+		LOGGER.addHandler(handler);
+	}
+	
+	/**
+	 * TODO: document
+	 */
+	public void startServerLogging() {
+		LOGGER.info("Started logging from server");
+		timer = new Timer() {
+			
+			@Override
+			public void run() {
+				updateServerLogs();
+			}
+		};
+				
+		timer.scheduleRepeating(3000);
+	}
+	
+	/**
+	 * TODO: document
+	 */
+	public void stopServerLogging() {
+		if (timer != null)
+			timer.cancel();
+	}
+	
+	private void updateServerLogs() {
+		// Set up the callback object.
+		AsyncCallback<RetrieveServerLogsResponse> callback = new AsyncCallback<RetrieveServerLogsResponse>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				caught.printStackTrace();
+				SC.say("Failed to contact server");
+			}
+
+			@Override
+			public void onSuccess(RetrieveServerLogsResponse response) {
+				SC.clearPrompt();
+				ArrayList<LogRecord> logs = response.getLogRecords();
+				for (Iterator<LogRecord> iterator = logs.iterator(); iterator.hasNext();) {
+					LogRecord logRecord = iterator.next();
+					// If logging level is ok, publish it
+					if (logRecord.getLevel().intValue() >= LOGGER.getLevel().intValue())
+						handler.publish(logRecord);
+				}
+			}
+		};
+
+		// Make the call to the stock price service.
+		SmartWPS.getOWSRequestService().retrieveServerLogs(callback);
+	}
+}

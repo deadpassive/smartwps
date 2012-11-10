@@ -1,0 +1,2 @@
+serviceClass: uk.ac.glam.smartwps.client.net.OWSRequestService
+path: 25C42A0F91C15C292F6F1F6C3CD1EE86.gwt.rpc

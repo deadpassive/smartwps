@@ -1,0 +1,5 @@
+
+GEOSERVER_URL=http://localhost:8080/geoserver
+GEOSERVER_URL_PUBLIC=http://localhost:8080/geoserver
+GEOSERVER_USERNAME=admin
+GEOSERVER_PASSWORD=geoserver

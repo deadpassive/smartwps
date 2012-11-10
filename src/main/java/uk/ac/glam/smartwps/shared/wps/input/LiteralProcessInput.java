@@ -1,0 +1,50 @@
+package uk.ac.glam.smartwps.shared.wps.input;
+
+
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
+public class LiteralProcessInput implements ProcessInput {
+
+	private String literalValue;
+	private String id;
+	
+	/**
+	 * TODO: document
+	 */
+	public LiteralProcessInput(){}
+	
+	/**
+	 * TODO: document
+	 * @param identifier
+	 * @param literalValue
+	 */
+	public LiteralProcessInput(String identifier, String literalValue) {
+		this.id = identifier;
+		this.literalValue = literalValue;
+	}
+
+	/**
+	 * @return the value of this input
+	 */
+	public String getLiteralValue() {
+		return literalValue;
+	}
+	
+	@Override
+	public String toString() {
+		return "id: " + id + ", value: " + literalValue;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(String identifier) {
+		this.id = identifier;
+	}
+}
