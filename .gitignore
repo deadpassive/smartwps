@@ -173,4 +173,5 @@ target/
 ## GWT
 ##########
 
-src/main/webapp/SmartWPS
+src/main/webapp/SmartWPS/
+src/main/gwt-unitCache/
