@@ -6,7 +6,6 @@ import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
  * A ProcessOutput containing a reference to a WFS service.
  * 
  * @author Jon
- *
  */
 public class WCSProcessOutput extends ComplexProcessOutput {
 

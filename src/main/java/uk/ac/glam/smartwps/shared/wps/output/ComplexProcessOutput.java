@@ -1,9 +1,7 @@
 package uk.ac.glam.smartwps.shared.wps.output;
 
-
-
 /**
- * Represents a complex (i.e. not a literal) process output.
+ * Base class for complex (i.e. not a literal) process outputs.
  * 
  * @author Jon Britton
  */
@@ -11,54 +9,34 @@ public abstract class ComplexProcessOutput extends ProcessOutput {
 
 	private String title;
 	private String mimeType;
-	private String layerName;
-
 
 	/**
-	 * TODO: document
-	 * @return
-	 */
-	public String getLayerName() {
-		return layerName;
-	}
-
-	/**
-	 * TODO: document
-	 * @param title
+	 * Set the title of this output
+	 * @param title the output's title
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the title of this output
 	 */
 	public String getTitle() {
 		return title;
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the MIME type of this output
 	 */
 	public String getMimeType() {
 		return mimeType;
 	}
 
 	/**
-	 * TODO: document
-	 * @param mimeType
+	 * Set the MIME type of this output.
+	 * @param mimeType the MIME type
 	 */
 	public void setMimeType(String mimeType) {
 		this.mimeType = mimeType;
-	}
-
-	/**
-	 * TODO: document
-	 * @param layerName
-	 */
-	public void setLayerName(String layerName) {
-		this.layerName = layerName;
 	}
 }

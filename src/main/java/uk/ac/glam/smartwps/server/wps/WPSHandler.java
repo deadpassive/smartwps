@@ -52,7 +52,7 @@ import uk.ac.glam.smartwps.shared.wps.output.ComplexProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.LiteralProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.WCSProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.output.WFSOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WFSOutputData;
 import uk.ac.glam.smartwps.shared.wps.output.WFSProcessOutput;
 import uk.ac.glam.smartwps.xml.XMLUtils;
 import uk.ac.glam.wcsclient.StoredCoverage;
@@ -416,19 +416,19 @@ public class WPSHandler {
 				processOutput.setMimeType(outputDataType.getData().getComplexData()
 						.getMimeType());
 
-				WFSOutput output = null;
+				WFSOutputData output = null;
 				try {
 					output = XMLUtils.parseWFSOutput(outputDataType.getData().getComplexData().getDomNode());
 				} catch (SAXException e) {
 					LOGGER.log(Level.WARNING, "Failed to parse WFS output", e);
 				}
 				
-				if (output == null || StringUtils.isNullOrEmpty(output.getResourceId()) 
-						|| StringUtils.isNullOrEmpty(output.getResourceId())) {
+				if (output == null || StringUtils.isNullOrEmpty(output.getFeatureTypeName()) 
+						|| StringUtils.isNullOrEmpty(output.getFeatureTypeName())) {
 					throw new WPSExecuteException("Error parsing process output "	+ outputDataType.getIdentifier());
 				}
 				
-				String resourceID = output.getResourceId();
+				String resourceID = output.getFeatureTypeName();
 				String getCapsLink = output.getGetCapsUrl();
 				
 				if ((resourceID != null) && (getCapsLink != null)) {

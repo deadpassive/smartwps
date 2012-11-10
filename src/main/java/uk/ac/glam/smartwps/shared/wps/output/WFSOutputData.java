@@ -5,26 +5,26 @@ package uk.ac.glam.smartwps.shared.wps.output;
  * 
  * @author Jon Britton
  */
-public class WFSOutput {
-	private String resourceId;
+public class WFSOutputData {
+	private String featureTypeName;
 	private String getCapsUrl;
 	
 	/**
 	 * TODO: document
-	 * @param resourceId
+	 * @param name
 	 * @param getCapsUrl
 	 */
-	public WFSOutput(String resourceId, String getCapsUrl) {
-		this.resourceId = resourceId;
+	public WFSOutputData(String name, String getCapsUrl) {
+		this.featureTypeName = name;
 		this.getCapsUrl = getCapsUrl;
 	}
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the WFS
 	 */
-	public String getResourceId() {
-		return resourceId;
+	public String getFeatureTypeName() {
+		return featureTypeName;
 	}
 
 	/**

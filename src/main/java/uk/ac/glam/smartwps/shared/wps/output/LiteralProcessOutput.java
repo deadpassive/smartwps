@@ -2,7 +2,7 @@ package uk.ac.glam.smartwps.shared.wps.output;
 
 
 /**
- * TODO: document
+ * A process output containing a single literal value.
  * 
  * @author Jon Britton
  */
@@ -10,16 +10,15 @@ public class LiteralProcessOutput extends ProcessOutput {
 
 	private String value;
 	
-	
 	/**
 	 * Empty constructor for serialization.
 	 */
 	public LiteralProcessOutput(){}
 	
 	/**
-	 * TODO: document
-	 * @param identifier
-	 * @param value
+	 * Create a new literal process output with the given ID and value.
+	 * @param identifier the output identifier
+	 * @param value the output value
 	 */
 	public LiteralProcessOutput(String identifier, String value) {
 		setIdentifier(identifier);
@@ -27,16 +26,7 @@ public class LiteralProcessOutput extends ProcessOutput {
 	}
 	
 	/**
-	 * TODO: document
-	 * @param value
-	 */
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
-	/**
-	 * TODO: document
-	 * @return
+	 * @return the value of this literal output
 	 */
 	public String getValue() {
 		return value;

@@ -6,7 +6,6 @@ import uk.ac.glam.smartwps.client.RESTConnectionException;
 import uk.ac.glam.smartwps.client.net.WPSRequestService;
 import uk.ac.glam.smartwps.client.wcs.WCSConnectionException;
 import uk.ac.glam.smartwps.client.wfs.WFSConnectionException;
-import uk.ac.glam.smartwps.client.wms.WMSConnectionException;
 import uk.ac.glam.smartwps.client.wps.WPSConnectionException;
 import uk.ac.glam.smartwps.client.wps.WPSExecuteException;
 import uk.ac.glam.smartwps.server.wps.WPSHandler;
@@ -27,20 +26,20 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 public class WPSRequestServiceImpl extends RemoteServiceServlet implements
 		WPSRequestService {
 
-	private static final long serialVersionUID = 2107849520067372234L;
-	//private static final Logger LOGGER = Logger.getLogger("smartwps.server");
-
+	@Override
 	public WPSGetCapabilitiesResponse wpsGetCapabilities(WPSGetCapabilitiesRequest request) throws WPSConnectionException {
 		return WPSHandler.instance().wpsGetCapabilities(request);
 	}
 
+	@Override
 	public DetailedProcessDescriptor getProcessDetails(
 			String url, String id) {
 		return WPSHandler.instance().wpsGetDetailedProcessDescriptor(url, id);
 	}
 
-	public WPSExecuteResponse wpsExecute(WPSExecuteRequest request) throws WPSConnectionException, WMSConnectionException, 
-			WPSExecuteException, RESTConnectionException, IOException, WCSConnectionException, WFSConnectionException {
+	@Override
+	public WPSExecuteResponse wpsExecute(WPSExecuteRequest request) throws WPSConnectionException, WPSExecuteException, 
+			RESTConnectionException, IOException, WCSConnectionException, WFSConnectionException {
 		return WPSHandler.instance().wpsExecute(request);
 	}
 

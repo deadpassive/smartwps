@@ -10,7 +10,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import uk.ac.glam.smartwps.shared.wps.output.WFSOutput;
+import uk.ac.glam.smartwps.shared.wps.output.WFSOutputData;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
@@ -30,7 +30,7 @@ public class XMLUtils {
 	 * @throws SAXException 
 	 * @throws IOException 
 	 */
-	public static WFSOutput parseWFSOutput(Node rootNode) throws SAXException, IOException {
+	public static WFSOutputData parseWFSOutput(Node rootNode) throws SAXException, IOException {
 		// For some reason the output is included as text, not part of the DOM so we have to parse it ourselves.
 		// TODO: should check for when this is not the case and act accordingly
 		String value = rootNode.getFirstChild().getNodeValue();
@@ -44,7 +44,7 @@ public class XMLUtils {
 		NodeList nodes = response.getChildNodes();
 		String resourceId = getNodeValue("ResourceID", nodes);
 		String getCapsLink = getNodeValue("GetCapabilitiesLink", nodes);
-		return new WFSOutput(resourceId, getCapsLink);
+		return new WFSOutputData(resourceId, getCapsLink);
 	}
 
 	/**
