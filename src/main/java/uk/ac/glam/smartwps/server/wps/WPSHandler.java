@@ -254,7 +254,7 @@ public class WPSHandler {
 					} else if (format.getMimeType().toLowerCase().contains(Format.APPLICATION_X_ZIPPED_SHP)) {
 						mimeType = Format.APPLICATION_X_ZIPPED_SHP;
 						// Store
-						requestBuilder.setStoreSupport(outputData.getIdentifier());
+//						requestBuilder.setStoreSupport(outputData.getIdentifier());
 					}
 				}
 				
