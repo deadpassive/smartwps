@@ -244,18 +244,9 @@ public class SmartWPS implements EntryPoint {
 		mapPanel.setWidth100();  
 		mapPanel.setHeight100();
 		mapPanel.addMember(mapWidget);
-		
 
 		final SectionStackSection mapSection = new SectionStackSection("Map");
 		mapSection.setItems(mapPanel);
-		Window.addResizeHandler(new ResizeHandler() {
-			
-			@Override
-			public void onResize(ResizeEvent arg0) {
-				//mapSection.getItems()[0].getElement();
-				LOGGER.info("Size = " + mapPanel.getElement().getOffsetWidth() + "x" + mapPanel.getElement().getOffsetHeight());				
-			}
-		});
 		
 		SectionStackSection resultSection = new SectionStackSection("Results");
 		resultsTabSet = new ResultsTabSet();
