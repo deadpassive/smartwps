@@ -2,13 +2,14 @@ package uk.ac.glam.smartwps.shared.wcs100;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@SuppressWarnings("serial")
 public class WCSCapabilities implements Serializable {
 	
-	private static final long serialVersionUID = -3683473261251828873L;
-	private ArrayList<CoverageOfferingBrief> coverageOfferings;
+	private List<CoverageOfferingBrief> coverageOfferings;
 	private Service service;
 	private String serviceURL;
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
@@ -17,30 +18,29 @@ public class WCSCapabilities implements Serializable {
 		return serviceURL;
 	}
 
-	public void setCoverageOfferings(ArrayList<CoverageOfferingBrief> coverageOfferings) {
-		this.coverageOfferings = coverageOfferings;
+	public void setCoverageOfferings(List<CoverageOfferingBrief> coverageOfferings) {
+		this.coverageOfferings = new ArrayList<CoverageOfferingBrief>(coverageOfferings);
 	}
 	
-	public ArrayList<CoverageOfferingBrief> getCoverageOfferings() {
-		return coverageOfferings;
+	public List<CoverageOfferingBrief> getCoverageOfferings() {
+		return new ArrayList<CoverageOfferingBrief>(coverageOfferings);
 	}
 
 	public void setService(Service service) {
-		LOGGER.info("Setting service for " + this);
+		LOGGER.log(Level.INFO, "Setting service for {0}", this);
 		this.service = service;
 	}
 
 	public Service getService() {
-		LOGGER.info("Getting service for " + this);
+		LOGGER.log(Level.INFO, "Getting service for {0}", this);
 		return service;
 	}
 
 	public void setServiceURL(String serviceURL) {
 		this.serviceURL = serviceURL;
 		// Set url of children
-		for (Iterator<CoverageOfferingBrief> iterator = coverageOfferings.iterator(); iterator.hasNext();) {
-			CoverageOfferingBrief cob = iterator.next();
-			cob.setServiceURL(serviceURL);
-		}
+        for (CoverageOfferingBrief cob : coverageOfferings) {
+            cob.setServiceURL(serviceURL);
+        }
 	}
 }

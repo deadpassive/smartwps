@@ -3,8 +3,8 @@ package uk.ac.glam.smartwps.server.wcs;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,6 +25,7 @@ import uk.ac.glam.wcsclient.wcs100.CoverageOfferingBriefType;
 import uk.ac.glam.wcsclient.wcs100.CoverageOfferingType;
 import uk.ac.glam.wcsclient.wcs100.DocumentRoot;
 import uk.ac.glam.wcsclient.wcs100.DomainSetType;
+import uk.ac.glam.wcsclient.wcs100.KeywordsType;
 import uk.ac.glam.wcsclient.wcs100.ServiceType;
 import uk.ac.glam.wcsclient.wcs100.SpatialDomainType;
 import uk.ac.glam.wcsclient.wcs100.WCSCapabilitiesType;
@@ -42,6 +43,11 @@ import uk.ac.glam.wcsclient.wcs100.util.Wcs100XMLProcessor;
  * @author Jon Britton
  */
 public class WCS100Parser {
+    
+    /**
+     * Private constructor to prevent this utility class being instantiated.
+     */
+    private WCS100Parser() {}
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 
@@ -74,7 +80,6 @@ public class WCS100Parser {
 	 * @throws IOException
 	 */
 	public static CoverageOffering parseDescribeCoverage(String url) throws IOException {
-		CoverageOffering coverageOffering = new CoverageOffering();
 		
 		Wcs100XMLProcessor processor = new Wcs100XMLProcessor();
 		Resource r = processor.load(url, null);
@@ -82,7 +87,7 @@ public class WCS100Parser {
 		DocumentRoot root = (DocumentRoot) r.getContents().get(0);
 		//We've only requested one coverage description
 		CoverageOfferingType coverageOfferingType = root.getCoverageDescription().getCoverageOffering().get(0);
-		coverageOffering = coverageOfferingAdapter(coverageOfferingType);
+		CoverageOffering coverageOffering = coverageOfferingAdapter(coverageOfferingType);
 		coverageOffering.setServiceURL(url.split("\\?")[0]);
 		
 		return coverageOffering;
@@ -104,22 +109,19 @@ public class WCS100Parser {
 		if (coverageOfferingType.getSupportedCRSs().getRequestResponseCRSs() == null) {
 			// should have seperate request and response lists
 			// RequestCRSs
-			List<CodeListType> l = coverageOfferingType.getSupportedCRSs().getRequestCRSs();
-			for (Iterator<CodeListType> iterator = l.iterator(); iterator.hasNext();) {
-				CodeListType codeList = iterator.next();
+			List<CodeListType> requestCrsList = coverageOfferingType.getSupportedCRSs().getRequestCRSs();
+            for (CodeListType codeList : requestCrsList) {
 				requestCRSs.addAll(codeList.getValue());
 			}
 			// ReponseCRSs
-			l = coverageOfferingType.getSupportedCRSs().getResponseCRSs();
-			for (Iterator<CodeListType> iterator = l.iterator(); iterator.hasNext();) {
-				CodeListType codeList = iterator.next();
+			List<CodeListType> responseCrsList = coverageOfferingType.getSupportedCRSs().getResponseCRSs();
+            for (CodeListType codeList : responseCrsList) {
 				responseCRSs.addAll(codeList.getValue());
 			}
 		} else {
 			// we have a RequestResponseCRS list
-			List<CodeListType> l = coverageOfferingType.getSupportedCRSs().getRequestResponseCRSs();
-			for (Iterator<CodeListType> iterator = l.iterator(); iterator.hasNext();) {
-				CodeListType codeList = iterator.next();
+			List<CodeListType> requestResponseCrsList = coverageOfferingType.getSupportedCRSs().getRequestResponseCRSs();
+            for (CodeListType codeList : requestResponseCrsList) {
 				requestCRSs.addAll(codeList.getValue());
 				responseCRSs.addAll(codeList.getValue());
 			}
@@ -154,16 +156,14 @@ public class WCS100Parser {
 		// Envelopes -- currently doesn't support EnvelopeWithTimePeriod
 		List<EnvelopeType> envelopeTypes = spatialDomainType.getEnvelope();
 		ArrayList<BoundsSerializable> envelopes = new ArrayList<BoundsSerializable>();
-		for (Iterator<EnvelopeType> iterator = envelopeTypes.iterator(); iterator.hasNext();) {
-			EnvelopeType envelopeType = iterator.next();
+        for (EnvelopeType envelopeType : envelopeTypes) {
 			envelopes.add(envelopeAdapter(envelopeType));
 		}
 		spatialDomain.setEnvelopes(envelopes);
 		// Grids
 		List<GridType> gridTypes = spatialDomainType.getGrid();
 		ArrayList<Grid> grids = new ArrayList<Grid>();
-		for (Iterator<GridType> iterator = gridTypes.iterator(); iterator.hasNext();) {
-			GridType gridType = iterator.next();
+        for (GridType gridType : gridTypes) {
 			grids.add(gridAdapter(gridType));
 		}
 		spatialDomain.setGrids(grids);
@@ -174,7 +174,7 @@ public class WCS100Parser {
 
 	private static Grid gridAdapter(GridType gridType) {
 		LOGGER.fine("In gridAdapter");
-		Grid grid = null;
+		Grid grid;
 		if (gridType instanceof RectifiedGridType) {
 			grid = new RectifiedGrid();
 			RectifiedGridType rectGrid = (RectifiedGridType)gridType;
@@ -184,7 +184,7 @@ public class WCS100Parser {
 			for (int i = 0; i < vectorTypes.size(); i++) {
 				VectorType vector = vectorTypes.get(i);
 				double[] offsetVector = {vector.getValue().get(0), vector.getValue().get(1)};
-				LOGGER.info("OFFSET VECTOR: " + offsetVector[0] + "," + offsetVector[1]);
+				LOGGER.log(Level.INFO, "OFFSET VECTOR: {0},{1}", new Object[]{offsetVector[0], offsetVector[1]});
 				offsetVectors.add(offsetVector);
 			}
 			grid.setOffsetVectors(offsetVectors);
@@ -197,7 +197,7 @@ public class WCS100Parser {
 		// Limits
 		grid.setLimits(gridEnvelopeAdapter(gridType.getLimits().getGridEnvelope()));
 		// Axis Names
-		grid.setAxisNames(gridType.getAxisName().toArray(new String[0]));
+		grid.setAxisNames(gridType.getAxisName());
 		// SRS Name
 		grid.setSRSName(gridType.getSrsName());
 		
@@ -238,9 +238,7 @@ public class WCS100Parser {
 		LOGGER.fine("In contentMetadataAdapter");
 		ArrayList<CoverageOfferingBrief> coverageOfferingsFinal = new ArrayList<CoverageOfferingBrief>();
 		List<CoverageOfferingBriefType> coverageOfferingsList = contentMetadata.getCoverageOfferingBrief();
-		for (Iterator<CoverageOfferingBriefType> iterator = coverageOfferingsList.iterator(); iterator
-				.hasNext();) {
-			CoverageOfferingBriefType coverageOffering = iterator.next();
+        for (CoverageOfferingBriefType coverageOffering : coverageOfferingsList) {
 			coverageOfferingsFinal.add(coverageOfferingBriefAdapter(coverageOffering));
 		}
 		return coverageOfferingsFinal;
@@ -254,9 +252,8 @@ public class WCS100Parser {
 		coverageOfferingBriefFinal.setDescription(coverageOffering.getDescription1());
 		// Keywords
 		/*ArrayList<String> keywords = new ArrayList<String>();
-		List keywordsTypes = coverageOffering.getKeywords();
-		for (Iterator iterator = keywordsTypes.iterator(); iterator.hasNext();) {
-			KeywordsType kw = (KeywordsType) iterator.next();
+		List<KeywordsType> keywordsTypes = coverageOffering.getKeywords();
+        for (KeywordsType kw : keywordsTypes) {
 			kw.get
 			System.out.println(kw);
 		}
@@ -267,7 +264,7 @@ public class WCS100Parser {
 		coverageOfferingBriefFinal.setLonLatEnvelope(envelopeAdapter(coverageOffering.getLonLatEnvelope()));
 		// Name
 		coverageOfferingBriefFinal.setName(coverageOffering.getName1());
-		LOGGER.info("Found coverage: " + coverageOfferingBriefFinal.getName());
+		LOGGER.log(Level.INFO, "Found coverage: {0}", coverageOfferingBriefFinal.getName());
 		
 		return coverageOfferingBriefFinal;
 	}

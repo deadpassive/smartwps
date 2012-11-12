@@ -2,7 +2,7 @@ package uk.ac.glam.smartwps.server.wms;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,11 +31,11 @@ public class WMSHandler {
 		return instance;
 	}
 	
-	public WMSGetCapabilitiesResponse wmsGetCapabilities(String url,
-			ArrayList<String> layers, boolean exactMatches) throws WMSConnectionException {
+	public WMSGetCapabilitiesResponse wmsGetCapabilities(String url, Collection<String> requestLayers, boolean exactMatches) 
+            throws WMSConnectionException {
 		WMSGetCapabilitiesResponse response = new WMSGetCapabilitiesResponse();
 
-		LOGGER.info("Creating WMS GetCapabilities request for " + url);
+		LOGGER.log(Level.INFO, "Creating WMS GetCapabilities request for {0}", url);
 		ArrayList<WMSLayer> selectedLayers = new ArrayList<WMSLayer>();
 
 		WebMapServer wms = null;
@@ -50,25 +50,20 @@ public class WMSHandler {
 		WMSDataSource dataSource = createWMSDataSource(url, wms.getInfo());
 
 		List<Layer> layerList = wms.getCapabilities().getLayerList();
-		for (Iterator<Layer> iterator = layerList.iterator(); iterator
-				.hasNext();) {
-			Layer layer = iterator.next();
+        for (Layer layer : layerList) {
 			if (layer.getName() != null) { // Named (viewable) layers only
-				if (layers == null) { // Add all layers
+				if (requestLayers == null) { // Add all layers
 					WMSLayer wmsLayer = WMSAdapter.layerAdapter(layer);
 					wmsLayer.setDataSource(dataSource);
 					selectedLayers.add(wmsLayer);
 				} else { // Add similar layers
-					for (Iterator<String> iterator2 = layers.iterator(); iterator2
-							.hasNext();) {
-						String l = iterator2.next();
+                    for (String requestLayerName : requestLayers) {
 						if (exactMatches) {
-							if (layer.getName().equals(l)) { // check if
+							if (layer.getName().equals(requestLayerName)) { // check if
 								// layers
 								// have the
 								// same name
-								WMSLayer wmsLayer = WMSAdapter
-										.layerAdapter(layer);;
+								WMSLayer wmsLayer = WMSAdapter.layerAdapter(layer);
 								wmsLayer.setDataSource(dataSource);
 								selectedLayers.add(wmsLayer);
 							}
@@ -82,9 +77,8 @@ public class WMSHandler {
 							 * wmsLayer.setServiceURL(url.split("\\?")[0]);
 							 * selectedLayers.add(wmsLayer); }
 							 */
-							if ((ServerUtils.levenshteinDistance(layer.getName(), l)) < (Math
-									.max(layer.getName().length(), l
-											.length()) / 2)) {
+							if ((ServerUtils.levenshteinDistance(layer.getName(), requestLayerName)) < (Math
+									.max(layer.getName().length(), requestLayerName.length()) / 2)) {
 								WMSLayer wmsLayer = WMSAdapter
 										.layerAdapter(layer);
 								wmsLayer.setDataSource(dataSource);

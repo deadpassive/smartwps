@@ -16,24 +16,25 @@ import uk.ac.glam.smartwps.shared.response.WCSGetCoverageAndStoreResponse;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+@SuppressWarnings("serial")
 public class WCSRequestServiceImpl extends RemoteServiceServlet implements WCSRequestService {
 	
-	private static final long serialVersionUID = -1630932121658872957L;
-	//private static final Logger LOGGER = Logger.getLogger("smartwps.server");
-	
-	public WCSCapabilitiesResponse wcsGetCapabilities(WCSGetCapabilitiesRequest request) throws WCSConnectionException {
+	public WCSCapabilitiesResponse wcsGetCapabilities(WCSGetCapabilitiesRequest request) 
+            throws WCSConnectionException {
 		return WCSHandler.instance().wcsGetCapabilities(request.getServiceUrl());
 	}
 
-	public WCSDescribeCoverageResponse wcsDescribeCoverage(WCSDescribeCoverageRequest request) throws WCSConnectionException {
-		return WCSHandler.instance().wcsDescribeCoverage(request.getServiceUrl(), request.getCoverageID(), request.isReloadCaps());
+	public WCSDescribeCoverageResponse wcsDescribeCoverage(WCSDescribeCoverageRequest request) 
+            throws WCSConnectionException {
+		return WCSHandler.instance().wcsDescribeCoverage(request.getServiceUrl(), request.getCoverageID(), 
+                request.isReloadCaps());
 	}
 
 	/**
 	 * Carries out a WCS 1.1.1 GetCoverage request and stores the resulting coverage locally.
 	 */
-	public WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(
-			WCSGetCoverageAndStoreRequest request) throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
+	public WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request) 
+            throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
 		return WCSHandler.instance().wcsGetCoverageAndStore(request);
 	}	
 	

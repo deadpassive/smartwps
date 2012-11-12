@@ -42,7 +42,7 @@ public class FeatureNode extends DataTreeNode {
 	}
 
 	@Override
-	void addLayerToMap() {
+	final void addLayerToMap() {
 		VectorOptions vectorOptions = new VectorOptions();
 		mapLayer = new Vector(featureType.getName(), vectorOptions);
 
@@ -84,7 +84,7 @@ public class FeatureNode extends DataTreeNode {
 	 * TODO: document
 	 * @param featureType
 	 */
-	public void setFeatureType(WFSFeatureType featureType) {
+	public final void setFeatureType(WFSFeatureType featureType) {
 		this.featureType = featureType;
 	}
 
@@ -102,8 +102,9 @@ public class FeatureNode extends DataTreeNode {
 
 	@Override
 	public Menu getContextMenu() {
-		if (this.contextMenu == null)
-			this.contextMenu = new DataTreeNodeContextMenu(this);
+		if (this.contextMenu == null) {
+            this.contextMenu = new DataTreeNodeContextMenu(this);
+        }
 		return contextMenu;
 	}
 

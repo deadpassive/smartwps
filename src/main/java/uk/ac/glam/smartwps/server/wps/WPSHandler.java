@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,8 +86,9 @@ public class WPSHandler {
 	 * @return the WPSHandler singleton instance
 	 */
 	public static WPSHandler instance() {
-		if (instance == null)
-			instance = new WPSHandler();
+		if (instance == null) {
+            instance = new WPSHandler();
+        }
 		return instance;
 	}
 	
@@ -103,7 +104,7 @@ public class WPSHandler {
 		ArrayList<ProcessDescriptor> processDescriptors = new ArrayList<ProcessDescriptor>();
 
 		String source = request.getServiceUrl();
-		LOGGER.info("In wpsGetCapabilities with url " + source);
+		LOGGER.log(Level.INFO, "In wpsGetCapabilities with url {0}", source);
 
 		// Connect to the WPS
 		WPSClientSession wpsClient = WPSClientSession.getInstance();
@@ -116,7 +117,7 @@ public class WPSHandler {
 				for (int i = 0; i < processDescriptions.length; i++) {
 					ProcessDescriptor processDescriptor = WPSAdapter.processBriefAdapter(processDescriptions[i], request.getServiceUrl());
 					processDescriptors.add(processDescriptor);
-					LOGGER.info("Process ID: " + processDescriptor.getId());
+					LOGGER.log(Level.INFO, "Process ID: {0}", processDescriptor.getId());
 				}
 				response.setProcessDescriptors(processDescriptors);
 			} catch (Exception e) {
@@ -138,7 +139,7 @@ public class WPSHandler {
 		ProcessDescriptionType[] processDescriptions = wpsProcesses.get(url);
 		for (int i = 0; i < processDescriptions.length; i++) {
 			if (processDescriptions[i].getIdentifier().getStringValue().equals(id)) {
-				LOGGER.info("Found \"" + id + "\" process details");
+				LOGGER.log(Level.INFO, "Found \"{0}\" process details", id);
 				return WPSAdapter.detailedProcessDescriptionAdapter(processDescriptions[i], url);
 			}
 		}
@@ -182,10 +183,7 @@ public class WPSHandler {
 	
 		// INPUTS
 		ArrayList<ProcessInput> inputs = request.getInputs();
-		for (Iterator<ProcessInput> iterator = inputs.iterator(); iterator
-				.hasNext();) {
-			ProcessInput processInput = iterator.next();
-	
+        for (ProcessInput processInput : inputs) {	
 			if (processInput instanceof WCSProcessInput) {
 				WCSProcessInput wcsInput = (WCSProcessInput) processInput;
 				
@@ -210,7 +208,7 @@ public class WPSHandler {
 				// Get the KVP request for this coverage
 				requestBuilder.addComplexDataReference(wcsInput.getId(),
 						remoteCoverage.getCoverageHref(), null, null, null);
-				LOGGER.info("WCS URI: " + remoteCoverage.getCoverageHref());
+				LOGGER.log(Level.INFO, "WCS URI: {0}", remoteCoverage.getCoverageHref());
 			} else if (processInput instanceof WFSProcessInput) {
 				WFSProcessInput wfsInput = (WFSProcessInput) processInput;
 				String wfsKVP = wfsInput.getKVPRequest();
@@ -218,7 +216,7 @@ public class WPSHandler {
 				// TODO: handle different schemas (e.g for WFS 1.1.0)
 				requestBuilder.addComplexDataReference(wfsInput.getId(),
 						wfsKVP, wfsInput.getSchema(), null, null);
-				LOGGER.info("WFS KVP: " + wfsKVP);
+				LOGGER.log(Level.INFO, "WFS KVP: {0}", wfsKVP);
 			} else if (processInput instanceof LiteralProcessInput) {
 				String value = ((LiteralProcessInput) processInput)
 						.getLiteralValue();
@@ -227,8 +225,7 @@ public class WPSHandler {
 		}
 	
 		// OUTPUTS
-		ArrayList<WPSData> outputs = request.getProcessDescriptor()
-				.getProcessOutputs();
+		List<WPSData> outputs = request.getProcessDescriptor().getProcessOutputs();
 		for (WPSData outputData : outputs) {
 			// Store all outputs...
 			// requestBuilder.setStoreSupport(wpsData.getIdentifier());
@@ -242,7 +239,7 @@ public class WPSHandler {
 				String mimeType = complexData.getDefaultFormat().getMimeType();
 				// Check if there are more suitable formats (like WFS, WCS...) which
 				// would make life easier
-				ArrayList<Format> formats = complexData.getSupportedFormats();
+				List<Format> formats = complexData.getSupportedFormats();
 				for (Format format : formats) {	
 					// WFS and WCS *should* be mutually exclusive... shouldn't they?
 					if (format.getMimeType().equals(Format.APPLICATION_WFS)) {
@@ -258,7 +255,7 @@ public class WPSHandler {
 					}
 				}
 				
-				LOGGER.info("Using mimetype " + mimeType + " for output " + complexData.getIdentifier());
+				LOGGER.log(Level.INFO, "Using mimetype {0} for output {1}", new Object[]{mimeType, complexData.getIdentifier()});
 	
 				requestBuilder.setMimeTypeForOutput(mimeType, outputData
 						.getIdentifier());
@@ -269,7 +266,7 @@ public class WPSHandler {
 			}
 		}
 		
-		LOGGER.info("Execute Document:\n" + requestBuilder.getExecute());
+		LOGGER.log(Level.INFO, "Execute Document:\n{0}", requestBuilder.getExecute());
 	
 		// TODO: This assumed that the process succeeded...
 		ExecuteResponseDocument erd = null;
@@ -290,11 +287,11 @@ public class WPSHandler {
 		ProcessFailedType failed = erd.getExecuteResponse().getStatus()
 				.getProcessFailed();
 		if (failed != null) {
-			LOGGER.severe("PROCESS FAILED" + failed.getExceptionReport());
+			LOGGER.log(Level.SEVERE, "PROCESS FAILED{0}", failed.getExceptionReport());
 		}
 		// erd.getExecuteResponse().getStatus().getProcessFailed().getExceptionReport();
 	
-		LOGGER.info("RESPONSE: " + erd.toString());
+		LOGGER.log(Level.INFO, "RESPONSE: {0}", erd.toString());
 	
 		OutputDataType[] outData = erd.getExecuteResponse().getProcessOutputs()
 				.getOutputArray();
@@ -341,7 +338,7 @@ public class WPSHandler {
 				// processOutput.setDataUrl(od.getReference().getHref());
 				processOutput.setMimeType(outputDataType.getReference().getMimeType());
 
-				LOGGER.fine(processOutput.getIdentifier() + " is a TIFF");
+				LOGGER.log(Level.FINE, "{0} is a TIFF", processOutput.getIdentifier());
 
 				// Create random name
 				Random rand = new Random();
@@ -379,8 +376,7 @@ public class WPSHandler {
 				processOutput.setTitle(outputDataType.getTitle().getStringValue());
 				processOutput.setMimeType(outputDataType.getReference().getMimeType());
 
-				LOGGER.fine(processOutput.getIdentifier()
-						+ " is a zipped shapefile");
+				LOGGER.log(Level.FINE, "{0} is a zipped shapefile", processOutput.getIdentifier());
 
 				// Create random name
 				Random rand = new Random();
@@ -395,8 +391,8 @@ public class WPSHandler {
 
 
 			} else {
-				LOGGER.warning("Error handling process result for " + outputDataType.getIdentifier() + ", Mime type " + mimeType
-						+ " not supported.");
+				LOGGER.log(Level.WARNING, "Error handling process result for {0}, Mime type {1} not supported.", 
+                        new Object[]{outputDataType.getIdentifier(), mimeType});
 			}
 		} else {
 			// Actual data

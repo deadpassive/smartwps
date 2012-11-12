@@ -1,8 +1,5 @@
 package uk.ac.glam.smartwps.client.wps;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
 import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
@@ -21,6 +18,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
+import java.util.List;
 
 /**
  * This tab set is used to store the results of WPS processes in the SmartWPS environment.
@@ -131,10 +129,8 @@ public class ResultsTabSet extends TabSet {
 		listGrid.setFields(idField, titleField, mimeTypeField, valueField, actionField);
 		resultsDetails.addMember(listGrid);
 		
-		ArrayList<ProcessOutput> outputs = result.getProcessOutputs();
-		for (Iterator<ProcessOutput> iterator = outputs.iterator(); iterator.hasNext();) {
-			ProcessOutput processOutput = iterator.next();
-			//SC.say(processOutput.getIdentifier());
+		List<ProcessOutput> outputs = result.getProcessOutputs();
+        for (ProcessOutput processOutput : outputs) {
 			listGrid.addData(new ProcessOutputRecord(processOutput));
 		}
 		

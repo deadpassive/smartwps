@@ -2,14 +2,15 @@ package uk.ac.glam.smartwps.shared.wcs100;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
+@SuppressWarnings("serial")
 public class CoverageOfferingBrief implements Serializable {
 
-	private static final long serialVersionUID = -6416168038589111534L;
 	private String description;
-	private ArrayList<String> keywords;
+	private List<String> keywords;
 	private String label;
 	private BoundsSerializable lonLatEnvelope;
 	protected String name;
@@ -19,14 +20,13 @@ public class CoverageOfferingBrief implements Serializable {
 		this.description = description;
 	}
 
-	public ArrayList<String> getKeywords() {
-		return keywords;
+	public List<String> getKeywords() {
+		return new ArrayList<String>(keywords);
 	}
 
 	public void setKeywords(ArrayList<String> keywords) {
-		this.keywords = keywords;
+		this.keywords = new ArrayList<String>(keywords);
 	}
-
 
 	public String getDescription() {
 		return description;

@@ -16,10 +16,9 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * @author Jon
  * 
  */
+@SuppressWarnings("serial")
 public class OWSRequestServiceImpl extends RemoteServiceServlet implements
 		OWSRequestService {
-
-	private static final long serialVersionUID = -911117768831554271L;
 
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 	private ServerToClientHandler stcHandler;
@@ -38,6 +37,7 @@ public class OWSRequestServiceImpl extends RemoteServiceServlet implements
 	 * TODO: document
 	 * @return
 	 */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
 	public WPSProperties getProperties() {
 		return properties;
 	}

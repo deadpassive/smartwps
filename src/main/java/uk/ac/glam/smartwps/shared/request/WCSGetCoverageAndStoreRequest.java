@@ -3,9 +3,8 @@ package uk.ac.glam.smartwps.shared.request;
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
 
+@SuppressWarnings("serial")
 public class WCSGetCoverageAndStoreRequest extends ServiceRequest {
-
-	private static final long serialVersionUID = -4461479472737582384L;
 	
 	private CoverageDescription coverageDescription;
 	private BoundsSerializable bbox;

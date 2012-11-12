@@ -16,6 +16,7 @@ public class DataTreeContextHandler implements LeafContextClickHandler {
 	 * TODO: document
 	 * @param owner
 	 */
+    @SuppressWarnings("LeakingThisInConstructor")
 	public DataTreeContextHandler(DataTree owner) {
 		this.owner = owner;
 		owner.addLeafContextClickHandler(this);
@@ -31,8 +32,7 @@ public class DataTreeContextHandler implements LeafContextClickHandler {
 //			Menu submenu = new Menu();
 //			List<String> styles = ((WMSNode)selectedLeaf).getWMSLayer().getStyles();
 //			ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-//			for (Iterator<String> iterator = styles.iterator(); iterator.hasNext();) {
-//				final String style = iterator.next();
+//            for (String style : styles) {
 //				final MenuItem menuItem = new MenuItem(style);
 //				menuItem.addClickHandler(new ClickHandler() {
 //					public void onClick(MenuItemClickEvent event) {

@@ -2,17 +2,18 @@ package uk.ac.glam.smartwps.shared.wcs111;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
+@SuppressWarnings("serial")
 public class CoverageDescription implements Serializable {
 
-	private static final long serialVersionUID = -1923125947142089273L;
 	private String title;
 	private String abstract1;
 	private String identifier;
 	private String serviceURL;
-	private ArrayList<String> supportedCRSs;
+	private List<String> supportedCRSs;
 	private CoverageSummary coverageSummary;
 	private Domain domain;
 
@@ -48,12 +49,12 @@ public class CoverageDescription implements Serializable {
 		return serviceURL;
 	}
 
-	public void setSupportedCRSs(ArrayList<String> supportedCRSs) {
-		this.supportedCRSs = supportedCRSs;
+	public void setSupportedCRSs(List<String> supportedCRSs) {
+		this.supportedCRSs = new ArrayList<String>(supportedCRSs);
 	}
 
 	public ArrayList<String> getSupportedCRSs() {
-		return supportedCRSs;
+		return new ArrayList<String>(supportedCRSs);
 	}
 
 

@@ -4,14 +4,13 @@ import uk.ac.glam.smartwps.shared.Data;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
 /**
- * This class contains coverage info and an associated WMS layer for visualisation
+ * This class contains coverage info and an associated WMS layer for visualisation.
  * 
  * @author Jon
- *
  */
+@SuppressWarnings("serial")
 public class WCSCoverage extends Data {
 
-	private static final long serialVersionUID = 2652868587138031594L;
 	private CoverageDescription coverageDescription;
 	private WMSLayer wmsLayer;
 	

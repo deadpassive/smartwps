@@ -54,52 +54,56 @@ public class WCSHandler {
 		return instance;
 	}
 	
-	private WCS111 wcsGetCaps1_1_1(String url) throws WCSConnectionException {
+	private WCS111 wcsGetCaps1_1_1(final String url) throws WCSConnectionException {
 		boolean hasRequest = false;
 		boolean hasVersion = false;
 		boolean hasService = false;
+        
+        StringBuilder urlBuilder = new StringBuilder(url);
 	
 		// Check if params are present
 		if (url.contains("?")) {
 			// In case we have a trailing ?...
-			if (url.indexOf("?") < url.length() - 1) {
+			if (url.indexOf('?') < url.length() - 1) {
 				String[] params = url.split("\\?")[1].split("&");
 				for (int i = 0; i < params.length; i++) {
 					if (params[i].contains("=")) { // use if to avoid
 						// ArrayIndexOutOfBoundsException...
 						String param = params[i].split("=")[0];
 	
-						if (param.equalsIgnoreCase("REQUEST"))
-							hasRequest = true;
-						else if (param.equalsIgnoreCase("SERVICE"))
-							hasService = true;
-						else if (param.equalsIgnoreCase("VERSION"))
-							hasVersion = true;
+						if (param.equalsIgnoreCase("REQUEST")) {
+                            hasRequest = true;
+                        } else if (param.equalsIgnoreCase("SERVICE")) {
+                            hasService = true;
+                        } else if (param.equalsIgnoreCase("VERSION")) {
+                            hasVersion = true;
+                        }
 					}
 				}
 			}
 		} else { // no params
-			url += "?";
+			urlBuilder.append("?");
 		}
 	
 		// create missing params
-		if (!hasService)
-			url += "&SERVICE=WCS";
-		if (!hasRequest)
-			url += "&REQUEST=GetCapabilities";
+		if (!hasService) {
+            urlBuilder.append("&SERVICE=WCS");
+        }
+		if (!hasRequest) {
+            urlBuilder.append("&REQUEST=GetCapabilities");
+        }
 		if (!hasVersion) {
-			url += "&VERSION=1.1.1";
+			urlBuilder.append("&VERSION=1.1.1");
 		}
+        
+        String finalUrl = urlBuilder.toString();
 	
-		hasRequest = true;
-		hasVersion = true;
-	
-		LOGGER.info("Final URL: " + url);
+		LOGGER.log(Level.INFO, "Final URL: {0}", finalUrl);
 	
 		WCS111 wcs = null;
 		try {
-			wcs = (WCS111) WebCoverageService.createWebCoverageService(url);
-			webCoverageServices.put(url.split("\\?")[0], (WCS111)wcs);
+			wcs = (WCS111) WebCoverageService.createWebCoverageService(finalUrl);
+			webCoverageServices.put(finalUrl.split("\\?")[0], wcs);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 			throw new WCSConnectionException(e.getMessage(), ServerUtils.getStackTraceAsString(e));
@@ -108,28 +112,28 @@ public class WCSHandler {
 		return wcs;
 	}
 	
-	public WCSCapabilitiesResponse wcsGetCapabilities(String url) throws WCSConnectionException {
+	public WCSCapabilitiesResponse wcsGetCapabilities(final String url) throws WCSConnectionException {
 		WCSCapabilitiesResponse response = new WCSCapabilitiesResponse();
 		
 		// Only support 1.1.1 for now...
 		WCS111 wcs = wcsGetCaps1_1_1(url);
 		
-		WCSCapabilities111 wcsCaps = WCS111Adapter.parseWCSCapabilities((WCS111) wcs);
+		WCSCapabilities111 wcsCaps = WCS111Adapter.parseWCSCapabilities(wcs);
 		response.setWCSCapabilities(wcsCaps);
 			
 		return response;
 	}
 	
-	public WCSDescribeCoverageResponse wcsDescribeCoverage(String url,
-			String coverage, boolean reloadCaps) throws WCSConnectionException {
+	public WCSDescribeCoverageResponse wcsDescribeCoverage(final String url, String coverage, boolean reloadCaps) 
+            throws WCSConnectionException {
 		WCSDescribeCoverageResponse response = new WCSDescribeCoverageResponse();
-		url = url.split("\\?")[0];
+        String finalUrl = url.split("\\?")[0];
 		
 		WCS111 wcs;
-		if (reloadCaps || (webCoverageServices.get(url) != null)) {
-			wcs = wcsGetCaps1_1_1(url);
+		if (reloadCaps || (webCoverageServices.get(finalUrl) != null)) {
+			wcs = wcsGetCaps1_1_1(finalUrl);
 		} else {
-			wcs = webCoverageServices.get(url);
+			wcs = webCoverageServices.get(finalUrl);
 		}
 
 		CoverageDescription coverageOffering = null;
@@ -137,14 +141,14 @@ public class WCSHandler {
 			coverageOffering = WCS111Adapter.parseDescribeCoverage(wcs, coverage);
 		} catch (IOException e) {
 			throw new WCSConnectionException("Failed carrying out WCS DescribeCoverage request for coverage "
-							+ coverage + " at " + url);
+							+ coverage + " at " + finalUrl);
 		}
 		response.setCoverageOffering(coverageOffering);
 		return response;
 	}
 	
-	public WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(
-			WCSGetCoverageAndStoreRequest request) throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
+	public WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request) 
+            throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
 		WCSGetCoverageAndStoreResponse response = new WCSGetCoverageAndStoreResponse();
 		
 		//Get existing WCS?
@@ -170,16 +174,17 @@ public class WCSHandler {
 	/**
 	 * Adds a remote coverage to the local GeoServer.
 	 * 
-	 * @param coverageUrl
-	 *            - The location of the coverage
-	 * @return
+	 * @param coverageUrl The location of the coverage
+     * @param workspace 
+     * @param layerName 
+     * @return
 	 * @throws IOException
 	 * @throws WMSConnectionException 
 	 * @throws RESTConnectionException 
 	 * @throws WCSConnectionException 
 	 */
-	public WCSCoverage addCoverageToGeoServer(String coverageUrl,
-			String workspace, String layerName) throws IOException,
+	public WCSCoverage addCoverageToGeoServer(String coverageUrl, String workspace, String layerName) 
+            throws IOException,
 			WMSConnectionException, RESTConnectionException, WCSConnectionException {
 		// Create swps workspace
 		geoserverREST.createWorkspace(workspace);

@@ -1,15 +1,14 @@
 package uk.ac.glam.smartwps.shared.wps;
 
 import java.util.ArrayList;
+import java.util.List;
 
-
-
+@SuppressWarnings("serial")
 public class LiteralData extends WPSData {
 
-	private static final long serialVersionUID = 6289291612713706345L;
 	String dataType;
 	private String defaultValue;
-	private ArrayList<String> allowedValues;
+	private List<String> allowedValues;
 
 	public String getDataType() {
 		return dataType;
@@ -19,6 +18,7 @@ public class LiteralData extends WPSData {
 		this.dataType = dataType;
 	}
 	
+    @Override
 	public String toString() {
 		return "DataType: " + dataType;
 	}
@@ -27,16 +27,16 @@ public class LiteralData extends WPSData {
 		this.defaultValue = defaultValue;
 	}
 
-	public void setAllowedValues(ArrayList<String> allowedValues) {
-		this.allowedValues = allowedValues;
+	public void setAllowedValues(List<String> allowedValues) {
+		this.allowedValues = new ArrayList<String>(allowedValues);
 	}
 
 	public String getDefaultValue() {
 		return defaultValue;
 	}
 
-	public ArrayList<String> getAllowedValues() {
-		return allowedValues;
+	public List<String> getAllowedValues() {
+		return new ArrayList<String>(allowedValues);
 	}
 	
 }

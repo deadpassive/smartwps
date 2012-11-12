@@ -5,6 +5,7 @@ package uk.ac.glam.smartwps.client;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("serial")
 public class SmartWPSException extends Exception {
 
 	private String originalStackTrace;
@@ -36,7 +37,7 @@ public class SmartWPSException extends Exception {
 	 * TODO: document
 	 * @param originalStackTrace
 	 */
-	public void setOriginalStackTrace(String originalStackTrace) {
+	public final void setOriginalStackTrace(String originalStackTrace) {
 		this.originalStackTrace = originalStackTrace;
 	}
 

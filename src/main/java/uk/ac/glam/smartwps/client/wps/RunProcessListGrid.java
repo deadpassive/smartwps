@@ -74,7 +74,7 @@ public class RunProcessListGrid extends ListGrid {
 	/**
 	 * TODO: document
 	 */
-	public void createContextMenu() {
+	public final void createContextMenu() {
 		Menu menu = new Menu();
 		menu.setShowShadow(true);
 		menu.setShadowDepth(10);
@@ -83,8 +83,9 @@ public class RunProcessListGrid extends ListGrid {
 		remove.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (getSelectedRecord() != null)
-					RunProcessListGrid.this.removeData(getSelectedRecord());
+				if (getSelectedRecord() != null) {
+                    RunProcessListGrid.this.removeData(getSelectedRecord());
+                }
 			}
 		});
 

@@ -2,9 +2,9 @@ package uk.ac.glam.smartwps.shared.request;
 
 import uk.ac.glam.smartwps.shared.wcs111.CoverageSummary;
 
+@SuppressWarnings("serial")
 public class WCSDescribeCoverageRequest extends ServiceRequest {
 
-	private static final long serialVersionUID = 7181975693226145838L;
 	private String coverageID;
 	private boolean reloadCaps;
 	
@@ -27,7 +27,7 @@ public class WCSDescribeCoverageRequest extends ServiceRequest {
 		return coverageID;
 	}
 
-	public void setCoverageID(String coverageID) {
+	public final void setCoverageID(String coverageID) {
 		this.coverageID = coverageID;
 	}
 
@@ -35,7 +35,7 @@ public class WCSDescribeCoverageRequest extends ServiceRequest {
 		return reloadCaps;
 	}
 
-	public void setReloadCaps(boolean reloadCaps) {
+	public final void setReloadCaps(boolean reloadCaps) {
 		this.reloadCaps = reloadCaps;
 	}
 

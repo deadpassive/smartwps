@@ -8,11 +8,10 @@ import org.gwtopenmaps.openlayers.client.Bounds;
  * A simple class for storing a bounding box in a given projection.
  * 
  * @author Jon Britton
- *
  */
+@SuppressWarnings("serial")
 public class BoundsSerializable implements Serializable {
 
-	private static final long serialVersionUID = -2610165953491695869L;
 	double minX;
 	double minY;
 	double maxX;
@@ -66,6 +65,7 @@ public class BoundsSerializable implements Serializable {
 		this.maxY = maxY;
 	}
 	
+    @Override
 	public String toString() {
 		return "bounds: (" + minX + "," + minY + "),(" + maxX + "," + maxY + "), proj: " + projection;
 	}

@@ -2,6 +2,7 @@ package uk.ac.glam.smartwps.shared.response;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
 
@@ -10,9 +11,8 @@ import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("serial")
 public class WPSExecuteResponse implements ServiceResponse {
-
-	private static final long serialVersionUID = 8424232283251429384L;
 
 	/**
 	 * TODO: document
@@ -22,7 +22,7 @@ public class WPSExecuteResponse implements ServiceResponse {
 	private String processIdentifier;
 	private String processTitle;
 	private Date creationTime;
-	private ArrayList<ProcessOutput> processOutputs;
+	private List<ProcessOutput> processOutputs;
 
 	/**
 	 * TODO: document
@@ -44,8 +44,8 @@ public class WPSExecuteResponse implements ServiceResponse {
 	 * TODO: document
 	 * @return
 	 */
-	public ArrayList<ProcessOutput> getProcessOutputs() {
-		return processOutputs;
+	public List<ProcessOutput> getProcessOutputs() {
+		return new ArrayList<ProcessOutput>(processOutputs);
 	}
 
 
@@ -78,8 +78,9 @@ public class WPSExecuteResponse implements ServiceResponse {
 	 * @param processOutput
 	 */
 	public void addProcessOutput(ProcessOutput processOutput) {
-		if (processOutputs == null)
-			processOutputs = new ArrayList<ProcessOutput>();
+		if (processOutputs == null) {
+            processOutputs = new ArrayList<ProcessOutput>();
+        }
 		processOutputs.add(processOutput);
 	}
 

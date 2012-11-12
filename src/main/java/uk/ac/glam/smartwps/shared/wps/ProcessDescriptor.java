@@ -3,13 +3,13 @@ package uk.ac.glam.smartwps.shared.wps;
 import java.io.Serializable;
 
 /**
- * Contains basic information about a WPS coverage. This simple class is used for RPC and contains as little data as possible to reduce transfer times.
+ * Contains basic information about a WPS coverage. This simple class is used for 
+ * RPC and contains as little data as possible to reduce transfer times.
+ * 
  * @author Jon Britton
- *
  */
+@SuppressWarnings("serial")
 public class ProcessDescriptor implements Serializable {
-
-	private static final long serialVersionUID = -5793469601517526654L;
 	
 	String id;
 	String title;

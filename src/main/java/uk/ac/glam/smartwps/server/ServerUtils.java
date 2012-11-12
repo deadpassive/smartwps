@@ -10,6 +10,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.geotools.geometry.jts.ReferencedEnvelope;
@@ -23,6 +24,8 @@ import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
  *
  */
 public class ServerUtils {
+    
+    private ServerUtils() {}
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 
@@ -64,7 +67,7 @@ public class ServerUtils {
 	public static boolean arrayContainsString(String[] array, String theString) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].equals(theString)) {
-				LOGGER.info("Found string in array: " + array[i]);
+				LOGGER.log(Level.INFO, "Found string in array: {0}", array[i]);
 				return true;
 			}
 		}
@@ -79,7 +82,8 @@ public class ServerUtils {
 	 * @throws MalformedURLException 
 	 */
 	public static String convertLocalToPublicURL(String localURL, String publicHost) throws MalformedURLException {
-		LOGGER.info("Constructed new public URL from " + localURL + ", with new host " + publicHost);
+		LOGGER.log(Level.INFO, "Constructed new public URL from {0}, with new host {1}", 
+                new Object[]{localURL, publicHost});
 		URL url = new URL(localURL);
 		String newURL = url.getProtocol() + "://" + publicHost + ":" + 
 				url.getPort() + url.getPath() + "?" + url.getQuery();
@@ -88,9 +92,9 @@ public class ServerUtils {
 	
 	public static int levenshteinDistance(String s, String t) {
 		int n = s.length();
-		; // length of s
+		// length of s
 		int m = t.length();
-		; // length of t
+		// length of t
 		int[][] d = new int[n + 1][m + 1]; // matrix
 
 		// Step 1
@@ -131,11 +135,11 @@ public class ServerUtils {
 		// write the inputStream to a FileOutputStream
 		File file = new File(System.getProperty("java.io.tmpdir") + "/"
 				+ filename);
-		LOGGER.info("Creating file: " + file.getAbsolutePath());
+		LOGGER.log(Level.INFO, "Creating file: {0}", file.getAbsolutePath());
 		OutputStream out;
 		out = new FileOutputStream(file);
 
-		int read = 0;
+		int read;
 		byte[] bytes = new byte[1024];
 
 		while ((read = in.read(bytes)) != -1) {
@@ -146,7 +150,7 @@ public class ServerUtils {
 		out.flush();
 		out.close();
 
-		LOGGER.info("Created temp file: " + file.getAbsolutePath());
+		LOGGER.log(Level.INFO, "Created temp file: {0}", file.getAbsolutePath());
 
 		return file;
 	}

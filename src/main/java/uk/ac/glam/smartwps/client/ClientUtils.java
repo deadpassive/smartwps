@@ -18,6 +18,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  * @author Jon Britton
  */
 public class ClientUtils {
+    
+    private ClientUtils() {}
 
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 	

@@ -2,13 +2,10 @@ package uk.ac.glam.smartwps.shared.request;
 
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureTypeBase;
 
+@SuppressWarnings("serial")
 public class WFSDescribeFeatureTypeRequest extends ServiceRequest {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8529740047079287786L;
-	private String typeName;
+    private String typeName;
 	
 	// Blank constructor for serialisation
 	public WFSDescribeFeatureTypeRequest() {

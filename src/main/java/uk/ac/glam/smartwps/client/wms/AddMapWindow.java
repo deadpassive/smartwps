@@ -17,7 +17,6 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * A Window for adding WMS layers to the current SmartWPS session.
  * 
  * @author Jon Britton
- *
  */
 public class AddMapWindow extends Window {
 	

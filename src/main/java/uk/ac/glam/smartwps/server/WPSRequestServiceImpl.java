@@ -23,11 +23,13 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * @author Jon
  * 
  */
+@SuppressWarnings("serial")
 public class WPSRequestServiceImpl extends RemoteServiceServlet implements
 		WPSRequestService {
 
 	@Override
-	public WPSGetCapabilitiesResponse wpsGetCapabilities(WPSGetCapabilitiesRequest request) throws WPSConnectionException {
+	public WPSGetCapabilitiesResponse wpsGetCapabilities(WPSGetCapabilitiesRequest request) 
+            throws WPSConnectionException {
 		return WPSHandler.instance().wpsGetCapabilities(request);
 	}
 

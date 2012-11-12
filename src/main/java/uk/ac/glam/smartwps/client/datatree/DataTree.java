@@ -35,6 +35,9 @@ import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
+import java.util.List;
+import java.util.logging.Level;
+import uk.ac.glam.smartwps.shared.util.StringUtils;
 
 /**
  * A DataTree displays the current layers in a SmartWPS workspace.
@@ -48,7 +51,7 @@ public class DataTree extends TreeGrid {
 	//protected TreeNode selectedLeaf;
 	private WMSGetFeatureInfo wmsSelectControl;
 	private boolean wmsGetFeatureActivated;
-	private static Logger LOGGER = Logger.getLogger("smartwps.client");
+	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 	@SuppressWarnings("unused")
 	private DataTreeContextHandler contextHandler;
 
@@ -213,7 +216,7 @@ public class DataTree extends TreeGrid {
 		SC.askforValue("Rename Layer", "Enter new layer name", dtn.getLocalName(), new ValueCallback() {
 			@Override
 			public void execute(String value) {
-				if ((value != null) && (value != "")) {
+				if (!StringUtils.isNullOrEmpty(value)) {
 					dtn.setLocalName(value);
 					refreshFields();
 				}
@@ -241,8 +244,9 @@ public class DataTree extends TreeGrid {
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof WMSNode) {
 				WMSLayer layer = ((WMSNode) nodes[i]).getWMSLayer();
-				if (layer.getName().equals(layerId))
-					return layer;
+				if (layer.getName().equals(layerId)) {
+                    return layer;
+                }
 			}
 		}
 		return null;
@@ -280,8 +284,9 @@ public class DataTree extends TreeGrid {
 	 */
 	public void addWCSCoverage(WCSCoverage wcsCoverage, boolean rename) {
 		CoverageNode covNode = new CoverageNode(wcsCoverage);
-		if (rename)
-			showRenameWindow(covNode);
+		if (rename) {
+            showRenameWindow(covNode);
+        }
 		addNewNode(covNode);
 	}
 	
@@ -300,8 +305,9 @@ public class DataTree extends TreeGrid {
 	 */
 	public void addWFSFeature(WFSFeatureType wfsFeatureType, boolean rename) {
 		FeatureNode featNode = new FeatureNode(wfsFeatureType);
-		if (rename)
-			showRenameWindow(featNode);
+		if (rename) {
+            showRenameWindow(featNode);
+        }
 		addNewNode(featNode);
 	}
 	
@@ -348,7 +354,7 @@ public class DataTree extends TreeGrid {
 	/**
 	 * @return all WMS OpenLayers map layers, including those associated with WCS coverages.
 	 */
-	public ArrayList<WMS> getWMSMapLayers() {
+	public List<WMS> getWMSMapLayers() {
 		TreeNode[] nodes = tree.getChildren(tree.getRoot());
 		ArrayList<WMS> mapList = new ArrayList<WMS>();
 		for (int i = 0; i < nodes.length; i++) {
@@ -364,10 +370,12 @@ public class DataTree extends TreeGrid {
 	 * Updates the WMS GetFeatureInfo control to reflect recent changes in the DataTree.
 	 */
 	public void resetWMSSelectControl() {
-		if (wmsSelectControl != null)
-			SmartWPS.getSmartWPS().getMap().removeControl(wmsSelectControl);
+		if (wmsSelectControl != null) {
+            SmartWPS.getSmartWPS().getMap().removeControl(wmsSelectControl);
+        }
 		WMSGetFeatureInfoOptions options = new WMSGetFeatureInfoOptions();
-		options.setLayers(getWMSMapLayers().toArray(new WMS[0]));
+        List<WMS> wmsLayers = getWMSMapLayers();
+		options.setLayers(wmsLayers.toArray(new WMS[wmsLayers.size()]));
 		options.setDrillDown(true);
 		options.setQueryVisible(true);
 		options.setInfoFormat("application/vnd.ogc.gml");
@@ -386,11 +394,10 @@ public class DataTree extends TreeGrid {
 		});
 		
 		SmartWPS.getSmartWPS().getMap().addControl(wmsSelectControl);
-		WMS[] wmsList = getWMSMapLayers().toArray(new WMS[0]);
 		LOGGER.info("Adding:");
-		for (int i = 0; i < wmsList.length; i++) {
-			LOGGER.info(wmsList[i].getName());
-		}
+        for (WMS layer : wmsLayers) {
+            LOGGER.info(layer.getName());
+        }
 	}
 	
 	/**
@@ -398,8 +405,9 @@ public class DataTree extends TreeGrid {
 	 */
 	public void activateWMSGetFeature() {
 		wmsGetFeatureActivated = true;
-		if (wmsSelectControl != null)
-			wmsSelectControl.activate();
+		if (wmsSelectControl != null) {
+            wmsSelectControl.activate();
+        }
 	}
 	
 	/**
@@ -407,8 +415,9 @@ public class DataTree extends TreeGrid {
 	 */
 	public void deactivateWMSGetFeature() {
 		wmsGetFeatureActivated = false;
-		if (wmsSelectControl != null)
-			wmsSelectControl.deactivate();
+		if (wmsSelectControl != null) {
+            wmsSelectControl.deactivate();
+        }
 	}
 
 	/**
@@ -437,7 +446,7 @@ public class DataTree extends TreeGrid {
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof FeatureNode) {
 				WFSFeatureType feature = ((FeatureNode) nodes[i]).getFeatureType();
-				LOGGER.fine(feature.getTypeName() + " == " + typeName + "?");
+				LOGGER.log(Level.FINE, "{0} == {1}?", new Object[]{feature.getTypeName(), typeName});
 				if (feature.getTypeName().equals(typeName)) {
 					LOGGER.info("Feature found!");
 					return feature;

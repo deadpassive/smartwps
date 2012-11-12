@@ -35,5 +35,6 @@ public interface WCSRequestServiceAsync {
 	 * @param request
 	 * @param callback
 	 */
-	void wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request, AsyncCallback<WCSGetCoverageAndStoreResponse> callback);
+	void wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request, 
+            AsyncCallback<WCSGetCoverageAndStoreResponse> callback);
 }

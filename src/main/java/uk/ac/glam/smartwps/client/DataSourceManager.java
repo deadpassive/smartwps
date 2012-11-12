@@ -11,6 +11,8 @@ import uk.ac.glam.smartwps.shared.DataSource;
  */
 public class DataSourceManager {
 
+    private DataSourceManager() {}
+    
 	private static HashMap<String,DataSource> datasourceMap = new HashMap<String,DataSource>();
 	
 	/**
@@ -30,4 +32,6 @@ public class DataSourceManager {
 	public static void registerDataSource(String url, DataSource ds) {
 		datasourceMap.put(url, ds);
 	}
+
+    
 }

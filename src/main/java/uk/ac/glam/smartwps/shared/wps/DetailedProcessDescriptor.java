@@ -1,18 +1,19 @@
 package uk.ac.glam.smartwps.shared.wps;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Contains deailed information about a WPS coverage.
+ * Contains detailed information about a WPS coverage.
+ * 
  * @author Jon Britton
- *
  */
+@SuppressWarnings("serial")
 public class DetailedProcessDescriptor extends ProcessDescriptor {
 
-	private static final long serialVersionUID = -543738588832941771L;
 	private String abstrct;
-	private ArrayList<WPSData> dataInputs;
-	private ArrayList<WPSData> processOutputs;
+	private List<WPSData> dataInputs;
+	private List<WPSData> processOutputs;
 	private boolean storeSupported;
 
 	public String getAbstract() {
@@ -23,24 +24,24 @@ public class DetailedProcessDescriptor extends ProcessDescriptor {
 		this.abstrct = abstrct;
 	}
 
-	public ArrayList<WPSData> getDataInputs() {
-		return dataInputs;
+	public List<WPSData> getDataInputs() {
+		return new ArrayList<WPSData>(dataInputs);
 	}
 
-	public void setDataInputs(ArrayList<WPSData> dataInputs) {
-		this.dataInputs = dataInputs;
+	public void setDataInputs(List<WPSData> dataInputs) {
+		this.dataInputs = new ArrayList<WPSData>(dataInputs);
 	}
 	
 	public void addDataInput(WPSData input) {
 		dataInputs.add(input);
 	}
 
-	public ArrayList<WPSData> getProcessOutputs() {
-		return processOutputs;
+	public List<WPSData> getProcessOutputs() {
+		return new ArrayList<WPSData>(processOutputs);
 	}
 
-	public void setProcessOutputs(ArrayList<WPSData> processOutputs) {
-		this.processOutputs = processOutputs;
+	public void setProcessOutputs(List<WPSData> processOutputs) {
+		this.processOutputs = new ArrayList<WPSData>(processOutputs);
 	}
 
 	public void addProcessOutput(WPSData output) {

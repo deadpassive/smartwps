@@ -23,9 +23,6 @@ import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.logical.shared.ResizeEvent;
-import com.google.gwt.event.logical.shared.ResizeHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.smartgwt.client.types.SelectionType;
 import com.smartgwt.client.types.VisibilityMode;
@@ -51,7 +48,7 @@ public class SmartWPS implements EntryPoint {
 	/**
 	 * Client side logger
 	 */
-	public static Logger LOGGER = Logger.getLogger("smartwps.client");
+	public static final Logger LOGGER = Logger.getLogger("smartwps.client");
 	
 	private MapWidget mapWidget;
 	private LoggerWindow loggerWindow;
@@ -119,10 +116,11 @@ public class SmartWPS implements EntryPoint {
 		mapQueryButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				if (mapQueryButton.getSelected())
-					dataTree.activateWMSGetFeature();
-				else
-					dataTree.deactivateWMSGetFeature();
+				if (mapQueryButton.getSelected()) {
+                    dataTree.activateWMSGetFeature();
+                } else {
+                    dataTree.deactivateWMSGetFeature();
+                }
 			}
 		});
 		
@@ -301,8 +299,9 @@ public class SmartWPS implements EntryPoint {
 	 * @return the RPC request services for OGC web services
 	 */
 	public static OWSRequestServiceAsync getOWSRequestService() {
-		if (owsService == null)
-			owsService = GWT.create(OWSRequestService.class);
+		if (owsService == null) {
+            owsService = GWT.create(OWSRequestService.class);
+        }
 		return owsService;
 	}
 	

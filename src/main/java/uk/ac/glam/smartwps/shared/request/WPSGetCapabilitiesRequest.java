@@ -1,11 +1,7 @@
 package uk.ac.glam.smartwps.shared.request;
 
+@SuppressWarnings("serial")
 public class WPSGetCapabilitiesRequest extends ServiceRequest {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2294848573827370514L;
 	
 	// Blank constructor for serialisation
 	public WPSGetCapabilitiesRequest() {

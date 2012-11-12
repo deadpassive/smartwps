@@ -1,14 +1,15 @@
 package uk.ac.glam.smartwps.shared.request;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.input.ProcessInput;
 
+@SuppressWarnings("serial")
 public class WPSExecuteRequest extends ServiceRequest {
 
-	private static final long serialVersionUID = -7458456647588923682L;
-	private ArrayList<ProcessInput> inputs;
+	private List<ProcessInput> inputs;
 	private DetailedProcessDescriptor processDescriptor;
 	
 	public WPSExecuteRequest() {
@@ -23,7 +24,7 @@ public class WPSExecuteRequest extends ServiceRequest {
 	/**
 	 * Create an execute request for the given process
 	 * 
-	 * @param serverUrl
+     * @param processDescriptor 
 	 */
 	public WPSExecuteRequest(DetailedProcessDescriptor processDescriptor) {
 		this(processDescriptor.getServiceURL());
@@ -46,7 +47,7 @@ public class WPSExecuteRequest extends ServiceRequest {
 	}
 	
 	public ArrayList<ProcessInput> getInputs() {
-		return inputs;
+		return new ArrayList<ProcessInput>(inputs);
 	}
 
 }

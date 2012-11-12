@@ -26,15 +26,16 @@ public class DataMenu extends Menu {
 	 * Create a new DataMenu.
 	 */
 	public DataMenu () {
-		setShowShadow(new Boolean(true));
+		setShowShadow(true);
 		setShadowDepth(3);
 		
 		MenuItem wpsItem = new MenuItem("Web Processing Service");
 		wpsItem.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (wpsWindow == null)
-					wpsWindow = new AddProcessWindow();
+				if (wpsWindow == null) {
+                    wpsWindow = new AddProcessWindow();
+                }
 				wpsWindow.show();
 			}
 		});
@@ -43,8 +44,9 @@ public class DataMenu extends Menu {
 		wmsItem.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (wmsWindow == null)
-					wmsWindow = new AddMapWindow();
+				if (wmsWindow == null) {
+                    wmsWindow = new AddMapWindow();
+                }
 				wmsWindow.show();
 			}
 		});
@@ -53,8 +55,9 @@ public class DataMenu extends Menu {
 		wcsItem.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (wcsWindow == null)
-					wcsWindow = new AddCoverageWindow();
+				if (wcsWindow == null) {
+                    wcsWindow = new AddCoverageWindow();
+                }
 				wcsWindow.show();
 			}
 		});
@@ -63,8 +66,9 @@ public class DataMenu extends Menu {
 		wfsItem.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (wfsWindow == null)
-					wfsWindow = new AddWFSWindow();
+				if (wfsWindow == null) {
+                    wfsWindow = new AddWFSWindow();
+                }
 				wfsWindow.show();
 			}
 		});

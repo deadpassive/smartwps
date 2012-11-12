@@ -161,10 +161,11 @@ public class AddCoverageWindow extends Window {
 		wcsListGrid.addSelectionChangedHandler(new SelectionChangedHandler() {
 			@Override
 			public void onSelectionChanged(SelectionEvent event) {
-				if (event.getSelectedRecord() != null)
-					nextButton.enable();
-				else
-					nextButton.disable();
+				if (event.getSelectedRecord() != null) {
+                    nextButton.enable();
+                } else {
+                    nextButton.disable();
+                }
 			}
 		});
 
@@ -406,14 +407,11 @@ public class AddCoverageWindow extends Window {
 									LOGGER.info("Remote procedure call successful.");
 									SC.clearPrompt();
 
-									WMSSelector wmsSelector = new WMSSelector(
-											result.getWMSLayers(),
-											selectedCoverage);
+									WMSSelector wmsSelector = new WMSSelector(result.getWMSLayers(), selectedCoverage);
 									wmsSelector.show();
 									resetWindow();
 									hide();
 								}
-
 							};
 							
 							WMSGetCapabilitiesRequest request = new WMSGetCapabilitiesRequest(serviceURL, layerList);

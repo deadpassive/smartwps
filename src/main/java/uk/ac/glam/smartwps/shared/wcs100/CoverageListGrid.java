@@ -13,16 +13,16 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import java.util.logging.Level;
 
 /**
  * A list grid for displaying coverages from a given WCS server.
  * 
  * @author jbritton
- *
  */
 public class CoverageListGrid extends ListGrid {
-	Logger LOGGER = SmartWPS.LOGGER;
-	private WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
+	private static final Logger LOGGER = SmartWPS.LOGGER;
+	private static final WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
 	
 	/**
 	 * Creates a new AddCoverageListGrid
@@ -41,15 +41,17 @@ public class CoverageListGrid extends ListGrid {
 	 * @param url the WCS URL
 	 */
 	public void loadWCSInfo(String url) {
-		LOGGER.info("Loading coverage info from " + url);
+		LOGGER.log(Level.INFO, "Loading coverage info from {0}", url);
 		SC.showPrompt("Loading coverage info from " + url);
 		
 		AsyncCallback<WCSCapabilitiesResponse> callback = new AsyncCallback<WCSCapabilitiesResponse>() {
+            @Override
 			public void onFailure(Throwable caught) {
 				SC.clearPrompt();
 				SC.say(caught.getMessage());
 			}
 
+            @Override
 			public void onSuccess(WCSCapabilitiesResponse result) {
 //				LOGGER.info("Successfully recieved response");
 //				SC.clearPrompt();
@@ -75,6 +77,7 @@ public class CoverageListGrid extends ListGrid {
 		wcsService.wcsGetCapabilities(new WCSGetCapabilitiesRequest(url), callback);
 	}
 
+    @Override
 	public CoverageRecord getSelectedRecord() {
 		return (CoverageRecord) super.getSelectedRecord();
 	}	

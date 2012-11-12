@@ -1,7 +1,5 @@
 package uk.ac.glam.smartwps.client.wms;
 
-import java.util.ArrayList;
-
 import uk.ac.glam.smartwps.client.DataSourceManager;
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.net.WMSRequestService;
@@ -22,6 +20,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
+import java.util.List;
 
 /**
  * TODO: document
@@ -94,7 +93,7 @@ public class WMSLayerSelector extends HLayout {
 			public void onSuccess(WMSGetCapabilitiesResponse result) {
 				GWT.log("SUCCESS");
 				SC.clearPrompt();
-				ArrayList<WMSLayer> wmsLayers = result.getWMSLayers();
+				List<WMSLayer> wmsLayers = result.getWMSLayers();
 				
 				// Register DataSource (all layers should have the same DataSource)
 				DataSource ds = wmsLayers.get(0).getDataSource();

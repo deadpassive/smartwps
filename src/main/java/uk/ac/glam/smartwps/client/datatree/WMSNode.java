@@ -39,7 +39,7 @@ public class WMSNode extends DataTreeNode {
 	}
 
 	@Override
-	void addLayerToMap() {
+	final void addLayerToMap() {
 		addLayerToMap(null);
 	}
 	
@@ -110,8 +110,9 @@ public class WMSNode extends DataTreeNode {
 
 	@Override
 	public Menu getContextMenu() {
-		if (this.contextMenu == null)
-			this.contextMenu = new WMSNodeContextMenu(this);
+		if (this.contextMenu == null) {
+            this.contextMenu = new WMSNodeContextMenu(this);
+        }
 		return contextMenu;
 	}
 }

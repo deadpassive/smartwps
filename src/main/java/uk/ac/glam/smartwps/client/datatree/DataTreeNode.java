@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.tree.TreeNode;
  * 
  * @author Jon Britton
  */
-abstract class DataTreeNode extends TreeNode {
+public abstract class DataTreeNode extends TreeNode {
 	/**
 	 * The OpenLayers Layer associated with this node.
 	 */

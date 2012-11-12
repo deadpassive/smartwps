@@ -5,9 +5,8 @@ package uk.ac.glam.smartwps.client;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("serial")
 public class RESTConnectionException extends Exception {
-
-	private static final long serialVersionUID = 7476310548947745113L;
 
 	/**
 	 * TODO: document

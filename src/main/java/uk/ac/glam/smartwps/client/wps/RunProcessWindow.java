@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.client.wps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,6 +42,8 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import java.util.List;
+import uk.ac.glam.smartwps.shared.util.StringUtils;
 
 /**
  * A SmartGWT window for running a WPS process. The window contents are generated from the given DetailedProcessDescriptor.
@@ -54,7 +55,7 @@ public class RunProcessWindow extends Window {
 	private DetailedProcessDescriptor process;
 //	private WPSExecuteResponse result;
 	private DynamicForm literalsForm;
-	private Logger LOGGER = SmartWPS.LOGGER;
+	private static final Logger LOGGER = SmartWPS.LOGGER;
 	private ProcessInputManager inputManager;
 	private Map<FormItem, String> defaultValues = new HashMap<FormItem, String>();
 	private static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
@@ -87,10 +88,8 @@ public class RunProcessWindow extends Window {
 		// in case we have literals...		
 		ArrayList<FormItem> literalFormItems = new ArrayList<FormItem>();
 		
-		ArrayList<WPSData> inputs = process.getDataInputs();
-		for (Iterator<WPSData> iterator = inputs.iterator(); iterator.hasNext();) {
-			final WPSData wpsData = iterator.next();
-				
+		List<WPSData> inputs = process.getDataInputs();
+        for (WPSData wpsData : inputs) {
 			// Determine input data type and create necessary widgets
 			if (wpsData instanceof ComplexData) {
 				ComplexData complexData = (ComplexData) wpsData;
@@ -111,18 +110,18 @@ public class RunProcessWindow extends Window {
 					literalsForm.setIsGroup(true);
 				}
 				LiteralData literalData = (LiteralData) wpsData;
-				FormItem literalItem = null;
+				FormItem literalItem;
 				// AllowedValues
-				ArrayList<String> allowedValues = literalData.getAllowedValues();
+				List<String> allowedValues = literalData.getAllowedValues();
 				if ((allowedValues != null) && (allowedValues.size() > 0)) {
 					literalItem = new ComboBoxItem();
 					literalItem.setType("comboBox");
-					literalItem.setValueMap(allowedValues.toArray(new String[0]));
+					literalItem.setValueMap(allowedValues.toArray(new String[allowedValues.size()]));
 				} else {
 					literalItem = new TextItem();
 				}
 				// DefaultValue
-				if ((literalData.getDefaultValue() != null) && !literalData.getDefaultValue().equals("")) {
+				if ((literalData.getDefaultValue() != null) && literalData.getDefaultValue().length() != 0) {
 					literalItem.setDefaultValue(literalData.getDefaultValue());
 					// Keep track of default values
 					defaultValues.put(literalItem, literalData.getDefaultValue());
@@ -136,7 +135,7 @@ public class RunProcessWindow extends Window {
 		
 		// if we have literal values, add them to the form
 		if (literalsForm != null) {
-			literalsForm.setItems(literalFormItems.toArray(new FormItem[0]));
+			literalsForm.setItems(literalFormItems.toArray(new FormItem[literalFormItems.size()]));
 			formsLayout.addMember(literalsForm);
 		}
 						
@@ -165,57 +164,54 @@ public class RunProcessWindow extends Window {
 		WPSExecuteRequest request = new WPSExecuteRequest(process);
 		LOGGER.log(Level.INFO, "Running process...");
 
-		ArrayList<WPSData> inputs = process.getDataInputs();
-		for (Iterator<WPSData> iterator = inputs.iterator(); iterator.hasNext();) {
-			WPSData wpsData = iterator.next();
+		List<WPSData> inputs = process.getDataInputs();
+        for (WPSData input : inputs) {
 			
-			if (wpsData instanceof ComplexData) {
-				ComplexData complexData = (ComplexData) wpsData;
+			if (input instanceof ComplexData) {
+				ComplexData complexData = (ComplexData) input;
 				// Could have more than one instance of each input...
 				ArrayList<InputForm> inputForms = inputManager.getInputs(complexData.getIdentifier());
 				if (complexData.getDefaultFormat().getMimeType().equals(Format.IMAGE_TIFF)) {
 					// WCS
-					for (Iterator<InputForm> iterator2 = inputForms.iterator(); iterator2
-							.hasNext();) {
-						CoverageInputForm inputForm = (CoverageInputForm) iterator2.next();
+                    for (InputForm inputForm : inputForms) {
 						String localName = inputForm.getInputValue();
-						if ((localName != "") && (localName != null)) {
+						if (localName != null && localName.length() != 0) {
 							WCSCoverage cov = SmartWPS.getSmartWPS().getDataTree().getWCSCoverageByLocalName(localName);
-							WCSProcessInput input = new WCSProcessInput(complexData.getIdentifier(), cov);
+							WCSProcessInput wcsInput = new WCSProcessInput(complexData.getIdentifier(), cov);
 													
-							request.addDataInput(input);
-							LOGGER.info("Created image input: " + input);
+							request.addDataInput(wcsInput);
+							LOGGER.log(Level.INFO, "Created image input: {0}", wcsInput);
 						}
 					}
 				}  else if (complexData.getDefaultFormat().getMimeType().toLowerCase().contains(Format.TEXT_XML)) {
 					// WFS
-					for (Iterator<InputForm> iterator2 = inputForms.iterator(); iterator2
-							.hasNext();) {
-						FeatureInputForm inputForm = (FeatureInputForm) iterator2.next();
-						if ((inputForm.getInputValue() != "") && (inputForm.getInputValue()  != null)) {
+                    for (InputForm inputForm : inputForms) {
+                        FeatureInputForm featureInputForm = (FeatureInputForm) inputForm;
+						if (inputForm.getInputValue() != null && inputForm.getInputValue().length() != 0) {
 							
 							WFSFeatureType featureType = SmartWPS.getSmartWPS().getDataTree().getWFSFeatureType(inputForm.getInputValue());
 							
-							if ((inputForm.getVersion() != null) && (!inputForm.getVersion().equals("")))
-								featureType.setWfsVersion(inputForm.getVersion());
+                            String version = featureInputForm.getVersion();
+							if (!StringUtils.isNullOrEmpty(version)) {
+                                featureType.setWfsVersion(version);
+                            }
 							
-							WFSProcessInput input = new WFSProcessInput(complexData.getIdentifier(), featureType);
-							request.addDataInput(input);
+							WFSProcessInput wfsInput = new WFSProcessInput(complexData.getIdentifier(), featureType);
+							request.addDataInput(wfsInput);
 						}
 					}
 					
 				}
-			} else if (wpsData instanceof LiteralData) {
+			} else if (input instanceof LiteralData) {
 				// Literal
-				if ((literalsForm.getValueAsString(wpsData.getIdentifier()) != "") && 
-						(literalsForm.getValueAsString(wpsData.getIdentifier()) != null)) {
-					String value = literalsForm.getValueAsString(wpsData.getIdentifier());
+                String inputValue = literalsForm.getValueAsString(input.getIdentifier());
+				if (inputValue != null && inputValue.length() != 0) {
 					//FormItem formItem = literalsForm.getItem(wpsData.getIdentifier());
 					// Only add input if it isn't the default value
 					//if (!value.equals(defaultValues.get(formItem))) {
-						LiteralProcessInput input = new LiteralProcessInput(wpsData.getIdentifier(), value);
-						request.addDataInput(input);
-						LOGGER.info("Created literal input: " + input);
+						LiteralProcessInput literalInput = new LiteralProcessInput(input.getIdentifier(), inputValue);
+						request.addDataInput(literalInput);
+						LOGGER.log(Level.INFO, "Created literal input: {0}", literalInput);
 					//}
 				}
 			}
@@ -274,7 +270,8 @@ public class RunProcessWindow extends Window {
 		 * Create a new GUI input for the given WPS input.
 		 * @param inputData the WPS input
 		 */
-		public InputLayout(final WPSData inputData) {
+        @SuppressWarnings("OverridableMethodCallInConstructor")
+		InputLayout(final WPSData inputData) {
 			this.inputData = inputData;
 			maxOccurs = inputData.getMaxOccurs();
 			
@@ -367,7 +364,7 @@ public class RunProcessWindow extends Window {
 		 * TODO: document
 		 * @param inputData
 		 */
-		public FeatureInputLayout(WPSData inputData) {
+		FeatureInputLayout(WPSData inputData) {
 			super(inputData);
 		}
 
@@ -395,6 +392,7 @@ public class RunProcessWindow extends Window {
 		 * TODO: document
 		 * @param complexData
 		 */
+        @SuppressWarnings("LeakingThisInConstructor")
 		public InputForm(ComplexData complexData){
 			this.complexData = complexData;
 			inputManager.registerInput(this);
@@ -440,7 +438,7 @@ public class RunProcessWindow extends Window {
 			String[] featureNames = new String[features.size()];
 			for (int i = 0; i < featureNames.length; i++) {
 				featureNames[i] = features.get(i).getTypeName();
-				LOGGER.info("FeatureName: " + featureNames[i]);
+				LOGGER.log(Level.INFO, "FeatureName: {0}", featureNames[i]);
 			}
 			featureChooser.setValueMap(featureNames);
 						

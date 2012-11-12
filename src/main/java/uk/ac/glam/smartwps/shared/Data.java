@@ -2,10 +2,8 @@ package uk.ac.glam.smartwps.shared;
 
 import java.io.Serializable;
 
-
 public abstract class Data implements Serializable {
 
-	private static final long serialVersionUID = -6440362430388760402L;
 	DataSource dataSource;
 	
 	public Data(){}

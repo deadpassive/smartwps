@@ -51,9 +51,7 @@ public interface WCSRequestService extends RemoteService {
 	 * @throws RESTConnectionException
 	 * @throws WCSConnectionException
 	 */
-	WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(
-			WCSGetCoverageAndStoreRequest request) throws IOException,
-			WMSConnectionException, RESTConnectionException,
-			WCSConnectionException;
+	WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request) 
+            throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException;
 
 }

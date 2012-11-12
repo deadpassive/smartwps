@@ -7,7 +7,6 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  * A record for displaying data from a CoverageOfferingBrief object. Intended for use in a AddCoverageListGrid.
  * 
  * @author Jon Britton
- *
  */
 public class CoverageRecord extends ListGridRecord {
 

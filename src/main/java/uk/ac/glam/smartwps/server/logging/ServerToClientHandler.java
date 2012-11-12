@@ -9,6 +9,7 @@ public class ServerToClientHandler extends Handler {
 	
 	ArrayList<LogRecord> logBuffer = new ArrayList<LogRecord>();
 	
+    @SuppressWarnings("LeakingThisInConstructor")
 	public ServerToClientHandler(Logger logger) {
 		logger.addHandler(this);
 	}

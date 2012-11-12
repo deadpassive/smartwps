@@ -7,11 +7,10 @@ import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
  * from a DescribeFeatureType response.
  * 
  * @author Jon
- *
  */
+@SuppressWarnings("serial")
 public class WFSFeatureType extends WFSFeatureTypeBase {
 
-	private static final long serialVersionUID = 6346070750442672772L;
 	private BoundsSerializable bounds;
 	private String namespaceURI;
 

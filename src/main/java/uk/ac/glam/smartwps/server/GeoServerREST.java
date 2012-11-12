@@ -11,6 +11,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientHandlerException;
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
+import java.util.logging.Level;
 
 /**
  * Provides useful methods for accessing the GeoServer REST interface.
@@ -43,22 +44,19 @@ public class GeoServerREST {
 		setAuthentication();
 		WebResource r = client.resource(geoserverURL + "/rest/workspaces/"
 				+ workspace);
-		LOGGER.info("Creating workspace at " + r.getURI());
+		LOGGER.log(Level.INFO, "Creating workspace at {0}", r.getURI());
 		
 		try {
-			LOGGER.info("Checking if workspace '" + workspace + "' exists");
+			LOGGER.log(Level.INFO, "Checking if workspace ''{0}'' exists", workspace);
 			r.accept("application/xml").get(String.class);
 			LOGGER.info("Workspace already exists");
 		} catch (UniformInterfaceException ue) {
 			if (ue.getResponse().getStatus() == 404) {
-				LOGGER.info("Workspace '" + workspace + "' doesn't exist, creating...");
+				LOGGER.log(Level.INFO, "Workspace ''{0}'' doesn''t exist, creating...", workspace);
 				WebResource workspaces = client.resource(geoserverURL
 						+ "/rest/workspaces");
 				workspaces.type("application/xml")
-						.post(
-								String.class,
-								"<workspace><name>" + workspace
-										+ "</name></workspace>");
+						.post(String.class, "<workspace><name>" + workspace	+ "</name></workspace>");
 			}
 		} catch (ClientHandlerException e) {
 			throw new RESTConnectionException("Failed to connect to GeoServer REST: " + e.getMessage());
@@ -97,7 +95,7 @@ public class GeoServerREST {
 					+ coverageName);
 			r.put(String.class, "file:/" + file.getAbsolutePath());
 		} catch (UniformInterfaceException e) {
-			e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "REST error", e);
 		}
 	}
 	
@@ -133,7 +131,7 @@ public class GeoServerREST {
 					+ coverageName);
 			r.type("image/tiff").put(File.class, file);
 		} catch (UniformInterfaceException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "REST error", e);
 		}
 	}
 
@@ -155,7 +153,8 @@ public class GeoServerREST {
 	/**
 	 * Get's the xml for all styles on the server
 	 * 
-	 * @return The styles xml
+     * @param geoserverURL 
+     * @return The styles xml
 	 */
 	public String getStylesXML(String geoserverURL) {
 		setAuthentication();
@@ -213,6 +212,7 @@ public class GeoServerREST {
 	
 	private void setAuthentication() {
 		Authenticator.setDefault(new Authenticator() {
+            @Override
 			public PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password.toCharArray());
 			}

@@ -2,16 +2,15 @@ package uk.ac.glam.smartwps.shared.wcs100;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+@SuppressWarnings("serial")
 public class Grid implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 958746403827470358L;
 	private int dimension;
 	private GridEnvelope limits;
-	private String[] axisNames;
+	private List<String> axisNames;
 	private String srsName;
 	private ArrayList<double[]> offsetVectors;
 
@@ -31,12 +30,12 @@ public class Grid implements Serializable {
 		return limits;
 	}
 
-	public void setAxisNames(String[] axisNames) {
-		this.axisNames = axisNames;
+	public void setAxisNames(List<String> axisNames) {
+		this.axisNames = new ArrayList<String>(axisNames);
 	}
 	
-	public String[] getAxisNames() {
-		return axisNames;
+	public ArrayList<String> getAxisNames() {
+		return new ArrayList<String>(axisNames);
 	}
 
 	public void setSRSName(String srsName) {
@@ -47,12 +46,12 @@ public class Grid implements Serializable {
 		return srsName;
 	}
 
-	public void setOffsetVectors(ArrayList<double[]> offsetVectors) {
-		this.offsetVectors = offsetVectors;
+	public void setOffsetVectors(List<double[]> offsetVectors) {
+		this.offsetVectors = new ArrayList<double[]>(offsetVectors);
 	}
 	
-	public ArrayList<double[]> getOffsetVectors() {
-		return offsetVectors;
+	public List<double[]> getOffsetVectors() {
+		return new ArrayList<double[]>(offsetVectors);
 	}
 
 }

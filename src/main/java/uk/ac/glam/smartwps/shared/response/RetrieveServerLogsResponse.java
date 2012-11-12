@@ -1,19 +1,21 @@
 package uk.ac.glam.smartwps.shared.response;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.LogRecord;
 
+@SuppressWarnings("serial")
 public class RetrieveServerLogsResponse implements ServiceResponse {
 
-	private static final long serialVersionUID = -4499387905026387838L;
-	private ArrayList<LogRecord> logRecords;
+	private List<LogRecord> logRecords;
 
-	public void setLogRecords(ArrayList<LogRecord> logRecords) {
-		this.logRecords = logRecords;
+	public void setLogRecords(Collection<LogRecord> logRecords) {
+		this.logRecords = new ArrayList<LogRecord>(logRecords);
 	}
 
-	public ArrayList<LogRecord> getLogRecords() {
-		return logRecords;
+	public List<LogRecord> getLogRecords() {
+		return new ArrayList<LogRecord>(logRecords);
 	}
 	
 }

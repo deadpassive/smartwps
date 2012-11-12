@@ -1,7 +1,6 @@
 package uk.ac.glam.smartwps.server.wms;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.geotools.data.ows.CRSEnvelope;
@@ -12,6 +11,8 @@ import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
 public class WMSAdapter {
+    
+    private WMSAdapter() {}
 
 	public static WMSLayer layerAdapter(Layer layer) {
 		WMSLayer wmsLayer = new WMSLayer();
@@ -28,8 +29,7 @@ public class WMSAdapter {
 	
 	private static List<String> stylesAdapter(List<StyleImpl> styles) {
 		ArrayList<String> stylesList = new ArrayList<String>();
-		for (Iterator<StyleImpl> iterator = styles.iterator(); iterator.hasNext();) {
-			StyleImpl styleImpl = iterator.next();
+        for (StyleImpl styleImpl : styles) {
 			stylesList.add(styleImpl.getName());
 		}
 		return stylesList;

@@ -6,80 +6,127 @@ import java.util.List;
 import uk.ac.glam.smartwps.shared.Data;
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
+/**
+ * TODO: document.
+ * @author Jon Britton
+ */
 @SuppressWarnings("serial")
 public class WMSLayer extends Data {
 
-	String name;
-	String title;
-	String layerAbstract;
-	ArrayList<String> keywords;
-//	String serviceURL;
-	BoundsSerializable bbox;
-	String[] crsList;
+	private String name;
+	private String title;
+	private String layerAbstract;
+	private List<String> keywords;
+	private BoundsSerializable bbox;
+    private List<String> crsList;
 	private List<String> styles;
 	
 	public BoundsSerializable getBbox() {
 		return bbox;
 	}
 	
+    /**
+     * TODO: document.
+     * @param bbox 
+     */
 	public void setBbox(BoundsSerializable bbox) {
 		this.bbox = bbox;
 	}
 	
-//	public String getServiceURL() {
-//		return serviceURL;
-//	}
-//	
-//	public void setServiceURL(String serviceURL) {
-//		this.serviceURL = serviceURL;
-//	}
-	
+    /**
+     * TODO: document.
+     * @return 
+     */
 	public String getName() {
 		return name;
 	}
 	
+    /**
+     * TODO: document.
+     * @param name 
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+    /**
+     * TODO: document.
+     * @return 
+     */
 	public String getTitle() {
 		return title;
 	}
 	
+    /**
+     * TODO: document.
+     * @param title 
+     */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+    /**
+     * TODO: document.
+     * @return 
+     */
 	public String getLayerAbstract() {
 		return layerAbstract;
 	}
 	
+    /**
+     * TODO: document.
+     * @param layerAbstract 
+     */
 	public void setLayerAbstract(String layerAbstract) {
 		this.layerAbstract = layerAbstract;
 	}
 	
+    /**
+     * TODO: document.
+     * @return 
+     */
 	public ArrayList<String> getKeywords() {
-		return keywords;
+		return new ArrayList<String>(keywords);
 	}
 	
+    /**
+     * TODO: document.
+     * @param keywords 
+     */
 	public void setKeywords(ArrayList<String> keywords) {
-		this.keywords = keywords;
+        this.keywords = new ArrayList<String>(keywords);
 	}
 	
-	public void setCrsList(String[] crsList) {
-		this.crsList = crsList;
+    /**
+     * TODO: document.
+     * @param crsList 
+     */
+	public void setCrsList(List<String> crsList) {
+		this.crsList = new ArrayList<String>(crsList);
 	}
 	
-	public String[] getCrsList() {
-		return crsList;
+    /**
+     * TODO: document.
+     * @return 
+     */
+	public ArrayList<String> getCrsList() {
+		return new ArrayList<String>(crsList);
 	}
 	
+    /**
+     * TODO: document.
+     * @param styles 
+     */
 	public void setStyles(List<String> styles) {
-		this.styles = styles;
+        this.styles = new ArrayList<String>(styles);
 	}
 	
+    /**
+     * TODO: document.
+     * @return 
+     */
 	public List<String> getStyles() {
-		return styles;
+		return new ArrayList<String>(styles);
 	}
 	
 }

@@ -2,8 +2,8 @@ package uk.ac.glam.smartwps.server.wcs;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
@@ -31,6 +31,8 @@ import uk.ac.glam.wcsclient.wcs111.SpatialDomainType;
  * @author Jon Britton
  */
 public class WCS111Adapter {
+    
+    private WCS111Adapter() {}
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 
@@ -60,9 +62,7 @@ public class WCS111Adapter {
 			ContentsType contents) {
 		ArrayList<CoverageSummary> coverageOfferingsFinal = new ArrayList<CoverageSummary>();
 		List<CoverageSummaryType> coverageSummaryList = contents.getCoverageSummary();
-		for (Iterator<CoverageSummaryType> iterator = coverageSummaryList.iterator(); iterator
-				.hasNext();) {
-			CoverageSummaryType coverageSummary = iterator.next();
+        for (CoverageSummaryType coverageSummary : coverageSummaryList) {
 			coverageOfferingsFinal.add(coverageSummaryAdapter(coverageSummary));
 		}
 
@@ -84,7 +84,7 @@ public class WCS111Adapter {
 		// Identifier
 		coverageSummaryFinal.setIdentifier(coverageSummary.getIdentifier());
 		
-		LOGGER.info("Found coverage: " + coverageSummaryFinal.getIdentifier());
+		LOGGER.log(Level.INFO, "Found coverage: {0}", coverageSummaryFinal.getIdentifier());
 		
 		return coverageSummaryFinal;
 	}
@@ -98,27 +98,27 @@ public class WCS111Adapter {
 		bbox.setMaxX(bboxType.getUpperCorner().get(0));
 		bbox.setMaxY(bboxType.getUpperCorner().get(1));
 		
-		if ((bboxType.getCrs() != null) && (!bboxType.getCrs().equals("")))
-			bbox.setProjection(bboxType.getCrs());
-		else if (bboxType instanceof WGS84BoundingBoxType)
-			bbox.setProjection("urn:ogc:def:crs:EPSG::4326");
-		
-		return bbox;
+		if ((bboxType.getCrs() != null) && (bboxType.getCrs().length() != 0)) {
+            bbox.setProjection(bboxType.getCrs());
+        } else if (bboxType instanceof WGS84BoundingBoxType) {
+            bbox.setProjection("urn:ogc:def:crs:EPSG::4326");
+        }
+
+        return bbox;
 	}
 
 	private static String elistStringAdapter(EList<LanguageStringType> elist) {
-		String s = "";
-		for (Iterator<LanguageStringType> iterator = elist.iterator(); iterator.hasNext();) {
-			LanguageStringType languageStringType = iterator.next();
-			s += languageStringType.getValue();
+		StringBuilder s = new StringBuilder();
+        for (LanguageStringType languageStringType : elist) {
+			s.append(languageStringType.getValue());
 		}
-		return s;
+		return s.toString();
 	}
 	
 	private static ArrayList<String> elistAdapter(EList<String> elist) {
 		ArrayList<String> newList = new ArrayList<String>();
-		for (Iterator<String> iterator = elist.iterator(); iterator.hasNext();) {
-			newList.add(iterator.next());
+        for (String string : newList) {
+			newList.add(string);
 		}
 		return newList;
 	}
@@ -172,8 +172,7 @@ public class WCS111Adapter {
 		
 		// BoundingBox
 		List<BoundingBoxType> bboxs = spatialDomainType.getBoundingBox();
-		for (Iterator<BoundingBoxType> iterator = bboxs.iterator(); iterator.hasNext();) {
-			BoundingBoxType boundingBoxType = iterator.next();
+        for (BoundingBoxType boundingBoxType : bboxs) {
 			spatialDomain.addBoundingBox(boundingBoxAdapter(boundingBoxType));
 		}
 		

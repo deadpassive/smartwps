@@ -7,6 +7,8 @@ package uk.ac.glam.smartwps.shared.util;
  */
 public class StringUtils {
 
+    private StringUtils() {}
+    
 	/**
 	 * TODO: document
 	 * @param string
@@ -18,4 +20,8 @@ public class StringUtils {
 		}
 		return string.trim().isEmpty();
 	}
+    
+    public static boolean containsIgnoreCase(String string1, String string2) {
+        return string1.toLowerCase().contains(string2.toLowerCase());
+    }
 }

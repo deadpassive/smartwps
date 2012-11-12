@@ -2,14 +2,14 @@ package uk.ac.glam.smartwps.shared.wcs111;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
+@SuppressWarnings("serial")
 public class SpatialDomain implements Serializable {
 
-	private static final long serialVersionUID = -5513550021121563943L;
-	private ArrayList<BoundsSerializable> boundingBoxList = new ArrayList<BoundsSerializable>();
+	private List<BoundsSerializable> boundingBoxList = new ArrayList<BoundsSerializable>();
 	private String gridBaseCRS;
 	
 	public void addBoundingBox(BoundsSerializable bbox) {
@@ -30,16 +30,16 @@ public class SpatialDomain implements Serializable {
 	 * @return
 	 */
 	public BoundsSerializable getBoundingBox(String crs) {
-		for (Iterator<BoundsSerializable> iterator = boundingBoxList.iterator(); iterator.hasNext();) {
-			BoundsSerializable bbox = iterator.next();
-			if (bbox.getProjection().equals(crs))
-				return bbox;
-		}
+        for (BoundsSerializable bbox : boundingBoxList) {
+            if (bbox.getProjection().equalsIgnoreCase(crs)) {
+                return bbox;
+            }
+        }
 		return null;
 	}
 
-	public ArrayList<BoundsSerializable> getBoundingBoxList() {
-		return boundingBoxList;
+	public List<BoundsSerializable> getBoundingBoxList() {
+		return new ArrayList<BoundsSerializable>(boundingBoxList);
 	}
 
 }

@@ -1,6 +1,5 @@
 package uk.ac.glam.smartwps.client.wfs;
 
-import java.util.ArrayList;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.net.WFSRequestService;
@@ -23,6 +22,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
+import java.util.List;
 
 /**
  * TODO: document
@@ -31,7 +31,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
  */
 public class WFSLayerSelector extends HLayout {
 
-	private static WFSRequestServiceAsync wfsService = GWT.create(WFSRequestService.class);
+	private final static WFSRequestServiceAsync WFS_RPC_SERVICE = GWT.create(WFSRequestService.class);
 	private ListGrid layerList;
 	
 	/**
@@ -75,7 +75,7 @@ public class WFSLayerSelector extends HLayout {
 			        		GWT.log("Making service call");
 			        		WFSFeatureTypeBase featureTypeBase = ((WFSLayerRecord)record).getWFSFeatureType();
 			        		WFSDescribeFeatureTypeRequest request = new WFSDescribeFeatureTypeRequest(featureTypeBase);
-			        		wfsService.wfsDescribeFeatureType(request, callback);
+			        		WFS_RPC_SERVICE.wfsDescribeFeatureType(request, callback);
 			            } 
 			        });  
 			        return button;
@@ -118,7 +118,7 @@ public class WFSLayerSelector extends HLayout {
 			@Override
 			public void onSuccess(WFSGetCapabilitiesResponse result) {
 				SC.clearPrompt();
-				ArrayList<WFSFeatureTypeBase> wfsLayers = result.getWFSLayers();
+				List<WFSFeatureTypeBase> wfsLayers = result.getWFSLayers();
 				WFSLayerRecord[] newRecords = new WFSLayerRecord[wfsLayers.size()];
 				for (int i = 0; i < wfsLayers.size(); i++) {
 					newRecords[i] = new WFSLayerRecord(wfsLayers.get(i));
@@ -132,6 +132,6 @@ public class WFSLayerSelector extends HLayout {
 
 		// Make the call to the stock price service.
 		GWT.log("Making service call");
-		wfsService.wfsGetCapabilities(new WFSGetCapabilitiesRequest(url), callback);
+		WFS_RPC_SERVICE.wfsGetCapabilities(new WFSGetCapabilitiesRequest(url), callback);
 	}
 }

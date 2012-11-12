@@ -7,11 +7,10 @@ import uk.ac.glam.smartwps.shared.Data;
  * contained in a GetCapabilities response.
  * 
  * @author Jon
- * 
  */
+@SuppressWarnings("serial")
 public class WFSFeatureTypeBase extends Data {
 
-	private static final long serialVersionUID = -8829157355448436364L;
 	private String typeName;
 	private String title;
 	private String abs;

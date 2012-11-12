@@ -30,7 +30,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  */
 public class AddProcessListGrid extends ListGrid {
 
-	private Logger logger = Logger.getLogger("smartwps.client");
+	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 	private static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
 	
 	/**
@@ -54,7 +54,7 @@ public class AddProcessListGrid extends ListGrid {
 	public void loadProcessInfo(String url) {
 
 		SC.showPrompt("Loading process info from server...");
-		logger.info("Loading process info from server...");
+		LOGGER.info("Loading process info from server...");
 		
 		// Set up the callback object.
 		AsyncCallback<WPSGetCapabilitiesResponse> callback = new AsyncCallback<WPSGetCapabilitiesResponse>() {
@@ -66,7 +66,7 @@ public class AddProcessListGrid extends ListGrid {
 
 			@Override
 			public void onSuccess(WPSGetCapabilitiesResponse result) {
-				logger.info("Successfully executed RPC request");
+				LOGGER.info("Successfully executed RPC request");
 				SC.clearPrompt();
 				
 				ArrayList<ProcessDescriptor> processes = result.getProcessDescriptors();
@@ -81,7 +81,7 @@ public class AddProcessListGrid extends ListGrid {
 		};
 
 		// Make the call to the stock price service.
-		logger.info("Making service call");
+		LOGGER.info("Making service call");
 		wpsService.wpsGetCapabilities(new WPSGetCapabilitiesRequest(url), callback);
 	}
 
@@ -98,7 +98,7 @@ public class AddProcessListGrid extends ListGrid {
 				public void onClick(ClickEvent event) {
 	            	// Get detailed descriptor for server
 	            	SC.showPrompt("Loading detailed process info from server for " + record.getAttribute("id"));
-	        		logger.info("Loading detailed process info from server for " + record.getAttribute("id"));
+	        		LOGGER.info("Loading detailed process info from server for " + record.getAttribute("id"));
 	        		
 	        		// Set up the callback object.
 	        		AsyncCallback<DetailedProcessDescriptor> callback = new AsyncCallback<DetailedProcessDescriptor>() {
@@ -118,7 +118,7 @@ public class AddProcessListGrid extends ListGrid {
 	        		};
 
 	        		// Make the call to the stock price service.
-	        		logger.info("Making service call");
+	        		LOGGER.info("Making service call");
 	        		ProcessRecord pRecord = (ProcessRecord)record;
 	        		ProcessDescriptor pd = pRecord.getProcessDescriptor();
 	        		wpsService.getProcessDetails(pd.getServiceURL(), pd.getId(), callback);

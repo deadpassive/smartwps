@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
+@SuppressWarnings("serial")
 public class CoverageSummary implements Serializable {
 
-	private static final long serialVersionUID = 6729933916457475887L;
 	private String title;
 	private String abstract1;
 	private String identifier;

@@ -26,5 +26,6 @@ public interface WFSRequestServiceAsync {
 	 * @param request
 	 * @param callback
 	 */
-	void wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request, AsyncCallback<WFSDescribeFeatureTypeResponse> callback);
+	void wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request, 
+            AsyncCallback<WFSDescribeFeatureTypeResponse> callback);
 }

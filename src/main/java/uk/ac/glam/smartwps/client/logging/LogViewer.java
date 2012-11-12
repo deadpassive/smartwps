@@ -1,7 +1,5 @@
 package uk.ac.glam.smartwps.client.logging;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -20,6 +18,7 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
+import java.util.List;
 
 /**
  * TODO: document
@@ -28,9 +27,10 @@ import com.smartgwt.client.widgets.toolbar.ToolStrip;
  */
 public class LogViewer extends VLayout {
 	
-	private static Logger LOGGER = Logger.getLogger("smartwps.client");
+	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 	private Timer timer;
 	private Handler handler;
+    private StringBuilder logBuilder = new StringBuilder();
 
 	/**
 	 * TODO: document
@@ -70,7 +70,7 @@ public class LogViewer extends VLayout {
             @Override
 			public void onChanged(ChangedEvent event) {  
             	Level level = Level.parse((String) selectLevel.getValue());
-            	LOGGER.info("Changed logging level to " + level.getName());
+            	LOGGER.log(Level.INFO, "Changed logging level to {0}", level.getName());
             	LOGGER.setLevel(level);
             }  
         });
@@ -90,27 +90,29 @@ public class LogViewer extends VLayout {
 			@Override
 			public void publish(LogRecord record) {
 				htmlPane.scrollToBottom();
-				String logs = htmlPane.getContents();
 				String colour = "black";
 				String message = record.getMessage();
 				// TODO: Why isn't this working?
-				message.replaceAll("<", "&lt;");
-				message.replaceAll(">", "&gt;");
-				if (record.getLevel() == Level.SEVERE)
-					colour = "darkred";
-				logs += "<span style=\"font-family:courier;color:" + colour+ "\"><b>" + record.getLoggerName() + " (" + record.getLevel() + "):</b> " + message + "</span><br/>";
+				message = message.replaceAll("<", "&lt;");
+				message = message.replaceAll(">", "&gt;");
+				if (record.getLevel() == Level.SEVERE) {
+                    colour = "darkred";
+                }
+                logBuilder.append("<span style=\"font-family:courier;color:").append(colour).append("\"><b>")
+                        .append(record.getLoggerName()).append(" (").append(record.getLevel()).append("):</b> ")
+                        .append(message).append("</span><br/>");
 				if (record.getThrown() != null) {
-					logs += "<span style=\"font-family:courier;color:red\">";
+					logBuilder.append("<span style=\"font-family:courier;color:red\">");
 					Throwable t = record.getThrown();
-					logs += t.getClass().getName() + ": " + t.getMessage() + "<br/>";
+					logBuilder.append(t.getClass().getName()).append(": ").append(t.getMessage()).append("<br/>");
 					StackTraceElement[] stes = t.getStackTrace();
 					for (int i = 0; i < stes.length; i++) {
 						StackTraceElement ste = stes[i];
-						logs += "&nbsp;&nbsp;&nbsp;" + ste.toString() + "<br/>";
+						logBuilder.append("&nbsp;&nbsp;&nbsp;").append(ste.toString()).append("<br/>");
 					}
-					logs += "</span>";
+					logBuilder.append("</span>");
 				}
-				htmlPane.setContents(logs);
+				htmlPane.setContents(logBuilder.toString());
 				htmlPane.scrollToBottom();
 			}
 			
@@ -148,8 +150,9 @@ public class LogViewer extends VLayout {
 	 * TODO: document
 	 */
 	public void stopServerLogging() {
-		if (timer != null)
-			timer.cancel();
+		if (timer != null) {
+            timer.cancel();
+        }
 	}
 	
 	private void updateServerLogs() {
@@ -164,12 +167,12 @@ public class LogViewer extends VLayout {
 			@Override
 			public void onSuccess(RetrieveServerLogsResponse response) {
 				SC.clearPrompt();
-				ArrayList<LogRecord> logs = response.getLogRecords();
-				for (Iterator<LogRecord> iterator = logs.iterator(); iterator.hasNext();) {
-					LogRecord logRecord = iterator.next();
+				List<LogRecord> logs = response.getLogRecords();
+                for (LogRecord logRecord : logs) {
 					// If logging level is ok, publish it
-					if (logRecord.getLevel().intValue() >= LOGGER.getLevel().intValue())
-						handler.publish(logRecord);
+					if (logRecord.getLevel().intValue() >= LOGGER.getLevel().intValue()) {
+                        handler.publish(logRecord);
+                    }
 				}
 			}
 		};

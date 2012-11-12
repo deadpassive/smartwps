@@ -5,9 +5,8 @@ package uk.ac.glam.smartwps.client.wfs;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("serial")
 public class WFSConnectionException extends Exception {
-
-	private static final long serialVersionUID = -932705993132311138L;
 	
 	/**
 	 * TODO: document

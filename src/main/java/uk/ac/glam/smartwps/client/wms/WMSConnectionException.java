@@ -6,9 +6,8 @@ package uk.ac.glam.smartwps.client.wms;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("serial")
 public class WMSConnectionException extends Exception {
-
-	private static final long serialVersionUID = 6517628346659543904L;
 
 	/**
 	 * TODO: document

@@ -31,6 +31,7 @@ public interface WFSRequestService extends RemoteService {
 	 * @return
 	 * @throws WFSConnectionException
 	 */
-	WFSDescribeFeatureTypeResponse wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request) throws WFSConnectionException;
+	WFSDescribeFeatureTypeResponse wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request) 
+            throws WFSConnectionException;
 
 }

@@ -16,12 +16,9 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * @author Jon
  * 
  */
+@SuppressWarnings("serial")
 public class WFSRequestServiceImpl extends RemoteServiceServlet implements
 		WFSRequestService {
-
-	private static final long serialVersionUID = -199171093932649208L;
-
-	//private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 		
 	@Override
 	public WFSGetCapabilitiesResponse wfsGetCapabilities(WFSGetCapabilitiesRequest request) throws WFSConnectionException {

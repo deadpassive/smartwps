@@ -18,6 +18,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import java.util.logging.Level;
 
 /**
  * A list grid for displaying coverages from a given WCS server.
@@ -26,7 +27,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
  *
  */
 public class CoverageListGrid extends ListGrid {
-	private Logger LOGGER = SmartWPS.LOGGER;
+	private static final Logger LOGGER = SmartWPS.LOGGER;
 	private WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
 	
 	/**
@@ -46,7 +47,7 @@ public class CoverageListGrid extends ListGrid {
 	 * @param url the WCS URL
 	 */
 	public void loadWCSInfo(String url) {
-		LOGGER.info("Loading coverage info from " + url);
+		LOGGER.log(Level.INFO, "Loading coverage info from {0}", url);
 		SC.showPrompt("Loading coverage info from " + url);
 		
 		AsyncCallback<WCSCapabilitiesResponse> callback = new AsyncCallback<WCSCapabilitiesResponse>() {

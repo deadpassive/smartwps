@@ -14,10 +14,10 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("serial")
 public class WPSProperties extends Properties {
 	
-	private static final long serialVersionUID = -7892274349660386411L;
-	private static Logger LOGGER = Logger.getLogger("smartwps.server");
+	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 	
 	private static WPSProperties instance;
 
@@ -25,7 +25,7 @@ public class WPSProperties extends Properties {
 		FileInputStream in = null;
 		try {
 			File f = new File(servlet.getServletContext().getRealPath("settings") + "/config.txt");
-			LOGGER.info("Loading settings from file " + f.getAbsolutePath());
+			LOGGER.log(Level.INFO, "Loading settings from file {0}", f.getAbsolutePath());
 			in = new FileInputStream(f);
 			load(in);
 		} catch (Exception e) {
@@ -36,8 +36,9 @@ public class WPSProperties extends Properties {
 			this.setProperty("GEOSERVER_PASSWORD", "geoserver");
 		} finally {
 			try {
-				if (in != null)
-					in.close();
+				if (in != null) {
+                    in.close();
+                }
 			} catch (IOException e) {
 				LOGGER.log(Level.SEVERE, "Failed to close properties input stream", e);
 			}
@@ -56,6 +57,7 @@ public class WPSProperties extends Properties {
 	 * TODO: document
 	 * @return
 	 */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
 	public static WPSProperties getProperties() {
 		return instance;
 	}

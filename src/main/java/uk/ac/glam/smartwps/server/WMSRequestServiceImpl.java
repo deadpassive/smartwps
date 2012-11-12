@@ -10,16 +10,17 @@ import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+@SuppressWarnings("serial")
 public class WMSRequestServiceImpl extends RemoteServiceServlet implements WMSRequestService {
 	
-	private static final long serialVersionUID = 4461056010220281994L;
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 
 	@Override
 	public WMSGetCapabilitiesResponse wmsGetCapabilities(
 			WMSGetCapabilitiesRequest request) throws WMSConnectionException {
 		LOGGER.info("Handling wmsGetCapabilities request");
-		return WMSHandler.instance().wmsGetCapabilities(request.getServiceUrl(), request.getLayers(), request.isExactMatches());
+		return WMSHandler.instance().wmsGetCapabilities(request.getServiceUrl(), request.getLayers(), 
+                request.isExactMatches());
 	}
 	
 }

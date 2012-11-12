@@ -1,7 +1,6 @@
 package uk.ac.glam.smartwps.client.datatree;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.smartgwt.client.widgets.menu.Menu;
@@ -30,8 +29,7 @@ public class WMSNodeContextMenu extends DataTreeNodeContextMenu {
 		Menu submenu = new Menu();
 		List<String> styles = node.getWMSLayer().getStyles();
 		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-		for (Iterator<String> iterator = styles.iterator(); iterator.hasNext();) {
-			final String style = iterator.next();
+        for (final String style : styles) {
 			final MenuItem menuItem = new MenuItem(style);
 			menuItem.addClickHandler(new ClickHandler() {
 				@Override
@@ -42,7 +40,7 @@ public class WMSNodeContextMenu extends DataTreeNodeContextMenu {
 			});
 			menuItems.add(menuItem);
 		}
-		submenu.setItems(menuItems.toArray(new MenuItem[0]));
+		submenu.setItems(menuItems.toArray(new MenuItem[menuItems.size()]));
 		styleMenu.setSubmenu(submenu);
 		
 		addItem(styleMenu);
