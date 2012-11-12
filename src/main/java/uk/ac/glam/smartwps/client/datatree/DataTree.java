@@ -446,7 +446,6 @@ public class DataTree extends TreeGrid {
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof FeatureNode) {
 				WFSFeatureType feature = ((FeatureNode) nodes[i]).getFeatureType();
-				LOGGER.log(Level.FINE, "{0} == {1}?", new Object[]{feature.getTypeName(), typeName});
 				if (feature.getTypeName().equals(typeName)) {
 					LOGGER.info("Feature found!");
 					return feature;

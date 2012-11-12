@@ -25,6 +25,7 @@ import java.util.List;
  * 
  * @author Jon Britton
  */
+@SuppressWarnings("LoggerStringConcat")
 public class LogViewer extends VLayout {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
@@ -70,7 +71,7 @@ public class LogViewer extends VLayout {
             @Override
 			public void onChanged(ChangedEvent event) {  
             	Level level = Level.parse((String) selectLevel.getValue());
-            	LOGGER.log(Level.INFO, "Changed logging level to {0}", level.getName());
+            	LOGGER.info("Changed logging level to " + level.getName());
             	LOGGER.setLevel(level);
             }  
         });
