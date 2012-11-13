@@ -27,8 +27,8 @@ public class WFSLayerRecord extends ListGridRecord {
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+ * TODO: document
+	 * @return the WFS feature type object represented by this record
 	 */
 	public WFSFeatureTypeBase getWFSFeatureType() {
 		return wfsFeatureType;

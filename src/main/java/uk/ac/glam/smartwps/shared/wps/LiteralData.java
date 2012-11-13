@@ -3,17 +3,30 @@ package uk.ac.glam.smartwps.shared.wps;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 @SuppressWarnings("serial")
 public class LiteralData extends WPSData {
 
-	String dataType;
+	private String dataType;
 	private String defaultValue;
-	private List<String> allowedValues;
+	private List<String> allowedValues = new ArrayList<>();
 
+	/**
+	 * TODO: document
+	 * @return the data type
+	 */
 	public String getDataType() {
 		return dataType;
 	}
 
+	/**
+	 * TODO: document
+	 * @param dataType
+	 */
 	public void setDataType(String dataType) {
 		this.dataType = dataType;
 	}
@@ -23,20 +36,36 @@ public class LiteralData extends WPSData {
 		return "DataType: " + dataType;
 	}
 
+	/**
+	 * TODO: document
+	 * @param defaultValue
+	 */
 	public void setDefaultValue(String defaultValue) {
 		this.defaultValue = defaultValue;
 	}
-
-	public void setAllowedValues(List<String> allowedValues) {
-		this.allowedValues = new ArrayList<String>(allowedValues);
+	
+	/**
+	 * TODO: document
+	 * @param allowedValue
+	 */
+	public void addAllowedValue(String allowedValue) {
+		this.allowedValues.add(allowedValue);
 	}
 
+	/**
+	 * TODO: document
+	 * @return the default data value
+	 */
 	public String getDefaultValue() {
 		return defaultValue;
 	}
 
+	/**
+	 * TODO: document
+	 * @return the list of allows values for this input
+	 */
 	public List<String> getAllowedValues() {
-		return new ArrayList<String>(allowedValues);
+		return new ArrayList<>(allowedValues);
 	}
 	
 }

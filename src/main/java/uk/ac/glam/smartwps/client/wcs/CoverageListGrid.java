@@ -23,9 +23,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
  * A list grid for displaying coverages from a given WCS server.
  * 
  * @author jbritton
- *
  */
-@SuppressWarnings("LoggerStringConcat")
 public class CoverageListGrid extends ListGrid {
 	private static final Logger LOGGER = SmartWPS.LOGGER;
 	private WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);

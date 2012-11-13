@@ -10,6 +10,11 @@ import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 @SuppressWarnings("serial")
 public class WMSRequestServiceImpl extends RemoteServiceServlet implements WMSRequestService {
 	

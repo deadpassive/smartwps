@@ -18,7 +18,7 @@ public interface WMSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WMS capabilities metadata
 	 * @throws WMSConnectionException
 	 */
 	WMSGetCapabilitiesResponse wmsGetCapabilities(WMSGetCapabilitiesRequest request)

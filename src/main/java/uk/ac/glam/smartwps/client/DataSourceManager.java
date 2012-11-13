@@ -13,7 +13,7 @@ public class DataSourceManager {
 
     private DataSourceManager() {}
     
-	private static HashMap<String,DataSource> datasourceMap = new HashMap<String,DataSource>();
+	private static HashMap<String,DataSource> datasourceMap = new HashMap<>();
 	
 	/**
 	 * Get the data store for the given service url.

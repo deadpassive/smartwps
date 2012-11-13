@@ -28,7 +28,7 @@ public interface WPSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WPS capabilities metadata
 	 * @throws WPSConnectionException
 	 */
 	WPSGetCapabilitiesResponse wpsGetCapabilities(WPSGetCapabilitiesRequest request)
@@ -38,14 +38,14 @@ public interface WPSRequestService extends RemoteService {
 	 * TODO: document
 	 * @param url
 	 * @param id
-	 * @return
+	 * @return the detailed process metadata
 	 */
 	DetailedProcessDescriptor getProcessDetails(String url, String id);
 
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the execute response data
 	 * @throws WPSConnectionException
 	 * @throws WMSConnectionException
 	 * @throws WPSExecuteException

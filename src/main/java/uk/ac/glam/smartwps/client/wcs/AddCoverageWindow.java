@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.client.wcs;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
@@ -388,7 +389,7 @@ public class AddCoverageWindow extends Window {
 									.getValueAsString("URL");
 							String layer = existingWMSForm
 									.getValueAsString("LAYER");
-							ArrayList<String> layerList = new ArrayList<String>();
+							List<String> layerList = new ArrayList<>();
 							layerList.add(layer);
 							SC.showPrompt("Contacting WMS server at "
 									+ serviceURL);

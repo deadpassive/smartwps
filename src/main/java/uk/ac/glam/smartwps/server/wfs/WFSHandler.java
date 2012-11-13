@@ -3,6 +3,7 @@ package uk.ac.glam.smartwps.server.wfs;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,15 +33,14 @@ public class WFSHandler {
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 	private static WFSHandler instance;
 	
-	private HashMap<String, WFSDataStore> wfsDataStores;
+	private Map<String, WFSDataStore> wfsDataStores;
 
 	private WFSHandler() {
-		wfsDataStores = new HashMap<String, WFSDataStore>();
+		wfsDataStores = new HashMap<>();
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the WFSHandler instance
 	 */
 	public static WFSHandler instance() {
 		if (instance == null) {
@@ -51,7 +51,7 @@ public class WFSHandler {
 	
 	private WFSDataStore loadWFSCapabilities(String url) throws WFSConnectionException {
 		LOGGER.info("Loading WFS capabilities from " + url);
-		Map<String, String> connectionParameters = new HashMap<String, String>();
+		Map<String, String> connectionParameters = new HashMap<>();
 		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL",
 				url);
 		// Try to confuse the factory cache...
@@ -80,7 +80,7 @@ public class WFSHandler {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WFS GetCapabilities response data
 	 * @throws WFSConnectionException
 	 */
 	public WFSGetCapabilitiesResponse wfsGetCapabilities(WFSGetCapabilitiesRequest request) throws WFSConnectionException {
@@ -90,7 +90,7 @@ public class WFSHandler {
 		try {
 			WFSDataStore data = loadWFSCapabilities(url);
 			String[] typeNames = data.getTypeNames();
-			ArrayList<WFSFeatureTypeBase> wfsLayers = new ArrayList<WFSFeatureTypeBase>();
+			List<WFSFeatureTypeBase> wfsLayers = new ArrayList<>();
 			for (int i = 0; i < typeNames.length; i++) {
 				String typeName = typeNames[i];
 
@@ -125,17 +125,16 @@ public class WFSHandler {
 	 * @param typeName
 	 * @param forceReloadCaps
 	 * @param retries
-	 * @return
+	 * @return the WFS DescribeFeature response data
 	 * @throws WFSConnectionException
 	 */
 	public WFSFeatureType wfsDescribeFeatureType(String url, String typeName, 
 			boolean forceReloadCaps, int retries) throws WFSConnectionException {
 		LOGGER.info("WFS DescribeFeatureType with URL " + url + " and typeName " + typeName);
 		WFSDataStore data = null;
+		int retry = 0;
 		try {
-			boolean retry;
 			do {
-				retry = false;
 				// Force reload?
 				if (forceReloadCaps) {
 					LOGGER.info("Reloading WFSCapabilities");
@@ -149,13 +148,14 @@ public class WFSHandler {
 					}
 				}
 				// If we haven't found the typename, or the data is null then retry
-				if (((data == null) || (!ServerUtils.arrayContainsString(data.getTypeNames(), typeName))) && (retries > 0)) {
+				if ((data == null || !ServerUtils.arrayContainsString(data.getTypeNames(), typeName)) && (retries > 0)) {
 					LOGGER.info("Problem finding typename in capabilities, retrying after 5secs");
 					Thread.sleep(5000);
-					retries --;
-					retry = true;
+					retry++;
+				} else {
+					break;
 				}
-			} while (retry == true);
+			} while (retry <= retries);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to load WFS capabilities: " + e.getMessage(), e);
 			throw new WFSConnectionException("Failed to load WFS capabilities: " + e.getMessage());
@@ -202,7 +202,7 @@ public class WFSHandler {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WFS DescribeFeature response data
 	 * @throws WFSConnectionException
 	 */
 	public WFSDescribeFeatureTypeResponse wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request) throws WFSConnectionException {

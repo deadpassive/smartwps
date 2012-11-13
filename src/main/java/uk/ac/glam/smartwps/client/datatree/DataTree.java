@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.client.datatree;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.gwtopenmaps.openlayers.client.control.WMSGetFeatureInfo;
@@ -11,6 +12,7 @@ import org.gwtopenmaps.openlayers.client.layer.Layer;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.shared.util.StringUtils;
 import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
@@ -35,9 +37,6 @@ import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
-import java.util.List;
-import java.util.logging.Level;
-import uk.ac.glam.smartwps.shared.util.StringUtils;
 
 /**
  * A DataTree displays the current layers in a SmartWPS workspace.
@@ -117,9 +116,9 @@ public class DataTree extends TreeGrid {
 	 * 
 	 * @return the list of WMSLayers
 	 */
-	public ArrayList<WMSLayer> getWMSLayers() {
+	public List<WMSLayer> getWMSLayers() {
 		TreeNode[] nodes = tree.getChildren(tree.getRoot());
-		ArrayList<WMSLayer> dataList = new ArrayList<WMSLayer>();
+		List<WMSLayer> dataList = new ArrayList<>();
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof WMSNode) {
 				WMSNode node = (WMSNode) nodes[i];
@@ -134,9 +133,9 @@ public class DataTree extends TreeGrid {
 	 * 
 	 * @return the list of WCSCoverages
 	 */
-	public ArrayList<WCSCoverage> getWCSCoverages() {
+	public List<WCSCoverage> getWCSCoverages() {
 		TreeNode[] nodes = tree.getChildren(tree.getRoot());
-		ArrayList<WCSCoverage> dataList = new ArrayList<WCSCoverage>();
+		List<WCSCoverage> dataList = new ArrayList<>();
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof CoverageNode) {
 				CoverageNode node = (CoverageNode) nodes[i];
@@ -149,9 +148,9 @@ public class DataTree extends TreeGrid {
 	/**
 	 * @return all of the CoverageNode objects currently in the tree
 	 */
-	public ArrayList<CoverageNode> getCoverageNodes() {
+	public List<CoverageNode> getCoverageNodes() {
 		TreeNode[] nodes = tree.getChildren(tree.getRoot());
-		ArrayList<CoverageNode> nodeList = new ArrayList<CoverageNode>();
+		List<CoverageNode> nodeList = new ArrayList<>();
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof CoverageNode) {
 				nodeList.add((CoverageNode) nodes[i]);
@@ -356,7 +355,7 @@ public class DataTree extends TreeGrid {
 	 */
 	public List<WMS> getWMSMapLayers() {
 		TreeNode[] nodes = tree.getChildren(tree.getRoot());
-		ArrayList<WMS> mapList = new ArrayList<WMS>();
+		List<WMS> mapList = new ArrayList<>();
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof WMSNode) {
 				WMSNode node = (WMSNode) nodes[i];
@@ -423,9 +422,9 @@ public class DataTree extends TreeGrid {
 	/**
 	 * @return all WFSFeatureType objects currently in the list
 	 */
-	public ArrayList<WFSFeatureType> getWFSFeatureTypes() {
+	public List<WFSFeatureType> getWFSFeatureTypes() {
 		TreeNode[] nodes = tree.getChildren(tree.getRoot());
-		ArrayList<WFSFeatureType> dataList = new ArrayList<WFSFeatureType>();
+		List<WFSFeatureType> dataList = new ArrayList<>();
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i] instanceof FeatureNode) {
 				FeatureNode node = (FeatureNode) nodes[i];

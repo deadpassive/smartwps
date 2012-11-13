@@ -27,7 +27,7 @@ public interface WCSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WCS capabilities response metadata
 	 * @throws WCSConnectionException
 	 */
 	WCSCapabilitiesResponse wcsGetCapabilities(WCSGetCapabilitiesRequest request)
@@ -36,7 +36,7 @@ public interface WCSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WCS coverage metadata
 	 * @throws WCSConnectionException
 	 */
 	WCSDescribeCoverageResponse wcsDescribeCoverage(WCSDescribeCoverageRequest request)
@@ -45,7 +45,7 @@ public interface WCSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return response containing a WCSCoverage object
 	 * @throws IOException
 	 * @throws WMSConnectionException
 	 * @throws RESTConnectionException

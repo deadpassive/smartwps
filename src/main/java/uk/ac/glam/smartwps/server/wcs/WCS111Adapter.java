@@ -39,7 +39,7 @@ public class WCS111Adapter {
 	/**
 	 * TODO: document
 	 * @param wcs
-	 * @return
+	 * @return the parsed capabilities
 	 */
 	public static WCSCapabilities111 parseWCSCapabilities(WCS111 wcs) {
 		WCSCapabilities111 wcsCapabilities = new WCSCapabilities111();
@@ -58,9 +58,9 @@ public class WCS111Adapter {
 		return wcsCapabilities;
 	}
 
-	private static ArrayList<CoverageSummary> contentsAdapter(
+	private static List<CoverageSummary> contentsAdapter(
 			ContentsType contents) {
-		ArrayList<CoverageSummary> coverageOfferingsFinal = new ArrayList<CoverageSummary>();
+		List<CoverageSummary> coverageOfferingsFinal = new ArrayList<>();
 		List<CoverageSummaryType> coverageSummaryList = contents.getCoverageSummary();
         for (CoverageSummaryType coverageSummary : coverageSummaryList) {
 			coverageOfferingsFinal.add(coverageSummaryAdapter(coverageSummary));
@@ -115,9 +115,9 @@ public class WCS111Adapter {
 		return s.toString();
 	}
 	
-	private static ArrayList<String> elistAdapter(EList<String> elist) {
-		ArrayList<String> newList = new ArrayList<String>();
-        for (String string : newList) {
+	private static List<String> elistAdapter(EList<String> elist) {
+		List<String> newList = new ArrayList<>();
+        for (String string : elist) {
 			newList.add(string);
 		}
 		return newList;
@@ -127,10 +127,11 @@ public class WCS111Adapter {
 	 * TODO: document
 	 * @param wcs
 	 * @param identifier
-	 * @return
+	 * @return the parsed coverage description
 	 * @throws IOException
 	 */
-	public static CoverageDescription parseDescribeCoverage(WCS111 wcs, String identifier) throws IOException {
+	public static CoverageDescription parseDescribeCoverage(WCS111 wcs, String identifier) 
+			throws IOException {
 		CoverageDescription coverageDescription = new CoverageDescription();
 		CoverageDescriptionType cdt = wcs.describeCoverage(identifier);
 		
@@ -148,7 +149,6 @@ public class WCS111Adapter {
 		// TODO: Keywords
 		// TODO: Range
 		// TODO: SupportedFormat
-		
 		
 		coverageDescription.setServiceURL(wcs.getServiceURL());
 		coverageDescription.setCoverageSummary(coverageSummaryAdapter(wcs.getCoverageSummary(identifier)));

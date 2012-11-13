@@ -28,7 +28,7 @@ public class WMSNodeContextMenu extends DataTreeNodeContextMenu {
 		
 		Menu submenu = new Menu();
 		List<String> styles = node.getWMSLayer().getStyles();
-		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+		List<MenuItem> menuItems = new ArrayList<>();
         for (final String style : styles) {
 			final MenuItem menuItem = new MenuItem(style);
 			menuItem.addClickHandler(new ClickHandler() {

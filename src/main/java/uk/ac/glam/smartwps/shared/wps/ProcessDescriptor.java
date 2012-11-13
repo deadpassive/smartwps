@@ -11,9 +11,21 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class ProcessDescriptor implements Serializable {
 	
+	/**
+	 * TODO: document
+	 */
 	String id;
+	/**
+	 * TODO: document
+	 */
 	String title;
+	/**
+	 * TODO: document
+	 */
 	String serviceURL;
+	/**
+	 * TODO: document
+	 */
 	String processVersion;
 	
 	/**

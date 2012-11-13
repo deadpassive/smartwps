@@ -57,7 +57,7 @@ public class RunProcessWindow extends Window {
 	private DynamicForm literalsForm;
 	private static final Logger LOGGER = SmartWPS.LOGGER;
 	private ProcessInputManager inputManager;
-	private Map<FormItem, String> defaultValues = new HashMap<FormItem, String>();
+	private Map<FormItem, String> defaultValues = new HashMap<>();
 	private static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
 	
 	/**
@@ -86,7 +86,7 @@ public class RunProcessWindow extends Window {
 		formsLayout.setHeight100();
 		
 		// in case we have literals...		
-		ArrayList<FormItem> literalFormItems = new ArrayList<FormItem>();
+		List<FormItem> literalFormItems = new ArrayList<>();
 		
 		List<WPSData> inputs = process.getDataInputs();
         for (WPSData wpsData : inputs) {
@@ -170,7 +170,7 @@ public class RunProcessWindow extends Window {
 			if (input instanceof ComplexData) {
 				ComplexData complexData = (ComplexData) input;
 				// Could have more than one instance of each input...
-				ArrayList<InputForm> inputForms = inputManager.getInputs(complexData.getIdentifier());
+				List<InputForm> inputForms = inputManager.getInputs(complexData.getIdentifier());
 				if (complexData.getDefaultFormat().getMimeType().equals(Format.IMAGE_TIFF)) {
 					// WCS
                     for (InputForm inputForm : inputForms) {
@@ -224,8 +224,8 @@ public class RunProcessWindow extends Window {
 	 * Makes a wpsExecute RPC request. Results are sent to the SmartWPS ResultsTabSet.
 	 * @param request
 	 */
+	@SuppressWarnings("static-method")
 	private void callWPSExecute(WPSExecuteRequest request) {
-
 		SC.showPrompt("Issuing request...");
 		// Set up the callback object.
 		AsyncCallback<WPSExecuteResponse> callback = new AsyncCallback<WPSExecuteResponse>() {
@@ -270,8 +270,7 @@ public class RunProcessWindow extends Window {
 		 * Create a new GUI input for the given WPS input.
 		 * @param inputData the WPS input
 		 */
-        @SuppressWarnings("OverridableMethodCallInConstructor")
-		InputLayout(final WPSData inputData) {
+        InputLayout(final WPSData inputData) {
 			this.inputData = inputData;
 			maxOccurs = inputData.getMaxOccurs();
 			
@@ -392,7 +391,6 @@ public class RunProcessWindow extends Window {
 		 * TODO: document
 		 * @param complexData
 		 */
-        @SuppressWarnings("LeakingThisInConstructor")
 		public InputForm(ComplexData complexData){
 			this.complexData = complexData;
 			inputManager.registerInput(this);
@@ -401,7 +399,7 @@ public class RunProcessWindow extends Window {
 		
 		/**
 		 * TODO: document
-		 * @return
+		 * @return the input metadata associated with this form
 		 */
 		public ComplexData getComplexData() {
 			return complexData;
@@ -434,7 +432,7 @@ public class RunProcessWindow extends Window {
 			featureChooser.setType("comboBox");
 			
 			// Retrieve list of features
-			ArrayList<WFSFeatureType> features = SmartWPS.getSmartWPS().getDataTree().getWFSFeatureTypes();
+			List<WFSFeatureType> features = SmartWPS.getSmartWPS().getDataTree().getWFSFeatureTypes();
 			String[] featureNames = new String[features.size()];
 			for (int i = 0; i < featureNames.length; i++) {
 				featureNames[i] = features.get(i).getTypeName();
@@ -483,7 +481,7 @@ public class RunProcessWindow extends Window {
 	 *
 	 */
 	class CoverageInputForm extends InputForm {
-		private ArrayList<CoverageNode> coverageNodes;
+		private List<CoverageNode> coverageNodes;
 		
 		/**
 		 * TODO: document
@@ -500,7 +498,7 @@ public class RunProcessWindow extends Window {
 			coverageChooser.setType("comboBox");
 			
 			// Retrieve list of coverages
-			ArrayList<WCSCoverage> coverages = SmartWPS.getSmartWPS().getDataTree().getWCSCoverages();
+			List<WCSCoverage> coverages = SmartWPS.getSmartWPS().getDataTree().getWCSCoverages();
 			String[] coverageIDs = new String[coverages.size()];
 			for (int j = 0; j < coverageIDs.length; j++) {
 				coverageIDs[j] = coverages.get(j).getIdentifier();

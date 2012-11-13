@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.client.wps;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.ac.glam.smartwps.client.wps.RunProcessWindow.InputForm;
 
@@ -11,7 +12,7 @@ import uk.ac.glam.smartwps.client.wps.RunProcessWindow.InputForm;
  */
 public class ProcessInputManager {
 
-	private ArrayList<InputForm> inputs = new ArrayList<InputForm>();
+	private List<InputForm> inputs = new ArrayList<>();
 	
 	/**
 	 * Register the given input form.
@@ -28,9 +29,9 @@ public class ProcessInputManager {
 	 * @param id the input identifier
 	 * @return a list of input forms for the input
 	 */
-	public ArrayList<InputForm> getInputs(String id) {
-		ArrayList<InputForm> inputList = new ArrayList<InputForm>();
-        for (InputForm inputForm : inputList) {
+	public List<InputForm> getInputs(String id) {
+		ArrayList<InputForm> inputList = new ArrayList<>();
+        for (InputForm inputForm : inputs) {
 			if (inputForm.getComplexData().getIdentifier().equals(id)) {
                 inputList.add(inputForm);
             }

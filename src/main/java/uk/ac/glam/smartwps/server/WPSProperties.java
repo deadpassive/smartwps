@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.server;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,11 +21,10 @@ public class WPSProperties extends Properties {
 	private static WPSProperties instance;
 
 	private WPSProperties(RemoteServiceServlet servlet) {
-		FileInputStream in = null;
-		try {
-			File f = new File(servlet.getServletContext().getRealPath("settings") + "/config.txt");
-			LOGGER.log(Level.INFO, "Loading settings from file {0}", f.getAbsolutePath());
-			in = new FileInputStream(f);
+		File f = new File(servlet.getServletContext().getRealPath("settings") + "/config.txt");
+		LOGGER.log(Level.INFO, "Loading settings from file {0}", f.getAbsolutePath());
+
+		try (FileInputStream in = new FileInputStream(f)) {
 			load(in);
 		} catch (Exception e) {
 			LOGGER.severe("Cannot load config file. Using defaults");
@@ -34,14 +32,6 @@ public class WPSProperties extends Properties {
 			this.setProperty("GEOSERVER_URL_PUBLIC", "http://localhost:8080/geoserver");
 			this.setProperty("GEOSERVER_USERNAME", "admin");
 			this.setProperty("GEOSERVER_PASSWORD", "geoserver");
-		} finally {
-			try {
-				if (in != null) {
-                    in.close();
-                }
-			} catch (IOException e) {
-				LOGGER.log(Level.SEVERE, "Failed to close properties input stream", e);
-			}
 		}
 	}
 	
@@ -55,55 +45,52 @@ public class WPSProperties extends Properties {
 	
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the client properties
 	 */
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-	public static WPSProperties getProperties() {
+    public static WPSProperties getProperties() {
 		return instance;
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the local URL of the GeoServer which is used for data storage
 	 */
 	public String getGeoServerURL() {
 		return this.getProperty("GEOSERVER_URL");
 	}
 
+	/**
+	 * @return the publicaly accessible URL of the GeoServer which is used for data storage
+	 */
 	public String getPublicGeoServerURL() {
 		return this.getProperty("GEOSERVER_URL_PUBLIC");
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the username required to log into GeoServer
 	 */
 	public String getGeoserverUsername() {
 		return this.getProperty("GEOSERVER_USERNAME");
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the password required to log into GeoServer
 	 */
 	public String getGeoserverPassword() {
 		return this.getProperty("GEOSERVER_PASSWORD");
 	}
 
 	/**
-	 * TODO: document
-	 * @param moduleBaseURL
+	 * Set the base URL of the application.
+	 * @param moduleBaseURL the base URL for the client application
 	 */
 	public void setModuleBaseURL(String moduleBaseURL) {
 		this.setProperty("MODULE_BASE_URL", moduleBaseURL);
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the base URL of the client application
 	 */
 	public String getModuleBaseURL() {
 		return this.getProperty("MODULE_BASE_URL"); 
 	}
-
 }

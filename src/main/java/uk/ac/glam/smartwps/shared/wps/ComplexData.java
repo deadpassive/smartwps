@@ -40,7 +40,7 @@ public class ComplexData extends WPSData {
 	 * @return the list of supports for this data
 	 */
 	public List<Format> getSupportedFormats() {
-		return new ArrayList<Format>(supportedFormats);
+		return new ArrayList<>(supportedFormats);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class ComplexData extends WPSData {
 	 * @param supportedFormats list of supports formats
 	 */
 	public void setSupportedFormats(List<Format> supportedFormats) {
-		this.supportedFormats = new ArrayList<Format>(supportedFormats);
+		this.supportedFormats = new ArrayList<>(supportedFormats);
 	}
 	
 	/**

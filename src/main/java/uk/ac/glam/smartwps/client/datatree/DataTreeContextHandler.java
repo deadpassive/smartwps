@@ -16,7 +16,6 @@ public class DataTreeContextHandler implements LeafContextClickHandler {
 	 * TODO: document
 	 * @param owner
 	 */
-    @SuppressWarnings("LeakingThisInConstructor")
 	public DataTreeContextHandler(DataTree owner) {
 		this.owner = owner;
 		owner.addLeafContextClickHandler(this);

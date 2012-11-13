@@ -37,7 +37,7 @@ public class Format implements Serializable {
 	
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the MIME type of this format. May be null.
 	 */
 	public String getMimeType() {
 		return mimeType;
@@ -51,7 +51,7 @@ public class Format implements Serializable {
 	}
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the schema of this format. May be null.
 	 */
 	public String getSchema() {
 		return schema;
@@ -65,7 +65,7 @@ public class Format implements Serializable {
 	}
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the encoding of this format. May be null.
 	 */
 	public String getEncoding() {
 		return encoding;

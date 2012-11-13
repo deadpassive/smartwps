@@ -25,8 +25,7 @@ public class WMSLayerRecord extends ListGridRecord {
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the WMS layer object represented by this record
 	 */
 	public WMSLayer getWMSLayer() {
 		return wmsLayer;

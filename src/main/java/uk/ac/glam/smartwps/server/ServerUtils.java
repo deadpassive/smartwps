@@ -31,8 +31,8 @@ public class ServerUtils {
 
 	/**
 	 * Create a BoundsSerializable object from a ReferencedEnvelope
-	 * @param envelope
-	 * @return
+	 * @param envelope the envelope to convert
+	 * @return the bounds
 	 */
 	public static BoundsSerializable boundsFromReferencedEnvelope(
 			ReferencedEnvelope envelope) {
@@ -49,7 +49,7 @@ public class ServerUtils {
 	/**
 	 * Returns a String representation of a Thowable's stack trace.
 	 * @param throwable
-	 * @return
+	 * @return the stack trace string
 	 */
 	public static String getStackTraceAsString(Throwable throwable) {
 		Writer writer = new StringWriter();
@@ -59,14 +59,14 @@ public class ServerUtils {
 	}
 	
 	/**
-	 * Convenience method for determining whether a String array contains a given String
+	 * Convenience method for determining whether a String array contains a given String.
 	 * @param array array to search
-	 * @param theString String to search for
-	 * @return
+	 * @param searchString String to search for
+	 * @return whether the search string was found
 	 */
-	public static boolean arrayContainsString(String[] array, String theString) {
+	public static boolean arrayContainsString(String[] array, String searchString) {
 		for (int i = 0; i < array.length; i++) {
-			if (array[i].equals(theString)) {
+			if (array[i].equals(searchString)) {
 				LOGGER.log(Level.INFO, "Found string in array: {0}", array[i]);
 				return true;
 			}
@@ -75,10 +75,10 @@ public class ServerUtils {
 	}
 	
 	/**
-	 * Convenience method for changing the host in URL
+	 * Convenience method for changing the host in URL.
 	 * @param localURL localhost URL
 	 * @param publicHost the name of the public host
-	 * @return
+	 * @return the converted URL
 	 * @throws MalformedURLException 
 	 */
 	public static String convertLocalToPublicURL(String localURL, String publicHost) throws MalformedURLException {
@@ -90,6 +90,12 @@ public class ServerUtils {
 		return newURL;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param s
+	 * @param t
+	 * @return the levenshtein distance
+	 */
 	public static int levenshteinDistance(String s, String t) {
 		int n = s.length();
 		// length of s
@@ -131,24 +137,30 @@ public class ServerUtils {
 		return d[n][m];
 	}
 	
+	/**
+	 * TODO: document
+	 * @param in
+	 * @param filename
+	 * @return the file
+	 * @throws IOException
+	 */
 	public static File writeToFile(InputStream in, String filename) throws IOException {
 		// write the inputStream to a FileOutputStream
 		File file = new File(System.getProperty("java.io.tmpdir") + "/"
 				+ filename);
 		LOGGER.log(Level.INFO, "Creating file: {0}", file.getAbsolutePath());
-		OutputStream out;
-		out = new FileOutputStream(file);
+		
+		try (OutputStream out = new FileOutputStream(file)) {
+			int read;
+			byte[] bytes = new byte[1024];
 
-		int read;
-		byte[] bytes = new byte[1024];
+			while ((read = in.read(bytes)) != -1) {
+				out.write(bytes, 0, read);
+			}
 
-		while ((read = in.read(bytes)) != -1) {
-			out.write(bytes, 0, read);
+			in.close();
+			out.flush();
 		}
-
-		in.close();
-		out.flush();
-		out.close();
 
 		LOGGER.log(Level.INFO, "Created temp file: {0}", file.getAbsolutePath());
 

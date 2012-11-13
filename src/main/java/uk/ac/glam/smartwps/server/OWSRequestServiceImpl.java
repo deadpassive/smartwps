@@ -35,9 +35,8 @@ public class OWSRequestServiceImpl extends RemoteServiceServlet implements
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the client properties
 	 */
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
 	public WPSProperties getProperties() {
 		return properties;
 	}

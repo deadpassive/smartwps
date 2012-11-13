@@ -21,6 +21,10 @@ public class WMSLayer extends Data {
     private List<String> crsList;
 	private List<String> styles;
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public BoundsSerializable getBbox() {
 		return bbox;
 	}
@@ -86,7 +90,7 @@ public class WMSLayer extends Data {
      * @return 
      */
 	public ArrayList<String> getKeywords() {
-		return new ArrayList<String>(keywords);
+		return new ArrayList<>(keywords);
 	}
 	
     /**
@@ -94,7 +98,7 @@ public class WMSLayer extends Data {
      * @param keywords 
      */
 	public void setKeywords(ArrayList<String> keywords) {
-        this.keywords = new ArrayList<String>(keywords);
+        this.keywords = new ArrayList<>(keywords);
 	}
 	
     /**
@@ -102,7 +106,7 @@ public class WMSLayer extends Data {
      * @param crsList 
      */
 	public void setCrsList(List<String> crsList) {
-		this.crsList = new ArrayList<String>(crsList);
+		this.crsList = new ArrayList<>(crsList);
 	}
 	
     /**
@@ -110,7 +114,7 @@ public class WMSLayer extends Data {
      * @return 
      */
 	public ArrayList<String> getCrsList() {
-		return new ArrayList<String>(crsList);
+		return new ArrayList<>(crsList);
 	}
 	
     /**
@@ -118,7 +122,7 @@ public class WMSLayer extends Data {
      * @param styles 
      */
 	public void setStyles(List<String> styles) {
-        this.styles = new ArrayList<String>(styles);
+        this.styles = new ArrayList<>(styles);
 	}
 	
     /**
@@ -126,7 +130,7 @@ public class WMSLayer extends Data {
      * @return 
      */
 	public List<String> getStyles() {
-		return new ArrayList<String>(styles);
+		return new ArrayList<>(styles);
 	}
 	
 }

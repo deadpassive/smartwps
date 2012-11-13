@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +29,11 @@ import uk.ac.glam.wcsclient.StoredCoverage;
 import uk.ac.glam.wcsclient.WCS111;
 import uk.ac.glam.wcsclient.WebCoverageService;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 public class WCSHandler {
 
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
@@ -38,7 +44,7 @@ public class WCSHandler {
 	private WPSProperties properties;
 	
 	private WCSHandler() {
-		webCoverageServices = new HashMap<String, WCS111>();
+		webCoverageServices = new HashMap<>();
 		// Properties should have been initialised by now
 		properties = WPSProperties.getProperties();
 		geoserverREST = new GeoServerREST(
@@ -47,6 +53,9 @@ public class WCSHandler {
 				properties.getGeoserverPassword());
 	}
 	
+	/**
+	 * @return the WCSHandler instance
+	 */
 	public static WCSHandler instance() {
 		if (instance == null) {
 			instance = new WCSHandler();
@@ -112,6 +121,12 @@ public class WCSHandler {
 		return wcs;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @return the WCS capabilities response
+	 * @throws WCSConnectionException
+	 */
 	public WCSCapabilitiesResponse wcsGetCapabilities(final String url) throws WCSConnectionException {
 		WCSCapabilitiesResponse response = new WCSCapabilitiesResponse();
 		
@@ -124,6 +139,14 @@ public class WCSHandler {
 		return response;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @param coverage
+	 * @param reloadCaps
+	 * @return the WCS DescribeCoverage response
+	 * @throws WCSConnectionException
+	 */
 	public WCSDescribeCoverageResponse wcsDescribeCoverage(final String url, String coverage, boolean reloadCaps) 
             throws WCSConnectionException {
 		WCSDescribeCoverageResponse response = new WCSDescribeCoverageResponse();
@@ -147,6 +170,15 @@ public class WCSHandler {
 		return response;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param request
+	 * @return the WCS GetCoverage response
+	 * @throws IOException
+	 * @throws WMSConnectionException
+	 * @throws RESTConnectionException
+	 * @throws WCSConnectionException
+	 */
 	public WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request) 
             throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
 		WCSGetCoverageAndStoreResponse response = new WCSGetCoverageAndStoreResponse();
@@ -155,7 +187,13 @@ public class WCSHandler {
 		String url = request.getCoverageDescription().getServiceURL();
 		WCS111 wcs = webCoverageServices.get(url);
 		if (wcs == null) {
-			// Not found, TODO: try and create WCS
+			wcsGetCapabilities(url);
+			wcs = webCoverageServices.get(url);
+			
+			if (wcs == null) {
+				// if it's still null, fail
+				throw new WCSConnectionException("Failed to load WCS metadata");
+			}
 		}
 		
 		//Get bbox string
@@ -177,15 +215,14 @@ public class WCSHandler {
 	 * @param coverageUrl The location of the coverage
      * @param workspace 
      * @param layerName 
-     * @return
+     * @return the stored WCS coverage
 	 * @throws IOException
 	 * @throws WMSConnectionException 
 	 * @throws RESTConnectionException 
 	 * @throws WCSConnectionException 
 	 */
 	public WCSCoverage addCoverageToGeoServer(String coverageUrl, String workspace, String layerName) 
-            throws IOException,
-			WMSConnectionException, RESTConnectionException, WCSConnectionException {
+            throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
 		// Create swps workspace
 		geoserverREST.createWorkspace(workspace);
 
@@ -207,7 +244,7 @@ public class WCSHandler {
 		geoserverREST.setLayerEnabled(layerName, true);
 
 		// Create WMSLayer for new layer
-		ArrayList<String> wmsLayers = new ArrayList<String>();
+		List<String> wmsLayers = new ArrayList<>();
 		wmsLayers.add(workspace + ":" + layerName);
 		// There should only be one WMSLayer in the response
 		// WCS module depends on WMS module...
@@ -229,10 +266,26 @@ public class WCSHandler {
 		return wcsCoverage;
 	}
 	
-	public StoredCoverage wcsGetCoverage(WCS111 wcs, String id, String bbox, String format) throws IOException {
+	/**
+	 * TODO: document
+	 * @param wcs
+	 * @param id
+	 * @param bbox
+	 * @param format
+	 * @return the stored coverage
+	 * @throws IOException
+	 */
+	@SuppressWarnings("static-method")
+	public StoredCoverage wcsGetCoverage(WCS111 wcs, String id, String bbox, String format) 
+			throws IOException {
 		return wcs.getCoverageAndStore(id, bbox, format);
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @return the WCS with the given URL
+	 */
 	public WCS111 getWCS(String url) {
 		return webCoverageServices.get(url);
 	}

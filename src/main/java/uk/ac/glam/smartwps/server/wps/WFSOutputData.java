@@ -1,7 +1,8 @@
 package uk.ac.glam.smartwps.server.wps;
 
 /**
- * Used to store the XML metadata for a WFS process output (e.i. from a WPS which supports WFS outputs directly).
+ * Used to store the XML metadata for a WFS process output (e.i. from a WPS
+ * which supports WFS outputs directly).
  * 
  * @author Jon Britton
  */

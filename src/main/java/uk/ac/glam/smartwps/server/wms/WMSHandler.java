@@ -1,5 +1,6 @@
 package uk.ac.glam.smartwps.server.wms;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 import org.geotools.data.ServiceInfo;
 import org.geotools.data.ows.Layer;
 import org.geotools.data.wms.WebMapServer;
+import org.geotools.ows.ServiceException;
 
 import uk.ac.glam.smartwps.client.wms.WMSConnectionException;
 import uk.ac.glam.smartwps.server.ServerUtils;
@@ -17,6 +19,11 @@ import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
 import uk.ac.glam.smartwps.shared.wms.WMSDataSource;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 public class WMSHandler {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
@@ -24,6 +31,10 @@ public class WMSHandler {
 	
 	private WMSHandler() {}
 	
+	/**
+	 * TODO: document
+	 * @return the WMSHandler instance
+	 */
 	public static WMSHandler instance() {
 		if (instance == null) {
 			instance = new WMSHandler();
@@ -31,21 +42,30 @@ public class WMSHandler {
 		return instance;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @param requestLayers
+	 * @param exactMatches
+	 * @return the WMS GetCapabilities response data
+	 * @throws WMSConnectionException
+	 */
+	@SuppressWarnings("static-method")
 	public WMSGetCapabilitiesResponse wmsGetCapabilities(String url, Collection<String> requestLayers, boolean exactMatches) 
             throws WMSConnectionException {
 		WMSGetCapabilitiesResponse response = new WMSGetCapabilitiesResponse();
 
 		LOGGER.log(Level.INFO, "Creating WMS GetCapabilities request for {0}", url);
-		ArrayList<WMSLayer> selectedLayers = new ArrayList<WMSLayer>();
+		ArrayList<WMSLayer> selectedLayers = new ArrayList<>();
 
 		WebMapServer wms = null;
 		try {
 			wms = new WebMapServer(new URL(url));
-		} catch (Exception e) {
+		} catch (ServiceException | IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 			throw new WMSConnectionException("Failed to connect to WMS server: " + e.getMessage());
 		}
-		
+
 		// DataSource
 		WMSDataSource dataSource = createWMSDataSource(url, wms.getInfo());
 
@@ -93,7 +113,7 @@ public class WMSHandler {
 		return response;
 	}
 	
-	private WMSDataSource createWMSDataSource(String url, ServiceInfo info) {
+	private static WMSDataSource createWMSDataSource(String url, ServiceInfo info) {
 		WMSDataSource dataSource = new WMSDataSource(url.split("\\?")[0]);
 		
 		// TODO: add WMS service info

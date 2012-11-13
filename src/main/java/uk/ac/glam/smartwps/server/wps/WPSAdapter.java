@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.server.wps;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import net.opengis.ows.x11.ValueType;
@@ -19,11 +20,21 @@ import uk.ac.glam.smartwps.shared.wps.LiteralData;
 import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.WPSData;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 public class WPSAdapter {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 	
-	// Create a ProcessDescriptor from a ProcessBriefType
+	/**
+	 * Create a ProcessDescriptor from a ProcessBriefType
+	 * @param processBrief
+	 * @param url
+	 * @return the converted process descriptor
+	 */
 	public static ProcessDescriptor processBriefAdapter(ProcessBriefType processBrief, String url) {
 		ProcessDescriptor processDescriptor = new ProcessDescriptor();
 		
@@ -38,10 +49,16 @@ public class WPSAdapter {
 		return processDescriptor;
 	}
 
-	// Create a DetailedProcessDescriptor from a ProcessDescriptionType
+	/**
+	 * Create a DetailedProcessDescriptor from a ProcessDescriptionType
+	 * 
+	 * @param processDescriptions
+	 * @param url
+	 * @return the converted process descriptor
+	 */
 	public static DetailedProcessDescriptor detailedProcessDescriptionAdapter(ProcessDescriptionType processDescriptions, String url) {
 		DetailedProcessDescriptor dpd = new DetailedProcessDescriptor();
-		
+
 		// Handle primitives
 		if (processDescriptions.getAbstract() != null)
 			dpd.setAbstract(processDescriptions.getAbstract().getStringValue());
@@ -52,19 +69,15 @@ public class WPSAdapter {
 		// Handle complex types
 		// DataInputs
 		InputDescriptionType[] inputDescriptions = processDescriptions.getDataInputs().getInputArray();
-		ArrayList<WPSData> newDataInputs = new ArrayList<WPSData>();
 		for (int i = 0; i < inputDescriptions.length; i++) {
-			newDataInputs.add(inputDescriptionAdapter(inputDescriptions[i]));
+			dpd.addDataInput(inputDescriptionAdapter(inputDescriptions[i]));
 		}
-		dpd.setDataInputs(newDataInputs);
 		
 		// Outputs
 		OutputDescriptionType[] outputDescriptions = processDescriptions.getProcessOutputs().getOutputArray();
-		ArrayList<WPSData> newProcessOutputs = new ArrayList<WPSData>();
 		for (int i = 0; i < outputDescriptions.length; i++) {
-			newProcessOutputs.add(outputDescriptionAdapter(outputDescriptions[i]));
+			dpd.addProcessOutput(outputDescriptionAdapter(outputDescriptions[i]));
 		}
-		dpd.setProcessOutputs(newProcessOutputs);
 		
 		// ServiceURL
 		dpd.setServiceURL(url);
@@ -73,8 +86,12 @@ public class WPSAdapter {
 		return dpd;
 	}
 	
-	public static WPSData outputDescriptionAdapter(
-			OutputDescriptionType outputDescription) {
+	/**
+	 * TODO: document
+	 * @param outputDescription
+	 * @return the converted WPS output data
+	 */
+	public static WPSData outputDescriptionAdapter(OutputDescriptionType outputDescription) {
 		WPSData outputData = null;
 		if (outputDescription.getLiteralOutput() != null) {		// Literal Data
 			outputData = literalDataAdapter(outputDescription.getLiteralOutput());
@@ -96,6 +113,11 @@ public class WPSAdapter {
 		return outputData;
 	}
 
+	/**
+	 * TODO: document
+	 * @param inputDescriptions
+	 * @return the converted input description data
+	 */
 	public static WPSData inputDescriptionAdapter(InputDescriptionType inputDescriptions) {
 		WPSData inputData = null;
 		if (inputDescriptions.getLiteralData() != null) { // Literal Data
@@ -120,6 +142,11 @@ public class WPSAdapter {
 		return inputData;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param cdd
+	 * @return the converted format object
+	 */
 	public static Format formatAdapter(ComplexDataDescriptionType cdd) {
 		Format format = new Format();
 		
@@ -130,6 +157,11 @@ public class WPSAdapter {
 		return format;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param literal
+	 * @return the converted literal data object
+	 */
 	public static LiteralData literalDataAdapter(LiteralOutputType literal) {
 		LiteralData literalData = new LiteralData();
 		literalData.setDataType(literal.getDataType().getReference());	// Data type
@@ -141,11 +173,9 @@ public class WPSAdapter {
 			if (literalInput.getAllowedValues() != null) {
 				// Values
 				ValueType[] values = literalInput.getAllowedValues().getValueArray();
-				ArrayList<String> allowedValues = new ArrayList<String>();
 				for (int i = 0; i < values.length; i++) {
-					allowedValues.add(values[i].getStringValue());
+					literalData.addAllowedValue(values[i].getStringValue());
 				}
-				literalData.setAllowedValues(allowedValues);
 				// TODO: Range
 			}
 			
@@ -155,6 +185,11 @@ public class WPSAdapter {
 		return literalData;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param complex
+	 * @return the converted complex data
+	 */
 	public static ComplexData complexDataAdapter(SupportedComplexDataType complex) {
 		ComplexData complexData = new ComplexData();
 		
@@ -162,7 +197,7 @@ public class WPSAdapter {
 		complexData.setDefaultFormat(formatAdapter(complex.getDefault().getFormat()));
 		
 		// Supported format
-		ArrayList<Format> supportedFormats = new ArrayList<Format>();
+		List<Format> supportedFormats = new ArrayList<>();
 		if (complex.getSupported() != null) {
 			ComplexDataDescriptionType[] sFormats = complex.getSupported().getFormatArray();
 			for (int i = 0; i < sFormats.length; i++) {

@@ -34,7 +34,7 @@ public abstract class WPSData implements Serializable {
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the minimum number of times this input/output can occur
 	 */
 	public int getMinOccurs() {
 		return minOccurs;
@@ -50,7 +50,7 @@ public abstract class WPSData implements Serializable {
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the title of this input/output
 	 */
 	public String getTitle() {
 		return title;
@@ -66,7 +66,7 @@ public abstract class WPSData implements Serializable {
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the identifier of this input/output
 	 */
 	public String getIdentifier() {
 		return identifier;
@@ -82,7 +82,7 @@ public abstract class WPSData implements Serializable {
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return the abstract description of this input/output
 	 */
 	public String getAbstract() {
 		return wpsAbstract;

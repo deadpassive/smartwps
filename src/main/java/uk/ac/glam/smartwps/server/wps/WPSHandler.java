@@ -73,7 +73,7 @@ public class WPSHandler {
 	private GeoServerREST geoserverREST;
 	
 	private WPSHandler() {
-		wpsProcesses = new HashMap<String, ProcessDescriptionType[]>();
+		wpsProcesses = new HashMap<>();
 		// Properties should have been initialised by now
 		properties = WPSProperties.getProperties();
 		geoserverREST = new GeoServerREST(
@@ -101,7 +101,7 @@ public class WPSHandler {
 	public WPSGetCapabilitiesResponse wpsGetCapabilities(WPSGetCapabilitiesRequest request) throws WPSConnectionException {
 		WPSGetCapabilitiesResponse response = new WPSGetCapabilitiesResponse();
 
-		ArrayList<ProcessDescriptor> processDescriptors = new ArrayList<ProcessDescriptor>();
+		ArrayList<ProcessDescriptor> processDescriptors = new ArrayList<>();
 
 		String source = request.getServiceUrl();
 		LOGGER.log(Level.INFO, "In wpsGetCapabilities with url {0}", source);

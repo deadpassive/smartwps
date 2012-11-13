@@ -25,7 +25,6 @@ import java.util.List;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("LoggerStringConcat")
 public class LogViewer extends VLayout {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");

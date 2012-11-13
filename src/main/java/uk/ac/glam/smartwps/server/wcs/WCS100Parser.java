@@ -25,7 +25,6 @@ import uk.ac.glam.wcsclient.wcs100.CoverageOfferingBriefType;
 import uk.ac.glam.wcsclient.wcs100.CoverageOfferingType;
 import uk.ac.glam.wcsclient.wcs100.DocumentRoot;
 import uk.ac.glam.wcsclient.wcs100.DomainSetType;
-import uk.ac.glam.wcsclient.wcs100.KeywordsType;
 import uk.ac.glam.wcsclient.wcs100.ServiceType;
 import uk.ac.glam.wcsclient.wcs100.SpatialDomainType;
 import uk.ac.glam.wcsclient.wcs100.WCSCapabilitiesType;
@@ -76,7 +75,7 @@ public class WCS100Parser {
 	/**
 	 * TODO: document
 	 * @param url
-	 * @return
+	 * @return the parsed coverage offering
 	 * @throws IOException
 	 */
 	public static CoverageOffering parseDescribeCoverage(String url) throws IOException {
@@ -104,8 +103,8 @@ public class WCS100Parser {
 		coverageOffering.setName(coverageOfferingType.getName1());		// Name
 		// RangeSet TODO: unsupported
 		// Supported CRS - don't bother makes a SupportedCRSs class
-		ArrayList<String> requestCRSs = new ArrayList<String>();
-		ArrayList<String> responseCRSs = new ArrayList<String>();
+		List<String> requestCRSs = new ArrayList<>();
+		List<String> responseCRSs = new ArrayList<>();
 		if (coverageOfferingType.getSupportedCRSs().getRequestResponseCRSs() == null) {
 			// should have seperate request and response lists
 			// RequestCRSs
@@ -155,14 +154,14 @@ public class WCS100Parser {
 		SpatialDomain spatialDomain = new SpatialDomain();
 		// Envelopes -- currently doesn't support EnvelopeWithTimePeriod
 		List<EnvelopeType> envelopeTypes = spatialDomainType.getEnvelope();
-		ArrayList<BoundsSerializable> envelopes = new ArrayList<BoundsSerializable>();
+		ArrayList<BoundsSerializable> envelopes = new ArrayList<>();
         for (EnvelopeType envelopeType : envelopeTypes) {
 			envelopes.add(envelopeAdapter(envelopeType));
 		}
 		spatialDomain.setEnvelopes(envelopes);
 		// Grids
 		List<GridType> gridTypes = spatialDomainType.getGrid();
-		ArrayList<Grid> grids = new ArrayList<Grid>();
+		List<Grid> grids = new ArrayList<>();
         for (GridType gridType : gridTypes) {
 			grids.add(gridAdapter(gridType));
 		}
@@ -179,7 +178,7 @@ public class WCS100Parser {
 			grid = new RectifiedGrid();
 			RectifiedGridType rectGrid = (RectifiedGridType)gridType;
 			List<VectorType> vectorTypes = rectGrid.getOffsetVector();
-			ArrayList<double[]> offsetVectors = new ArrayList<double[]>();
+			List<double[]> offsetVectors = new ArrayList<>();
 			//double[][] offsetVectors = new double[vectorTypes.size()][];
 			for (int i = 0; i < vectorTypes.size(); i++) {
 				VectorType vector = vectorTypes.get(i);
@@ -233,10 +232,10 @@ public class WCS100Parser {
 		return service;
 	}
 
-	private static ArrayList<CoverageOfferingBrief> contentMetadataAdapter(
+	private static List<CoverageOfferingBrief> contentMetadataAdapter(
 			ContentMetadataType contentMetadata) {
 		LOGGER.fine("In contentMetadataAdapter");
-		ArrayList<CoverageOfferingBrief> coverageOfferingsFinal = new ArrayList<CoverageOfferingBrief>();
+		List<CoverageOfferingBrief> coverageOfferingsFinal = new ArrayList<>();
 		List<CoverageOfferingBriefType> coverageOfferingsList = contentMetadata.getCoverageOfferingBrief();
         for (CoverageOfferingBriefType coverageOffering : coverageOfferingsList) {
 			coverageOfferingsFinal.add(coverageOfferingBriefAdapter(coverageOffering));

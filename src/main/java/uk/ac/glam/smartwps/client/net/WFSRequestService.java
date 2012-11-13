@@ -20,7 +20,7 @@ public interface WFSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WFS capabilities metadata
 	 * @throws WFSConnectionException
 	 */
 	WFSGetCapabilitiesResponse wfsGetCapabilities(WFSGetCapabilitiesRequest request) throws WFSConnectionException;
@@ -28,7 +28,7 @@ public interface WFSRequestService extends RemoteService {
 	/**
 	 * TODO: document
 	 * @param request
-	 * @return
+	 * @return the WFS feature type metadata
 	 * @throws WFSConnectionException
 	 */
 	WFSDescribeFeatureTypeResponse wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request) 

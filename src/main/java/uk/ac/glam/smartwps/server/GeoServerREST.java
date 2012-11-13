@@ -27,6 +27,12 @@ public class GeoServerREST {
 	private String username;
 	private String password;
 	
+	/**
+	 * TODO: document
+	 * @param geoserverURL
+	 * @param username
+	 * @param password
+	 */
 	public GeoServerREST(String geoserverURL, String username, final String password) {
 		this.geoserverURL = geoserverURL;
 		this.username = username;
@@ -153,10 +159,9 @@ public class GeoServerREST {
 	/**
 	 * Get's the xml for all styles on the server
 	 * 
-     * @param geoserverURL 
      * @return The styles xml
 	 */
-	public String getStylesXML(String geoserverURL) {
+	public String getStylesXML() {
 		setAuthentication();
 		// GET layers XML
 		WebResource r = client.resource(geoserverURL + "/rest/styles.xml");
@@ -164,10 +169,14 @@ public class GeoServerREST {
 		return stylesXML;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param layerName
+	 */
 	public void setAllStylesForLayer(String layerName) {
 		setAuthentication();
 		// Get style XML
-		String styleXML = getStylesXML(geoserverURL);
+		String styleXML = getStylesXML();
 		String xml = "<layer>"+styleXML+"</layer>";
 		WebResource r = client.resource(geoserverURL + "/rest/layers/" + layerName + ".xml");
 		r.type("application/xml").put(String.class, xml);
@@ -202,8 +211,13 @@ public class GeoServerREST {
 		r.type("application/xml").put(String.class, xml);
 	}
 
-	public void uploadShapefile(File file,
-			String workspace, String datastoreName) {
+	/**
+	 * TODO: document
+	 * @param file
+	 * @param workspace
+	 * @param datastoreName
+	 */
+	public void uploadShapefile(File file, String workspace, String datastoreName) {
 		setAuthentication();
 		WebResource r = client.resource(geoserverURL + "/rest/workspaces/"
 				+ workspace + "/datastores/" + datastoreName + "/file.shp");
