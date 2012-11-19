@@ -1,15 +1,10 @@
 package uk.ac.glam.smartwps.client;
 
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.smartgwt.client.widgets.HTMLPane;
-import com.smartgwt.client.widgets.layout.HLayout;
-import com.smartgwt.client.widgets.layout.Layout;
-
-import org.gwtopenmaps.openlayers.client.Map;
 import uk.ac.glam.smartwps.client.datatree.DataTree;
+import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 
 /**
@@ -21,7 +16,7 @@ import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 public interface AppLayout extends IsWidget {
     public HTMLPane getInfoPane();
 
-    public Map getMap();
+    public OLMap getMap();
 
     public DataTree getDataTree();
 

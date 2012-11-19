@@ -36,7 +36,7 @@ public class DataTreeNodeContextMenu extends Menu {
 		zoomToLayer.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				DataTree.zoomToLayer(dtNode);
+				dataTree.zoomToLayer(dtNode);
 			}
 		});
 		

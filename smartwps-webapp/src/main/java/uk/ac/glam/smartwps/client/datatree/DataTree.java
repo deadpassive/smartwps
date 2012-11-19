@@ -38,6 +38,7 @@ import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
 import java.util.logging.Level;
+import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
 
 /**
@@ -55,15 +56,17 @@ public class DataTree extends TreeGrid {
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 	@SuppressWarnings("unused")
 	private DataTreeContextHandler contextHandler;
-	private final Map map;
+	private final OLMap map;
 
 	/**
 	 * TODO: document
-	 */
-	public DataTree(Map map) {
+     * 
+     * @param map 
+     */
+	public DataTree(OLMap map) {
 		this.map = map;
-		// TODO: Why is this here??
-		map.addMapClickListener(new MapClickListener() {
+		// TODO: Why is this here?? Should be moved to new OLMap class
+		map.getOLMap().addMapClickListener(new MapClickListener() {
 			@Override
 			public void onClick(MapClickEvent mapClickEvent) {
 				if ((wmsSelectControl != null) && (wmsGetFeatureActivated)) {
@@ -204,7 +207,7 @@ public class DataTree extends TreeGrid {
 	 * @param node
 	 */
 	public void removeLayer(DataTreeNode node) {
-		SmartWPS.getSmartWPS().getMap().removeLayer(node.getMapLayer());
+        map.removeLayer(node.getMapLayer());
 		tree.remove(node);
 		resetWMSSelectControl();
 	}
@@ -232,7 +235,7 @@ public class DataTree extends TreeGrid {
 
 		for (int i = 0; i < nodes.length; i++) {
 			Layer layer = (((DataTreeNode) nodes[nodes.length - i - 1]).getMapLayer());
-			SmartWPS.getSmartWPS().getMap().setLayerIndex(layer, i);
+			map.setLayerIndex(layer, i);
 		}
 	}
 
@@ -259,8 +262,8 @@ public class DataTree extends TreeGrid {
 	 * TODO: document
 	 * @param node
 	 */
-	protected static void zoomToLayer(DataTreeNode node) {
-		SmartWPS.getSmartWPS().getMap().zoomToExtent(node.getExtent());
+	protected void zoomToLayer(DataTreeNode node) {
+		map.zoomToExtent(node.getExtent());
 	}
 
 	/**
@@ -374,7 +377,7 @@ public class DataTree extends TreeGrid {
 	 */
 	public void resetWMSSelectControl() {
 		if (wmsSelectControl != null) {
-            SmartWPS.getSmartWPS().getMap().removeControl(wmsSelectControl);
+            map.removeControl(wmsSelectControl);
         }
 		WMSGetFeatureInfoOptions options = new WMSGetFeatureInfoOptions();
         List<WMS> wmsLayers = getWMSMapLayers();
@@ -396,7 +399,7 @@ public class DataTree extends TreeGrid {
 			}
 		});
 		
-		SmartWPS.getSmartWPS().getMap().addControl(wmsSelectControl);
+		map.addControl(wmsSelectControl);
 		LOGGER.info("Adding:");
         for (WMS layer : wmsLayers) {
             LOGGER.info(layer.getName());

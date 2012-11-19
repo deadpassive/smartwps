@@ -41,6 +41,9 @@ public class FeatureNode extends DataTreeNode {
 		setAttribute("localname", featureType.getTypeName());
 	}
 
+    /**
+     * TODO: adding the layer to the map shouldn't be the responsibility of the node.
+     */
 	@Override
 	final void addLayerToMap() {
 		VectorOptions vectorOptions = new VectorOptions();
