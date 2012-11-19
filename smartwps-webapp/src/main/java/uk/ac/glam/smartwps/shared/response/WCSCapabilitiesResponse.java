@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.shared.response;
 
 import uk.ac.glam.smartwps.shared.wcs111.WCSCapabilities111;
 
-@SuppressWarnings("serial")
 public class WCSCapabilitiesResponse implements ServiceResponse {
 
 	private WCSCapabilities111 wcsCaps;

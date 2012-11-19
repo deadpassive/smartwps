@@ -26,7 +26,8 @@ import uk.ac.glam.wcsclient.wcs111.CoverageSummaryType;
 import uk.ac.glam.wcsclient.wcs111.SpatialDomainType;
 
 /**
- * TODO: document
+ * Converts WCS model objects parsed from WCS responses into serialisable classes that
+ * can be transferred to the client-side.
  * 
  * @author Jon Britton
  */
@@ -37,7 +38,7 @@ public class WCS111Adapter {
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 
 	/**
-	 * TODO: document
+	 * Create a serialisable WCSCapabilities111 object from a WCS111 model object.
 	 * @param wcs
 	 * @return
 	 */

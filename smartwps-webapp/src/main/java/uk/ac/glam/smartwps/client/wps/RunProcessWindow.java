@@ -47,7 +47,8 @@ import java.util.List;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
 
 /**
- * A SmartGWT window for running a WPS process. The window contents are generated from the given DetailedProcessDescriptor.
+ * A SmartGWT window for running a WPS process. The window contents are generated 
+ * from the given DetailedProcessDescriptor.
  * 
  * @author Jon Britton
  */
@@ -189,7 +190,8 @@ public class RunProcessWindow extends Window {
                         FeatureInputForm featureInputForm = (FeatureInputForm) inputForm;
 						if (inputForm.getInputValue() != null && inputForm.getInputValue().length() != 0) {
 							
-							WFSFeatureType featureType = SmartWPS.getSmartWPS().getDataTree().getWFSFeatureType(inputForm.getInputValue());
+							WFSFeatureType featureType = SmartWPS.getSmartWPS().getDataTree()
+                                    .getWFSFeatureType(inputForm.getInputValue());
 							
                             String version = featureInputForm.getVersion();
 							if (!StringUtils.isNullOrEmpty(version)) {

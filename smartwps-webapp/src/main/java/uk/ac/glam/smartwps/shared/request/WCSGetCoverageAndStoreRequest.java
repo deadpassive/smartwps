@@ -3,7 +3,6 @@ package uk.ac.glam.smartwps.shared.request;
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
 
-@SuppressWarnings("serial")
 public class WCSGetCoverageAndStoreRequest extends ServiceRequest {
 	
 	private CoverageDescription coverageDescription;

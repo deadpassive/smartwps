@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.shared.request;
 
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureTypeBase;
 
-@SuppressWarnings("serial")
 public class WFSDescribeFeatureTypeRequest extends ServiceRequest {
 
     private String typeName;

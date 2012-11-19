@@ -5,7 +5,6 @@ import java.util.List;
 
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureTypeBase;
 
-@SuppressWarnings("serial")
 public class WFSGetCapabilitiesResponse implements ServiceResponse {
 
 	private List<WFSFeatureTypeBase> wfsLayers;

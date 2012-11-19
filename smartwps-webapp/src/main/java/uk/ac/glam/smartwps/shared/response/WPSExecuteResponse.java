@@ -11,7 +11,6 @@ import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WPSExecuteResponse implements ServiceResponse {
 
 	/**

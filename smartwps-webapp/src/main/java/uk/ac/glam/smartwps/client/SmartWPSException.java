@@ -5,7 +5,6 @@ package uk.ac.glam.smartwps.client;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class SmartWPSException extends Exception {
 
 	private String originalStackTrace;

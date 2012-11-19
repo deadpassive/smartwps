@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@SuppressWarnings("serial")
 public class WCSCapabilities implements Serializable {
 	
 	private List<CoverageOfferingBrief> coverageOfferings;

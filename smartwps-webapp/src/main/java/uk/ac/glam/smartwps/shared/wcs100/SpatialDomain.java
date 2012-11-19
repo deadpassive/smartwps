@@ -6,7 +6,6 @@ import java.util.List;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
-@SuppressWarnings("serial")
 public class SpatialDomain implements Serializable {
 
 	private List<BoundsSerializable> envelopes;

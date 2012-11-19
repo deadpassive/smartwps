@@ -3,7 +3,6 @@ package uk.ac.glam.smartwps.client.datatree;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.control.WMSGetFeatureInfo;
 import org.gwtopenmaps.openlayers.client.control.WMSGetFeatureInfoOptions;
 import org.gwtopenmaps.openlayers.client.event.GetFeatureInfoListener;
@@ -37,7 +36,6 @@ import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
-import java.util.logging.Level;
 import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
 

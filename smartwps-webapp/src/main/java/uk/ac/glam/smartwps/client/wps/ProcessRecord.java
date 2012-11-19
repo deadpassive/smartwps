@@ -1,6 +1,5 @@
 package uk.ac.glam.smartwps.client.wps;
 
-
 import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
@@ -9,7 +8,6 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  * A record for displaying data from a ProcessDescription object.
  * 
  * @author Jon Britton
- *
  */
 public class ProcessRecord extends ListGridRecord {
 

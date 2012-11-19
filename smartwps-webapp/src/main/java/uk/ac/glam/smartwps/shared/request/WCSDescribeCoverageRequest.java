@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.shared.request;
 
 import uk.ac.glam.smartwps.shared.wcs111.CoverageSummary;
 
-@SuppressWarnings("serial")
 public class WCSDescribeCoverageRequest extends ServiceRequest {
 
 	private String coverageID;

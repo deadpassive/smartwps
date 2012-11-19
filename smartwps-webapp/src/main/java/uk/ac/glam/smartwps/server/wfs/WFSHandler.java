@@ -23,7 +23,7 @@ import uk.ac.glam.smartwps.shared.wfs.WFSFeatureTypeBase;
 
 
 /**
- * TODO: document
+ * Handles all communications between the application and WFS servers.
  * 
  * @author Jon Britton
  */
@@ -50,7 +50,7 @@ public class WFSHandler {
 	}
 	
 	private WFSDataStore loadWFSCapabilities(String url) throws WFSConnectionException {
-		LOGGER.info("Loading WFS capabilities from " + url);
+		LOGGER.log(Level.INFO, "Loading WFS capabilities from {0}", url);
 		Map<String, String> connectionParameters = new HashMap<String, String>();
 		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL",
 				url);
@@ -86,7 +86,7 @@ public class WFSHandler {
 	public WFSGetCapabilitiesResponse wfsGetCapabilities(WFSGetCapabilitiesRequest request) throws WFSConnectionException {
 		WFSGetCapabilitiesResponse response = new WFSGetCapabilitiesResponse();
 		String url = request.getServiceUrl();
-		LOGGER.info("WFS GetCapabilities with URL " + url);
+		LOGGER.log(Level.INFO, "WFS GetCapabilities with URL {0}", url);
 		try {
 			WFSDataStore data = loadWFSCapabilities(url);
 			String[] typeNames = data.getTypeNames();
@@ -130,7 +130,7 @@ public class WFSHandler {
 	 */
 	public WFSFeatureType wfsDescribeFeatureType(String url, String typeName, 
 			boolean forceReloadCaps, int retries) throws WFSConnectionException {
-		LOGGER.info("WFS DescribeFeatureType with URL " + url + " and typeName " + typeName);
+		LOGGER.log(Level.INFO, "WFS DescribeFeatureType with URL {0} and typeName {1}", new Object[]{url, typeName});
 		WFSDataStore data = null;
 		try {
 			boolean retry;
@@ -151,6 +151,7 @@ public class WFSHandler {
 				// If we haven't found the typename, or the data is null then retry
 				if (((data == null) || (!ServerUtils.arrayContainsString(data.getTypeNames(), typeName))) && (retries > 0)) {
 					LOGGER.info("Problem finding typename in capabilities, retrying after 5secs");
+                    // TODO: this is a crap way to do this. Do something else.
 					Thread.sleep(5000);
 					retries --;
 					retry = true;
@@ -206,7 +207,7 @@ public class WFSHandler {
 	 * @throws WFSConnectionException
 	 */
 	public WFSDescribeFeatureTypeResponse wfsDescribeFeatureType(WFSDescribeFeatureTypeRequest request) throws WFSConnectionException {
-		LOGGER.info("In WFSDescribeFeatureType with " + request.getServiceUrl());
+		LOGGER.log(Level.INFO, "In WFSDescribeFeatureType with {0}", request.getServiceUrl());
 		WFSDescribeFeatureTypeResponse response = new WFSDescribeFeatureTypeResponse();
 	
 		WFSFeatureType featureType = wfsDescribeFeatureType(request.getServiceUrl(), request.getTypeName(), false, 0);

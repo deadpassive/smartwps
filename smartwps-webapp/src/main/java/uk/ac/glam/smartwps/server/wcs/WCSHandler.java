@@ -28,6 +28,11 @@ import uk.ac.glam.wcsclient.StoredCoverage;
 import uk.ac.glam.wcsclient.WCS111;
 import uk.ac.glam.wcsclient.WebCoverageService;
 
+/**
+ * Handles all communications between the application and WCS servers.
+ * 
+ * @author Jon Britton
+ */
 public class WCSHandler {
 
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");

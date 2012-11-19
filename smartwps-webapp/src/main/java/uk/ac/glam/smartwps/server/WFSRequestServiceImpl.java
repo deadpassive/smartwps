@@ -16,7 +16,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * @author Jon
  * 
  */
-@SuppressWarnings("serial")
 public class WFSRequestServiceImpl extends RemoteServiceServlet implements
 		WFSRequestService {
 		

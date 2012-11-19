@@ -26,7 +26,6 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  * A list grid for adding a process to the current SmartWPS session.
  * 
  * @author Jon Britton
- *
  */
 public class AddProcessListGrid extends ListGrid {
 

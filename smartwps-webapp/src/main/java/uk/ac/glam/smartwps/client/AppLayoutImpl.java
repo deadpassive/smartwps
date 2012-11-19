@@ -166,6 +166,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 	/**
 	 * @return the data tree widget
 	 */
+    @Override
 	public DataTree getDataTree() {
 		return dataTree;
 	}
@@ -173,6 +174,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 	/**
 	 * @return the info pane widget
 	 */
+    @Override
 	public HTMLPane getInfoPane() {
 		return infoPane;
 	}
@@ -188,6 +190,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 	/**
 	 * @return the process list widget
 	 */
+    @Override
 	public RunProcessListGrid getRunProcessList() {
 		return runProcessList;
 	}

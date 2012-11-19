@@ -6,7 +6,6 @@ import java.util.List;
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.input.ProcessInput;
 
-@SuppressWarnings("serial")
 public class WPSExecuteRequest extends ServiceRequest {
 
 	private List<ProcessInput> inputs;

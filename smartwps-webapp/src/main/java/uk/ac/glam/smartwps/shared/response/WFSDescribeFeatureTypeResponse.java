@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.shared.response;
 
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 
-@SuppressWarnings("serial")
 public class WFSDescribeFeatureTypeResponse implements ServiceResponse {
 
 	private WFSFeatureType featureType;

@@ -9,8 +9,8 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 /**
  * A list grid record for displaying an output of a WPS process.
+ * 
  * @author Jon Britton
- *
  */
 public class ProcessOutputRecord extends ListGridRecord {
 	private ProcessOutput processOutput;

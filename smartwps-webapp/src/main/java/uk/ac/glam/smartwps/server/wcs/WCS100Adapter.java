@@ -25,7 +25,6 @@ import uk.ac.glam.wcsclient.wcs100.CoverageOfferingBriefType;
 import uk.ac.glam.wcsclient.wcs100.CoverageOfferingType;
 import uk.ac.glam.wcsclient.wcs100.DocumentRoot;
 import uk.ac.glam.wcsclient.wcs100.DomainSetType;
-import uk.ac.glam.wcsclient.wcs100.KeywordsType;
 import uk.ac.glam.wcsclient.wcs100.ServiceType;
 import uk.ac.glam.wcsclient.wcs100.SpatialDomainType;
 import uk.ac.glam.wcsclient.wcs100.WCSCapabilitiesType;
@@ -42,12 +41,12 @@ import uk.ac.glam.wcsclient.wcs100.util.Wcs100XMLProcessor;
  * 
  * @author Jon Britton
  */
-public class WCS100Parser {
+public class WCS100Adapter {
     
     /**
      * Private constructor to prevent this utility class being instantiated.
      */
-    private WCS100Parser() {}
+    private WCS100Adapter() {}
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 

@@ -8,7 +8,6 @@ import java.util.List;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class DetailedProcessDescriptor extends ProcessDescriptor {
 
 	private String abstrct;

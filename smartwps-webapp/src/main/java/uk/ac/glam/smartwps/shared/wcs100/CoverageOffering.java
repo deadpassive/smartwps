@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
-@SuppressWarnings("serial")
 public class CoverageOffering extends CoverageOfferingBrief {
 
 	private DomainSet domainSet;

@@ -20,6 +20,8 @@ import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.WPSData;
 
 public class WPSAdapter {
+    
+    private WPSAdapter() {}
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 	

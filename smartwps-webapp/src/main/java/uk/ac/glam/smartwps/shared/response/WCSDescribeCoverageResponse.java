@@ -2,7 +2,6 @@ package uk.ac.glam.smartwps.shared.response;
 
 import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
 
-@SuppressWarnings("serial")
 public class WCSDescribeCoverageResponse implements ServiceResponse {
 
 	private CoverageDescription coverageOffering;

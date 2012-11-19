@@ -1,6 +1,5 @@
 package uk.ac.glam.smartwps.client.wps;
 
-
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
 
 import com.smartgwt.client.widgets.Canvas;
@@ -16,10 +15,9 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
 /**
- * A list of WPS processes. Includes a "Run" button so that the process can be executed.
+ * A list of WPS processes in the workspace. Includes a "Run" button so that the process can be executed.
  * 
- * @author jbritton
- *
+ * @author Jon Britton
  */
 public class RunProcessListGrid extends ListGrid {
 	
@@ -61,7 +59,8 @@ public class RunProcessListGrid extends ListGrid {
 	            @Override
 				public void onClick(ClickEvent event) {
 	            	ProcessRecord processRecord = (ProcessRecord)record;
-	            	RunProcessWindow runWindow = new RunProcessWindow((DetailedProcessDescriptor) processRecord.getProcessDescriptor());
+	            	RunProcessWindow runWindow = 
+                            new RunProcessWindow((DetailedProcessDescriptor) processRecord.getProcessDescriptor());
 	            	runWindow.show();
 	            }  
 	        });  

@@ -10,11 +10,14 @@ import java.util.logging.Logger;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
- * TODO: document
+ * Application wide properties for the application. Loaded from /settings/config.txt on the server
+ * side if it exists, otherwise loads defaults.
+ * 
+ * TODO: should defaults be hard-coded?
+ * TODO: should be renamed something else since it doesn't really deal with just WPS.
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WPSProperties extends Properties {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");

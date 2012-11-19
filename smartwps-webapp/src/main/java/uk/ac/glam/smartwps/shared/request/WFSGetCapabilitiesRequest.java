@@ -1,6 +1,5 @@
 package uk.ac.glam.smartwps.shared.request;
 
-@SuppressWarnings("serial")
 public class WFSGetCapabilitiesRequest extends ServiceRequest {
 	
 	// Blank constructor for serialisation

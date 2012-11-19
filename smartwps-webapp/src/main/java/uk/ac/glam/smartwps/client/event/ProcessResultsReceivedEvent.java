@@ -6,7 +6,7 @@ import com.google.gwt.event.shared.GwtEvent;
 
 public class ProcessResultsReceivedEvent extends GwtEvent<ProcessResultsReceivedHandler> {
 
-	public static Type<ProcessResultsReceivedHandler> TYPE = new Type<ProcessResultsReceivedHandler>();
+	public final static Type<ProcessResultsReceivedHandler> TYPE = new Type<ProcessResultsReceivedHandler>();
 	private WPSExecuteResponse results;
 	
 	public ProcessResultsReceivedEvent(WPSExecuteResponse results) {

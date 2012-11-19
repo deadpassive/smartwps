@@ -1,20 +1,19 @@
 package uk.ac.glam.smartwps.client.wps;
 
 /**
- * TODO: document
+ * Represents an error that occurred during a WPS Execute request.
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WPSExecuteException extends Exception {
 
 	/**
-	 * TODO: document
+	 * Create a new exception with no message.
 	 */
 	public WPSExecuteException(){}
 	
 	/**
-	 * TODO: document
+	 * Create a new exception with the given detail message.
 	 * @param details
 	 */
 	public WPSExecuteException(String details) {

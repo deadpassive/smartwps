@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.logging.LogRecord;
 
-@SuppressWarnings("serial")
 public class RetrieveServerLogsResponse implements ServiceResponse {
 
 	private List<LogRecord> logRecords;

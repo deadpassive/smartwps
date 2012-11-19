@@ -5,7 +5,6 @@ package uk.ac.glam.smartwps.client.wfs;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WFSConnectionException extends Exception {
 	
 	/**

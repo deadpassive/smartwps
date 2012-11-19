@@ -14,7 +14,6 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * A Window for adding WPS processes to the current SmartWPS session.
  * 
  * @author Jon Britton
- *
  */
 public class AddProcessWindow extends Window {
 

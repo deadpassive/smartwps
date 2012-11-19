@@ -1,9 +1,10 @@
 package uk.ac.glam.smartwps.shared.request;
 
-@SuppressWarnings("serial")
 public class WPSGetCapabilitiesRequest extends ServiceRequest {
 	
-	// Blank constructor for serialisation
+	/**
+     * Empty constructor for serialisation.
+     */
 	public WPSGetCapabilitiesRequest() {
 		super(null);
 	}

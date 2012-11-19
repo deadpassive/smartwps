@@ -7,7 +7,6 @@ import uk.ac.glam.smartwps.client.SmartWPSException;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WCSConnectionException extends SmartWPSException {
 
 	/**

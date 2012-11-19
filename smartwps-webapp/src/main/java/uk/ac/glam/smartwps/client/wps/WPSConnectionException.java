@@ -1,22 +1,20 @@
 package uk.ac.glam.smartwps.client.wps;
 
-
 /**
- * TODO: document
+ * Indicates that an error has occurred while trying to connect to a WPS.
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WPSConnectionException extends Exception {
 
 	/**
-	 * TODO: document
+	 * Create a new exception.
 	 */
 	public WPSConnectionException(){}
 	
 	/**
-	 * TODO: document
-	 * @param detail
+	 * Create a new exception with a detail message.
+	 * @param detail the exception details
 	 */
 	public WPSConnectionException(String detail) {
 		super(detail);

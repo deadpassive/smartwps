@@ -9,7 +9,6 @@ import uk.ac.glam.smartwps.shared.util.StringUtils;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class ComplexData extends WPSData {
 
     /**

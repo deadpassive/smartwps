@@ -3,7 +3,6 @@ package uk.ac.glam.smartwps.shared.wps;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("serial")
 public class LiteralData extends WPSData {
 
 	String dataType;

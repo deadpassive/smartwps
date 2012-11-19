@@ -2,10 +2,8 @@ package uk.ac.glam.smartwps.shared.wcs100;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@SuppressWarnings("serial")
 public class Grid implements Serializable {
 
 	private int dimension;

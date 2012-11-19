@@ -13,10 +13,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 /**
  * Contains a number of GWT RPC methods for accessing Open Web Services.
  * 
- * @author Jon
- * 
+ * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class OWSRequestServiceImpl extends RemoteServiceServlet implements
 		OWSRequestService {
 

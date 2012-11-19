@@ -5,7 +5,6 @@ import java.util.List;
 
 import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
 
-@SuppressWarnings("serial")
 public class WPSGetCapabilitiesResponse implements ServiceResponse {
 
 	private List<ProcessDescriptor> processDescriptors;

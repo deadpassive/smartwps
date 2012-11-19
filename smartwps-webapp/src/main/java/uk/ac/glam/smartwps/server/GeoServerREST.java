@@ -16,8 +16,7 @@ import java.util.logging.Level;
 /**
  * Provides useful methods for accessing the GeoServer REST interface.
  * 
- * @author Jon
- *
+ * @author Jon Britton
  */
 public class GeoServerREST {
 

@@ -8,7 +8,6 @@ import java.io.Serializable;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class ProcessDescriptor implements Serializable {
 	
 	String id;
