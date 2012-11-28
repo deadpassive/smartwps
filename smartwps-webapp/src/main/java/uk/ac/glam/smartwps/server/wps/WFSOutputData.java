@@ -20,16 +20,14 @@ public class WFSOutputData {
 	}
 
 	/**
-	 * TODO: document
-	 * @return the WFS
+	 * @return the name of the featureType
 	 */
 	public String getFeatureTypeName() {
 		return featureTypeName;
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the GetCapabilities URL of the WFS holding this data
 	 */
 	public String getGetCapsUrl() {
 		return getCapsUrl;

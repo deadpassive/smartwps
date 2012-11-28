@@ -10,23 +10,23 @@ import java.io.Serializable;
 public class Format implements Serializable {
 	
 	/**
-	 * TODO: document
+	 * MIME type application/WFS.
 	 */
 	public static final String APPLICATION_WFS = "application/WFS";
 	/**
-	 * TODO: document
+	 * MIME type application/WCS.
 	 */
 	public static final String APPLICATION_WCS = "application/WCS";
 	/**
-	 * TODO: document
+	 * MIME type text/xml.
 	 */
 	public static final String TEXT_XML = "text/xml";
 	/**
-	 * TODO: document
+	 * MIME type application/x-shipped-shp.
 	 */
 	public static final String APPLICATION_X_ZIPPED_SHP = "application/x-zipped-shp";
 	/**
-	 * TODO: document
+	 * MIME type image/tiff.
 	 */
 	public static final String IMAGE_TIFF = "image/tiff";
 
@@ -35,26 +35,28 @@ public class Format implements Serializable {
 	private String encoding;
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the MIME type of this format
 	 */
 	public String getMimeType() {
-		return mimeType;
+		return this.mimeType;
 	}
+	
 	/**
-	 * TODO: document
-	 * @param mimeType
+	 * Set the MIME type for this format.
+	 * @param mimeType the MIME type
 	 */
 	public void setMimeType(String mimeType) {
 		this.mimeType = mimeType;
 	}
+	
 	/**
 	 * TODO: document
 	 * @return
 	 */
 	public String getSchema() {
-		return schema;
+		return this.schema;
 	}
+	
 	/**
 	 * TODO: document
 	 * @param schema
@@ -62,13 +64,15 @@ public class Format implements Serializable {
 	public void setSchema(String schema) {
 		this.schema = schema;
 	}
+	
 	/**
 	 * TODO: document
 	 * @return
 	 */
 	public String getEncoding() {
-		return encoding;
+		return this.encoding;
 	}
+	
 	/**
 	 * TODO: document
 	 * @param encoding
@@ -76,7 +80,4 @@ public class Format implements Serializable {
 	public void setEncoding(String encoding) {
 		this.encoding = encoding;
 	}
-	
-	
-	
 }

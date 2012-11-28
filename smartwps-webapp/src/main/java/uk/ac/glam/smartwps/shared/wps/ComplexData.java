@@ -24,30 +24,30 @@ public class ComplexData extends WPSData {
 	 * @return the default format of this data
 	 */
 	public Format getDefaultFormat() {
-		return defaultFormat;
+		return this.defaultFormat;
 	}
 	
 	/**
 	 * Set the default format of this WPS data.
-	 * @param defaultFormat the default format
+	 * @param format the default format
 	 */
-	public void setDefaultFormat(Format defaultFormat) {
-		this.defaultFormat = defaultFormat;
+	public void setDefaultFormat(Format format) {
+		this.defaultFormat = format;
 	}
 	
 	/**
 	 * @return the list of supports for this data
 	 */
 	public List<Format> getSupportedFormats() {
-		return new ArrayList<Format>(supportedFormats);
+		return new ArrayList<Format>(this.supportedFormats);
 	}
 	
 	/**
 	 * Set the supported formats for this WPS data.
-	 * @param supportedFormats list of supports formats
+	 * @param formats list of supports formats
 	 */
-	public void setSupportedFormats(List<Format> supportedFormats) {
-		this.supportedFormats = new ArrayList<Format>(supportedFormats);
+	public void setSupportedFormats(List<Format> formats) {
+		this.supportedFormats = new ArrayList<Format>(formats);
 	}
 	
 	/**
@@ -56,14 +56,14 @@ public class ComplexData extends WPSData {
 	 * @return whether the given MIME type is supported
 	 */
 	public boolean supportsFormat(String mimeType) {
-		if (defaultFormat != null) {
+		if (this.defaultFormat != null) {
 			// Must use contains because GeoServer uses a MIME type with subtype.
-			if (defaultFormat.getMimeType().toLowerCase().contains(mimeType)) {
+			if (this.defaultFormat.getMimeType().toLowerCase().contains(mimeType)) {
                 return true;
             }
 		}
-		if (supportedFormats != null) {
-            for (Format format : supportedFormats) {
+		if (this.supportedFormats != null) {
+            for (Format format : this.supportedFormats) {
                 // Must use contains because GeoServer uses a MIME type with subtype.
 				if (StringUtils.containsIgnoreCase(format.getMimeType(), mimeType)) {
                     return true;

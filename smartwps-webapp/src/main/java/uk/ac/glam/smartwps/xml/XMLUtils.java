@@ -3,6 +3,7 @@ package uk.ac.glam.smartwps.xml;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -11,8 +12,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import uk.ac.glam.smartwps.server.wps.WFSOutputData;
-
-import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
 /**
  * Contains utility methods for handling XML parsing.

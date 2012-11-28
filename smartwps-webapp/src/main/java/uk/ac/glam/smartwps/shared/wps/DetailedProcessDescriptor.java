@@ -15,43 +15,79 @@ public class DetailedProcessDescriptor extends ProcessDescriptor {
 	private List<WPSData> processOutputs;
 	private boolean storeSupported;
 
+	/**
+	 * @return the abstract description of this process
+	 */
 	public String getAbstract() {
-		return abstrct;
+		return this.abstrct;
 	}
 
-	public void setAbstract(String abstrct) {
-		this.abstrct = abstrct;
+	/**
+	 * Set the abstract description for this process.
+	 * @param abs the abstract text
+	 */
+	public void setAbstract(String abs) {
+		this.abstrct = abs;
 	}
 
+	/**
+	 * @return the input data descriptions for this process
+	 */
 	public List<WPSData> getDataInputs() {
-		return new ArrayList<WPSData>(dataInputs);
+		return new ArrayList<WPSData>(this.dataInputs);
 	}
 
-	public void setDataInputs(List<WPSData> dataInputs) {
-		this.dataInputs = new ArrayList<WPSData>(dataInputs);
+	/**
+	 * Set the input data descriptions for this process.
+	 * @param inputs the list of input data descriptions
+	 */
+	public void setDataInputs(List<WPSData> inputs) {
+		this.dataInputs = new ArrayList<WPSData>(inputs);
 	}
 	
+	/**
+	 * Add an input to this process.
+	 * @param input the input description
+	 */
 	public void addDataInput(WPSData input) {
-		dataInputs.add(input);
+		this.dataInputs.add(input);
 	}
 
+	/**
+	 * @return the output descriptions for this process
+	 */
 	public List<WPSData> getProcessOutputs() {
-		return new ArrayList<WPSData>(processOutputs);
+		return new ArrayList<WPSData>(this.processOutputs);
 	}
 
-	public void setProcessOutputs(List<WPSData> processOutputs) {
-		this.processOutputs = new ArrayList<WPSData>(processOutputs);
+	/**
+	 * Set the output descriptions for this process.
+	 * @param outputs list of output descriptions
+	 */
+	public void setProcessOutputs(List<WPSData> outputs) {
+		this.processOutputs = new ArrayList<WPSData>(outputs);
 	}
 
+	/**
+	 * Add an output to this process.
+	 * @param output the output description
+	 */
 	public void addProcessOutput(WPSData output) {
-		processOutputs.add(output);
+		this.processOutputs.add(output);
 	}
 
-	public void setStoreSupported(boolean storeSupported) {
-		this.storeSupported = storeSupported;
+	/**
+	 * Set whether this process supports stored outputs.
+	 * @param store
+	 */
+	public void setStoreSupported(boolean store) {
+		this.storeSupported = store;
 	}
 	
+	/**
+	 * @return whether this process supports stored outputs
+	 */
 	public boolean getStoreSupported() {
-		return storeSupported;
+		return this.storeSupported;
 	}
 }

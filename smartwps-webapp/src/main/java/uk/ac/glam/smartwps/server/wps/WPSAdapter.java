@@ -25,7 +25,12 @@ public class WPSAdapter {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
 	
-	// Create a ProcessDescriptor from a ProcessBriefType
+	/**
+	 * Create a ProcessDescriptor from a ProcessBriefType
+	 * @param processBrief
+	 * @param url
+	 * @return
+	 */
 	public static ProcessDescriptor processBriefAdapter(ProcessBriefType processBrief, String url) {
 		ProcessDescriptor processDescriptor = new ProcessDescriptor();
 		
@@ -40,7 +45,12 @@ public class WPSAdapter {
 		return processDescriptor;
 	}
 
-	// Create a DetailedProcessDescriptor from a ProcessDescriptionType
+	/**
+	 * Create a DetailedProcessDescriptor from a ProcessDescriptionType
+	 * @param processDescriptions
+	 * @param url
+	 * @return
+	 */
 	public static DetailedProcessDescriptor detailedProcessDescriptionAdapter(ProcessDescriptionType processDescriptions, String url) {
 		DetailedProcessDescriptor dpd = new DetailedProcessDescriptor();
 		
