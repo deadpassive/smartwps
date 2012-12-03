@@ -36,10 +36,11 @@ public class WFSProcessInput extends ComplexProcessInput {
 	 * @return the key-value-pair representation of this WFS input
 	 */
 	public String getKVPRequest() {
-		String kvp = serviceUrl + "?SERVICE=WFS&REQUEST=GetFeature";
-		kvp += "&TYPENAME=" + featureTypeName;
-		kvp += "&VERSION=" + version;
-		return kvp;
+		StringBuilder kvp = new StringBuilder(serviceUrl).append("?SERVICE=WFS&REQUEST=GetFeature")
+				.append("&TYPENAME=").append(featureTypeName)
+				.append("&VERSION=").append(version)
+				.append("&SRSNAME=EPSG:4326");	// Must force SRS to avoid axis ordering issue. TODO: fix.
+		return kvp.toString();
 	}
 	
 	/**

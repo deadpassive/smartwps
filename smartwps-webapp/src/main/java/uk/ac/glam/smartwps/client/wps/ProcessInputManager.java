@@ -30,7 +30,7 @@ public class ProcessInputManager {
 	 */
 	public ArrayList<InputForm> getInputs(String id) {
 		ArrayList<InputForm> inputList = new ArrayList<InputForm>();
-        for (InputForm inputForm : inputList) {
+        for (InputForm inputForm : inputs) {
 			if (inputForm.getComplexData().getIdentifier().equals(id)) {
                 inputList.add(inputForm);
             }

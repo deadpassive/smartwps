@@ -49,7 +49,7 @@ public class AddProcessWindow extends Window {
 		urlChooser.setTitle("URL");
 		urlChooser.setType("comboBox");
 		urlChooser.setWidth("100%");
-		urlChooser.setDefaultValue("http://localhost:8181/wps/WebProcessingService");
+		urlChooser.setDefaultValue("http://localhost:8080/wps/WebProcessingService");
 		urlChooser.setValueMap("http://li199-25.members.linode.com:8080/wps/WebProcessingService?Request=GetCapabilities&Service=WPS&Version=1.0.0",
 				"http://geoprocessing.demo.52north.org:8080/wps/WebProcessingService?REQUEST=GetCapabilities&SERVICE=WPS&VERSION=1.0.0",
 				"http://localhost:8080/wps/WebProcessingService");

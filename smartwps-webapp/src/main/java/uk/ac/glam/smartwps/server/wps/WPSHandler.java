@@ -328,9 +328,7 @@ public class WPSHandler {
 	private ComplexProcessOutput createComplexProcessOutput(OutputDataType outputDataType) throws RESTConnectionException, WCSConnectionException, IOException, WFSConnectionException, WPSExecuteException {
 		ComplexProcessOutput processOutput = null;
 		if (outputDataType.getReference() != null) {
-			
 			// This is just a reference
-
 			String mimeType = outputDataType.getReference().getMimeType();
 
 			if (mimeType.equalsIgnoreCase(Format.IMAGE_TIFF)) {
