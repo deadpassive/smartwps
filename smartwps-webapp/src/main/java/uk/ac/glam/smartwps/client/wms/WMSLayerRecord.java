@@ -5,7 +5,7 @@ import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 /**
- * TODO: document
+ * Record for the WMSLayerSelector.
  * 
  * @author Jon Britton
  */
@@ -14,7 +14,7 @@ public class WMSLayerRecord extends ListGridRecord {
 	private WMSLayer wmsLayer;
 
 	/**
-	 * TODO: document
+	 * Creates a new WMSLayerRecord for the given WMS layer.
 	 * @param wmsLayer
 	 */
 	public WMSLayerRecord(WMSLayer wmsLayer) {
@@ -25,8 +25,7 @@ public class WMSLayerRecord extends ListGridRecord {
 	}
 
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the WMS layer
 	 */
 	public WMSLayer getWMSLayer() {
 		return wmsLayer;

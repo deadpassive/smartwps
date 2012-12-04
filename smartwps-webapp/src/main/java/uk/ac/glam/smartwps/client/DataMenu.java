@@ -5,6 +5,7 @@ import uk.ac.glam.smartwps.client.wcs.AddCoverageWindow;
 import uk.ac.glam.smartwps.client.wfs.AddWFSWindow;
 import uk.ac.glam.smartwps.client.wps.AddProcessWindow;
 
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.ClickHandler;
@@ -25,7 +26,7 @@ public class DataMenu extends Menu {
 	/**
 	 * Create a new DataMenu.
 	 */
-	public DataMenu () {
+	public DataMenu (final EventBus eventBus) {
 		setShowShadow(true);
 		setShadowDepth(3);
 		
@@ -45,7 +46,7 @@ public class DataMenu extends Menu {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
 				if (wmsWindow == null) {
-                    wmsWindow = new AddMapWindow();
+                    wmsWindow = new AddMapWindow(eventBus);
                 }
 				wmsWindow.show();
 			}

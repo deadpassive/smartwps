@@ -226,7 +226,7 @@ public class RunProcessWindow extends Window {
 	 * Makes a wpsExecute RPC request. Results are sent to the SmartWPS ResultsTabSet.
 	 * @param request
 	 */
-	private void callWPSExecute(WPSExecuteRequest request) {
+	private static void callWPSExecute(WPSExecuteRequest request) {
 
 		SC.showPrompt("Issuing request...");
 		// Set up the callback object.
@@ -401,7 +401,7 @@ public class RunProcessWindow extends Window {
 		
 		/**
 		 * TODO: document
-		 * @return
+		 * @return the data input encapsulated by this 
 		 */
 		public ComplexData getComplexData() {
 			return complexData;

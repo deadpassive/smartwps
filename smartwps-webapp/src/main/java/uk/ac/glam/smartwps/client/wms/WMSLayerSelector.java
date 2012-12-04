@@ -2,6 +2,7 @@ package uk.ac.glam.smartwps.client.wms;
 
 import uk.ac.glam.smartwps.client.DataSourceManager;
 import uk.ac.glam.smartwps.client.datatree.DataTree;
+import uk.ac.glam.smartwps.client.event.AddLayerEvent;
 import uk.ac.glam.smartwps.client.net.WMSRequestService;
 import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
 import uk.ac.glam.smartwps.shared.DataSource;
@@ -11,6 +12,7 @@ import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -23,21 +25,23 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import java.util.List;
 
 /**
- * TODO: document
+ * Widget for selecting WMS layers.
  * 
  * @author Jon Britton
  */
 public class WMSLayerSelector extends HLayout {
 
-	private ListGrid layerList;
-	private WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
-	private final DataTree dataTree;
+	private final ListGrid layerList;
+	private final WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
+	private final EventBus eventBus;
 	
 	/**
 	 * TODO: document
+	 * @param dataTree 
+	 * @param eventBus 
 	 */
-	public WMSLayerSelector(final DataTree dataTree) {
-		this.dataTree = dataTree;
+	public WMSLayerSelector(final EventBus eventBus) {
+		this.eventBus = eventBus;
 		layerList = new ListGrid() {  
 			
 			@Override
@@ -51,8 +55,7 @@ public class WMSLayerSelector extends HLayout {
 			        button.addClickHandler(new ClickHandler() {  
 			            @Override
 						public void onClick(ClickEvent event) {
-			            	// TODO: must refactor so that DataTree doesn't know about layer types!!
-			            	WMSLayerSelector.this.dataTree.addWMSLayer(((WMSLayerRecord)record).getWMSLayer());
+			            	eventBus.fireEvent(new AddLayerEvent(((WMSLayerRecord)record).getWMSLayer()));
 			            } 
 			        });  
 			        return button;

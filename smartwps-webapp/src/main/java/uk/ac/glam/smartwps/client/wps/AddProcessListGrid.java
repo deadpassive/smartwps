@@ -29,8 +29,8 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  */
 public class AddProcessListGrid extends ListGrid {
 
-	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
-	private static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
+	static final Logger LOGGER = Logger.getLogger("smartwps.client");
+	static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
 	
 	/**
 	 * Creates a new AddProcessListGrid.
@@ -42,8 +42,8 @@ public class AddProcessListGrid extends ListGrid {
 		addField.setWidth(50);
 		this.setCellHeight(30);
 		this.setFields(idField, titleField, addField);
-		this.setShowRecordComponents(true);          
-        this.setShowRecordComponentsByCell(true);  
+		this.setShowRecordComponents(new Boolean(true));          
+        this.setShowRecordComponentsByCell(new Boolean(true));  
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class AddProcessListGrid extends ListGrid {
 
 	@Override
 	protected Canvas createRecordComponent(final ListGridRecord record, Integer colNum) {
-		String fieldName = this.getFieldName(colNum);  
+		String fieldName = this.getFieldName(colNum.intValue());  
         if (fieldName.equals("addButton")) {
 			final IButton button = new IButton();  
 	        button.setHeight(18);  

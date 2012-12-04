@@ -3,6 +3,7 @@ package uk.ac.glam.smartwps.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasOneWidget;
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.types.SelectionType;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.widgets.HTMLPane;
@@ -21,6 +22,11 @@ import uk.ac.glam.smartwps.client.logging.LoggerWindow;
 import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class AppLayoutImpl extends Composite implements AppLayout {
 
     private final OLMap map;
@@ -30,9 +36,14 @@ public class AppLayoutImpl extends Composite implements AppLayout {
     private DataMenu dataMenu;
     private LoggerWindow loggerWindow;
 	private SmartGWTSimplePanel resultsHolder;
+	private final EventBus eventBus;
 
-	public AppLayoutImpl() {
-        
+	/**
+	 * TODO: document
+	 * @param eventBus
+	 */
+	public AppLayoutImpl(EventBus eventBus) {
+        this.eventBus = eventBus;
         SmartWPS.setAppLayout(this);
         //set a proxyHost
 		OpenLayers.setProxyHost(GWT.getModuleBaseURL() + "gwtOpenLayersProxy?targetURL=");
@@ -65,7 +76,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 		// DATA SECTION
 		SectionStackSection dataListSection = new SectionStackSection("Data");
 		dataListSection.setExpanded(true);
-		dataTree = new DataTree(map);
+		dataTree = new DataTree(map, eventBus);
 		dataListSection.setItems(dataTree);
 		
 		// PROCESSES SECTION
@@ -115,7 +126,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 	}
     
 	private ToolStripMenuButton createAddMenu() {
-		dataMenu = new DataMenu();
+		dataMenu = new DataMenu(eventBus);
 		
 		return new ToolStripMenuButton("Add", dataMenu);
 	}

@@ -11,10 +11,12 @@ import org.gwtopenmaps.openlayers.client.layer.Layer;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.shared.Data;
 import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.types.TreeModelType;
@@ -36,6 +38,9 @@ import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
+
+import uk.ac.glam.smartwps.client.event.AddLayerEvent;
+import uk.ac.glam.smartwps.client.event.AddLayerHandler;
 import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
 
@@ -60,9 +65,11 @@ public class DataTree extends TreeGrid {
 	 * TODO: document
      * 
      * @param map 
+	 * @param eventBus 
      */
-	public DataTree(OLMap map) {
+	public DataTree(OLMap map, EventBus eventBus) {
 		this.map = map;
+		
 		// TODO: Why is this here?? Should be moved to new OLMap class
 		map.getOLMap().addMapClickListener(new MapClickListener() {
 			@Override
@@ -114,6 +121,18 @@ public class DataTree extends TreeGrid {
 		});
 
 		createContextMenu();
+		
+		eventBus.addHandler(AddLayerEvent.TYPE, new AddLayerHandler() {
+			
+			@Override
+			public void onAddLayer(AddLayerEvent event) {
+				// TODO: must refactor so that DataTree doesn't know about layer types!!
+				Data layer = event.getLayer();
+				if (layer instanceof WMSLayer) {
+					addWMSLayer((WMSLayer) layer);
+				}
+			}
+		});
 	}
 
 	/**

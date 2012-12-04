@@ -28,14 +28,14 @@ public class AddProcessWindow extends Window {
 		this.setTitle("Add WPS");
 		this.setWidth(600);
 		this.setHeight(400);
-		this.setShowMinimizeButton(false);
-		this.setIsModal(true);
-		this.setShowModalMask(true);
+		this.setShowMinimizeButton(new Boolean(false));
+		this.setIsModal(new Boolean(true));
+		this.setShowModalMask(new Boolean(true));
 		this.centerInPage();
-		this.setCanDragResize(true);
+		this.setCanDragResize(new Boolean(true));
 
 		VLayout mainLayout = new VLayout(5);
-		mainLayout.setLayoutMargin(5);
+		mainLayout.setLayoutMargin(new Integer(5));
 		mainLayout.setWidth100();
 		mainLayout.setHeight100();
 

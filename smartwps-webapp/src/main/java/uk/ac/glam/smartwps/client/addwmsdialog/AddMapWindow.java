@@ -6,6 +6,7 @@ import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.wms.WMSLayerSelector;
 
 
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
@@ -30,7 +31,7 @@ public class AddMapWindow extends Window {
 	/**
 	 * Creates a new AddMapWindow;
 	 */
-	public AddMapWindow() {
+	public AddMapWindow(EventBus eventBus) {
 		super();
 
 		LOGGER.info("Creating AddMapWindow");
@@ -84,7 +85,7 @@ public class AddMapWindow extends Window {
 
 		mainLayout.addMember(urlForm);
 
-		layerSelector = new WMSLayerSelector(SmartWPS.getSmartWPS().getDataTree());
+		layerSelector = new WMSLayerSelector(eventBus);
 		layerSelector.setWidth100();
 		layerSelector.setHeight100();
 		
