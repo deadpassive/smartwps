@@ -15,7 +15,6 @@ import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 /**
  * TODO: document
  * @author Jon Britton
- *
  */
 public class DataMenu extends Menu {
 	

@@ -28,7 +28,7 @@ public class AddWMSPresenterImpl implements AddWMSPresenter {
 			
 			@Override
 			public void onShowDialog(ShowWMSDialogEvent event) {
-				display.show();
+				display.showDialog();
 			}
 		});
 	}

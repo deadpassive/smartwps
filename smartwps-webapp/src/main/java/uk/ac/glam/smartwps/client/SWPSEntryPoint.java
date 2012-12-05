@@ -10,6 +10,7 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.web.bindery.event.shared.EventBus;
 
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialog;
+import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
@@ -33,7 +34,8 @@ public class SWPSEntryPoint implements EntryPoint {
     	AppLayout layout = new AppLayoutImpl(eventBus);
         PlaceController placeController = clientFactory.getPlaceController();
         
-        AddWMSPresenter.Display wmsDialog = new AddWMSDialog(eventBus);
+//        AddWMSPresenter.Display wmsDialog = new AddWMSDialog(eventBus);
+        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
         wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog);
         
         // TODO: this is a temporary measure while I transition to MVP

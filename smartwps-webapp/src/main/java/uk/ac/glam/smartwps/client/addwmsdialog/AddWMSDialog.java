@@ -96,5 +96,10 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 
 		this.addItem(mainLayout);
 	}
+	
+	@Override
+	public void showDialog() {
+		show();
+	}
 
 }
