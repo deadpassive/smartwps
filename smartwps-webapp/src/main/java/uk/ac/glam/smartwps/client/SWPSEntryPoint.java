@@ -24,9 +24,9 @@ public class SWPSEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-    	AppLayout layout = GWT.create(AppLayout.class);
-        ClientFactory clientFactory = GWT.create(ClientFactory.class);
-        EventBus eventBus = clientFactory.getEventBus();
+    	ClientFactory clientFactory = GWT.create(ClientFactory.class);
+    	EventBus eventBus = clientFactory.getEventBus();
+    	AppLayout layout = new AppLayoutImpl(eventBus);
         PlaceController placeController = clientFactory.getPlaceController();
                 
         
