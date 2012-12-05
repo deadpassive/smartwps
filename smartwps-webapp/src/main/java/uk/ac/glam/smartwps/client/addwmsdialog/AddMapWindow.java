@@ -59,8 +59,8 @@ public class AddMapWindow extends Window {
 		urlChooser.setTitle("URL");
 		urlChooser.setType("comboBox");
 		urlChooser.setWidth("100%");
-		urlChooser.setDefaultValue("http://li199-25.members.linode.com:8080/geoserver/wms");
-		urlChooser.setValueMap("http://li199-25.members.linode.com:8080/geoserver/wms");
+		urlChooser.setDefaultValue("http://localhost:8080/geoserver/wms");
+		urlChooser.setValueMap("http://localhost:8080/geoserver/wms");
 		urlChooser.addKeyPressHandler(new KeyPressHandler() {
 			@Override
 			public void onKeyPress(KeyPressEvent event) {
