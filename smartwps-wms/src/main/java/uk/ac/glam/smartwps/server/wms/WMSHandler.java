@@ -17,6 +17,11 @@ import uk.ac.glam.smartwps.shared.wms.WMSConnectionException;
 import uk.ac.glam.smartwps.shared.wms.WMSDataSource;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 public class WMSHandler {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.server");
@@ -24,6 +29,10 @@ public class WMSHandler {
 	
 	private WMSHandler() {}
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public static WMSHandler instance() {
 		if (instance == null) {
 			instance = new WMSHandler();
@@ -31,6 +40,14 @@ public class WMSHandler {
 		return instance;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @param requestLayers
+	 * @param exactMatches
+	 * @return
+	 * @throws WMSConnectionException
+	 */
 	public WMSGetCapabilitiesResponse wmsGetCapabilities(String url, Collection<String> requestLayers, boolean exactMatches) 
             throws WMSConnectionException {
 		WMSGetCapabilitiesResponse response = new WMSGetCapabilitiesResponse();
@@ -93,7 +110,7 @@ public class WMSHandler {
 		return response;
 	}
 	
-	private WMSDataSource createWMSDataSource(String url, ServiceInfo info) {
+	private static WMSDataSource createWMSDataSource(String url, ServiceInfo info) {
 		WMSDataSource dataSource = new WMSDataSource(url.split("\\?")[0]);
 		
 		// TODO: add WMS service info

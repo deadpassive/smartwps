@@ -10,10 +10,20 @@ import org.geotools.data.ows.StyleImpl;
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 public class WMSAdapter {
     
     private WMSAdapter() {}
 
+	/**
+	 * TODO: document
+	 * @param layer
+	 * @return
+	 */
 	public static WMSLayer layerAdapter(Layer layer) {
 		WMSLayer wmsLayer = new WMSLayer();
 		
@@ -35,6 +45,11 @@ public class WMSAdapter {
 		return stylesList;
 	}
 
+	/**
+	 * TODO: document
+	 * @param env
+	 * @return
+	 */
 	public static BoundsSerializable latLonBoundingBoxAdapter(CRSEnvelope env) {
 		BoundsSerializable bbox = new BoundsSerializable();
 		

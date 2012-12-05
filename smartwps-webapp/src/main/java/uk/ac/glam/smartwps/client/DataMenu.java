@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client;
 
-import uk.ac.glam.smartwps.client.addwmsdialog.AddMapWindow;
+import uk.ac.glam.smartwps.client.event.ShowWMSDialogEvent;
 import uk.ac.glam.smartwps.client.wcs.AddCoverageWindow;
 import uk.ac.glam.smartwps.client.wfs.AddWFSWindow;
 import uk.ac.glam.smartwps.client.wps.AddProcessWindow;
@@ -11,6 +11,7 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.ClickHandler;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
+
 /**
  * TODO: document
  * @author Jon Britton
@@ -18,13 +19,13 @@ import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
  */
 public class DataMenu extends Menu {
 	
-	private AddMapWindow wmsWindow;
 	private AddCoverageWindow wcsWindow;
 	private AddWFSWindow wfsWindow;
 	private AddProcessWindow wpsWindow;
 
 	/**
 	 * Create a new DataMenu.
+	 * @param eventBus 
 	 */
 	public DataMenu (final EventBus eventBus) {
 		setShowShadow(true);
@@ -45,10 +46,7 @@ public class DataMenu extends Menu {
 		wmsItem.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (wmsWindow == null) {
-                    wmsWindow = new AddMapWindow(eventBus);
-                }
-				wmsWindow.show();
+				eventBus.fireEvent(new ShowWMSDialogEvent());
 			}
 		});
 		

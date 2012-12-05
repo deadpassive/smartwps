@@ -22,16 +22,19 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * 
  * @author Jon Britton
  */
-public class AddMapWindow extends Window {
+public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 
 	private WMSLayerSelector layerSelector;
 
 	/**
-	 * Creates a new AddMapWindow;
+	 * Creates a new AddMapWindow.
+	 * 
+	 * TODO: remove dependency on event bus
+	 * @param eventBus 
 	 */
-	public AddMapWindow(EventBus eventBus) {
+	public AddWMSDialog(EventBus eventBus) {
 		super();
 
 		LOGGER.info("Creating AddMapWindow");

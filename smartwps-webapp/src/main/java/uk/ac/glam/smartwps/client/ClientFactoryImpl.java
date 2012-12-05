@@ -7,6 +7,11 @@ import com.google.web.bindery.event.shared.EventBus;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsView;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsViewImpl;
 
+/**
+ * TODO: document
+ * 
+ * @author Jon Britton
+ */
 public class ClientFactoryImpl implements ClientFactory {
 	private static final EventBus eventBus = new SimpleEventBus();
 	private static final PlaceController placeController = new PlaceController(eventBus);
