@@ -52,6 +52,10 @@ public class WCSHandler {
 				properties.getGeoserverPassword());
 	}
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public static WCSHandler instance() {
 		if (instance == null) {
 			instance = new WCSHandler();
@@ -117,6 +121,12 @@ public class WCSHandler {
 		return wcs;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @return
+	 * @throws WCSConnectionException
+	 */
 	public WCSCapabilitiesResponse wcsGetCapabilities(final String url) throws WCSConnectionException {
 		WCSCapabilitiesResponse response = new WCSCapabilitiesResponse();
 		
@@ -129,6 +139,14 @@ public class WCSHandler {
 		return response;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @param coverage
+	 * @param reloadCaps
+	 * @return
+	 * @throws WCSConnectionException
+	 */
 	public WCSDescribeCoverageResponse wcsDescribeCoverage(final String url, String coverage, boolean reloadCaps) 
             throws WCSConnectionException {
 		WCSDescribeCoverageResponse response = new WCSDescribeCoverageResponse();
@@ -152,6 +170,15 @@ public class WCSHandler {
 		return response;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param request
+	 * @return
+	 * @throws IOException
+	 * @throws WMSConnectionException
+	 * @throws RESTConnectionException
+	 * @throws WCSConnectionException
+	 */
 	public WCSGetCoverageAndStoreResponse wcsGetCoverageAndStore(WCSGetCoverageAndStoreRequest request) 
             throws IOException, WMSConnectionException, RESTConnectionException, WCSConnectionException {
 		WCSGetCoverageAndStoreResponse response = new WCSGetCoverageAndStoreResponse();
@@ -234,10 +261,24 @@ public class WCSHandler {
 		return wcsCoverage;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param wcs
+	 * @param id
+	 * @param bbox
+	 * @param format
+	 * @return
+	 * @throws IOException
+	 */
 	public StoredCoverage wcsGetCoverage(WCS111 wcs, String id, String bbox, String format) throws IOException {
 		return wcs.getCoverageAndStore(id, bbox, format);
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 * @return
+	 */
 	public WCS111 getWCS(String url) {
 		return webCoverageServices.get(url);
 	}

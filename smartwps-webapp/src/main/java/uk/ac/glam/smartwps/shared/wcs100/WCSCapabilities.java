@@ -42,6 +42,10 @@ public class WCSCapabilities implements Serializable {
 		return new ArrayList<CoverageOfferingBrief>(coverageOfferings);
 	}
 
+	/**
+	 * TODO: document
+	 * @param service
+	 */
 	public void setService(Service service) {
 		LOGGER.log(Level.INFO, "Setting service for {0}", this);
 		this.service = service;

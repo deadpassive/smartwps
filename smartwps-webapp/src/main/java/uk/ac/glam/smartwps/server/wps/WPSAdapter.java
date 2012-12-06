@@ -19,6 +19,11 @@ import uk.ac.glam.smartwps.shared.wps.LiteralData;
 import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.WPSData;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class WPSAdapter {
     
     private WPSAdapter() {}
@@ -85,8 +90,12 @@ public class WPSAdapter {
 		return dpd;
 	}
 	
-	public static WPSData outputDescriptionAdapter(
-			OutputDescriptionType outputDescription) {
+	/**
+	 * TODO: document
+	 * @param outputDescription
+	 * @return
+	 */
+	public static WPSData outputDescriptionAdapter(OutputDescriptionType outputDescription) {
 		WPSData outputData = null;
 		if (outputDescription.getLiteralOutput() != null) {		// Literal Data
 			outputData = literalDataAdapter(outputDescription.getLiteralOutput());
@@ -96,10 +105,13 @@ public class WPSAdapter {
 		} else if (outputDescription.getBoundingBoxOutput() != null) {
 			// TODO: handle BoundingBox data type
 			LOGGER.info("ERROR");
-		} else {
+		} 
+		
+		if (outputData == null) {
 			// Sometimes we get an output which doesn't specify - for now we'll assume literal.
 			outputData = new LiteralData();
 		}
+		
 		if (outputData.getAbstract() != null)
 			outputData.setAbstract(outputDescription.getAbstract().getStringValue());
 		outputData.setIdentifier(outputDescription.getIdentifier().getStringValue());
@@ -108,6 +120,11 @@ public class WPSAdapter {
 		return outputData;
 	}
 
+	/**
+	 * TODO: document
+	 * @param inputDescriptions
+	 * @return
+	 */
 	public static WPSData inputDescriptionAdapter(InputDescriptionType inputDescriptions) {
 		WPSData inputData = null;
 		if (inputDescriptions.getLiteralData() != null) { // Literal Data
@@ -132,6 +149,11 @@ public class WPSAdapter {
 		return inputData;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param cdd
+	 * @return
+	 */
 	public static Format formatAdapter(ComplexDataDescriptionType cdd) {
 		Format format = new Format();
 		
@@ -142,6 +164,11 @@ public class WPSAdapter {
 		return format;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param literal
+	 * @return
+	 */
 	public static LiteralData literalDataAdapter(LiteralOutputType literal) {
 		LiteralData literalData = new LiteralData();
 		literalData.setDataType(literal.getDataType().getReference());	// Data type
@@ -167,6 +194,11 @@ public class WPSAdapter {
 		return literalData;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param complex
+	 * @return
+	 */
 	public static ComplexData complexDataAdapter(SupportedComplexDataType complex) {
 		ComplexData complexData = new ComplexData();
 		

@@ -6,15 +6,27 @@ import java.util.List;
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.input.ProcessInput;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class WPSExecuteRequest extends ServiceRequest {
 
 	private List<ProcessInput> inputs;
 	private DetailedProcessDescriptor processDescriptor;
 	
+	/**
+	 * TODO: document
+	 */
 	public WPSExecuteRequest() {
 		super(null);
 	}
 	
+	/**
+	 * TODO: document
+	 * @param url
+	 */
 	public WPSExecuteRequest(String url){
 		super(url);
 		inputs = new ArrayList<ProcessInput>();
@@ -41,10 +53,18 @@ public class WPSExecuteRequest extends ServiceRequest {
 		inputs.add(data);
 	}
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public DetailedProcessDescriptor getProcessDescriptor() {
 		return processDescriptor;
 	}
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public ArrayList<ProcessInput> getInputs() {
 		return new ArrayList<ProcessInput>(inputs);
 	}

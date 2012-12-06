@@ -7,6 +7,11 @@ import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class CoverageOffering extends CoverageOfferingBrief {
 
 	private DomainSet domainSet;
@@ -14,30 +19,59 @@ public class CoverageOffering extends CoverageOfferingBrief {
 	private ArrayList<String> responseCRSs;
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 
+	/**
+	 * TODO: document
+	 * @param domainSet
+	 */
 	public void setDomainSet(DomainSet domainSet) {
 		this.domainSet = domainSet;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public DomainSet getDomainSet() {
 		return domainSet;
 	}
 
+	/**
+	 * TODO: document
+	 * @param requestCRSs
+	 */
 	public void setRequestCRSs(List<String> requestCRSs) {
 		this.requestCRSs = new ArrayList<String>(requestCRSs);
 	}
 
+	/**
+	 * TODO: document
+	 * @param responseCRSs
+	 */
 	public void setResponseCRSs(List<String> responseCRSs) {
 		this.responseCRSs = new ArrayList<String>(responseCRSs);
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public ArrayList<String> getRequestCRSs() {
 		return new ArrayList<String>(requestCRSs);
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public ArrayList<String> getResponseCRSs() {
 		return new ArrayList<String>(responseCRSs);
 	}
 	
+	/**
+	 * TODO: document
+	 * @param crs
+	 * @return
+	 */
 	public double[] getNativeResolution(String crs) {
 		LOGGER.info("Getting native resolution");
 		RectifiedGrid rGrid = getRectifiedGridForCRS(crs);
@@ -60,6 +94,11 @@ public class CoverageOffering extends CoverageOfferingBrief {
 		
 	}
 	
+	/**
+	 * TODO: document
+	 * @param crs
+	 * @return
+	 */
 	public RectifiedGrid getRectifiedGridForCRS(String crs) {
 		List<Grid> grids = getDomainSet().getSpatialDomain().getGrids();
         for (Grid grid : grids) {
@@ -76,6 +115,14 @@ public class CoverageOffering extends CoverageOfferingBrief {
 		return null;
 	}
 	
+	/**
+	 * TODO: document
+	 * @param boundingBox
+	 * @param responseCRS
+	 * @param resX
+	 * @param resY
+	 * @return
+	 */
 	public String createWCSKVPRequest(BoundsSerializable boundingBox, String responseCRS, double resX, double resY) {
         StringBuilder kvp = new StringBuilder(serviceURL)
                 .append("?SERVICE=WCS&VERSION=1.0.0&REQUEST=GetCoverage&COVERAGE=").append(name)

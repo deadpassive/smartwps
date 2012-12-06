@@ -149,11 +149,12 @@ public class WFSHandler {
 					}
 				}
 				// If we haven't found the typename, or the data is null then retry
-				if (((data == null) || (!ServerUtils.arrayContainsString(data.getTypeNames(), typeName))) && (retries > 0)) {
+				int count = 0;
+				if (((data == null) || (!ServerUtils.arrayContainsString(data.getTypeNames(), typeName))) && (count < retries)) {
 					LOGGER.info("Problem finding typename in capabilities, retrying after 5secs");
                     // TODO: this is a crap way to do this. Do something else.
 					Thread.sleep(5000);
-					retries --;
+					count++;
 					retry = true;
 				}
 			} while (retry == true);

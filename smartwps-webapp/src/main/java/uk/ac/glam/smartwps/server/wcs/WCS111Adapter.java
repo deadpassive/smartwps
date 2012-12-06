@@ -118,7 +118,7 @@ public class WCS111Adapter {
 	
 	private static ArrayList<String> elistAdapter(EList<String> elist) {
 		ArrayList<String> newList = new ArrayList<String>();
-        for (String string : newList) {
+        for (String string : elist) {
 			newList.add(string);
 		}
 		return newList;
