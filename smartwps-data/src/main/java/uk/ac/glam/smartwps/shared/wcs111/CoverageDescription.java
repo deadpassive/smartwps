@@ -6,7 +6,11 @@ import java.util.List;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 
-@SuppressWarnings("serial")
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class CoverageDescription implements Serializable {
 
 	private String title;
@@ -17,63 +21,123 @@ public class CoverageDescription implements Serializable {
 	private CoverageSummary coverageSummary;
 	private Domain domain;
 
+	/**
+	 * TODO: document
+	 * @param title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * TODO: document
+	 * @param abstract1
+	 */
 	public void setAbstract(String abstract1) {
 		this.abstract1 = abstract1;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public String getAbstract() {
 		return abstract1;
 	}
 
+	/**
+	 * TODO: document
+	 * @param identifier
+	 */
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public String getIdentifier() {
 		return identifier;
 	}
 
+	/**
+	 * TODO: document
+	 * @param serviceURL
+	 */
 	public void setServiceURL(String serviceURL) {
 		this.serviceURL = serviceURL;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public String getServiceURL() {
 		return serviceURL;
 	}
 
+	/**
+	 * TODO: document
+	 * @param supportedCRSs
+	 */
 	public void setSupportedCRSs(List<String> supportedCRSs) {
 		this.supportedCRSs = new ArrayList<String>(supportedCRSs);
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public ArrayList<String> getSupportedCRSs() {
 		return new ArrayList<String>(supportedCRSs);
 	}
 
 
+	/**
+	 * TODO: document
+	 * @param coverageSummary
+	 */
 	public void setCoverageSummary(CoverageSummary coverageSummary) {
 		this.coverageSummary = coverageSummary;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public CoverageSummary getCoverageSummary() {
 		return coverageSummary;
 	}
 
+	/**
+	 * TODO: document
+	 * @param domain
+	 */
 	public void setDomain(Domain domain) {
 		this.domain = domain;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public Domain getDomain() {
 		return domain;
 	}
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public BoundsSerializable getDefaultBoundingBox() {
 		BoundsSerializable bbox = null;
 		// If this has a GridCRS, use that

@@ -16,6 +16,11 @@ import uk.ac.glam.smartwps.shared.wms.WMSConnectionException;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class WCSRequestServiceImpl extends RemoteServiceServlet implements WCSRequestService {
 	
     @Override

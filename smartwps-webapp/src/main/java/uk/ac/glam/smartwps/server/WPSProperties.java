@@ -72,6 +72,10 @@ public class WPSProperties extends Properties {
 		return this.getProperty("GEOSERVER_URL");
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public String getPublicGeoServerURL() {
 		return this.getProperty("GEOSERVER_URL_PUBLIC");
 	}

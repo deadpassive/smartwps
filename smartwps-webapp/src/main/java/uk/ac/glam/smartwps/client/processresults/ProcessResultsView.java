@@ -4,6 +4,11 @@ import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
 
 import com.google.gwt.user.client.ui.IsWidget;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public interface ProcessResultsView  extends IsWidget  {
 	/**
 	 * TODO: document

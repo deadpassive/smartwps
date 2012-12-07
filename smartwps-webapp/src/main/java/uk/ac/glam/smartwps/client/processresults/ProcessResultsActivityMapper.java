@@ -7,9 +7,18 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class ProcessResultsActivityMapper implements ActivityMapper {
 	private ClientFactory clientFactory;
 	
+	/**
+	 * TODO: document
+	 * @param clientFactory
+	 */
 	public ProcessResultsActivityMapper(ClientFactory clientFactory) {
 		super();
 		this.clientFactory = clientFactory;

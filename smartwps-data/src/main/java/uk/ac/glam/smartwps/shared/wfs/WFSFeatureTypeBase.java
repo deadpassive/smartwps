@@ -95,10 +95,18 @@ public class WFSFeatureTypeBase extends Data {
 		return name;
 	}
 
+	/**
+	 * TODO: document
+	 * @param wfsVersion
+	 */
 	public void setWfsVersion(String wfsVersion) {
 		this.wfsVersion = wfsVersion;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public String getWfsVersion() {
 		return wfsVersion;
 	}

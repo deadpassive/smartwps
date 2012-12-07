@@ -4,11 +4,22 @@ import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
 
 import com.google.gwt.event.shared.GwtEvent;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class ProcessResultsReceivedEvent extends GwtEvent<ProcessResultsReceivedHandler> {
 
+	@SuppressWarnings("javadoc")
 	public final static Type<ProcessResultsReceivedHandler> TYPE = new Type<ProcessResultsReceivedHandler>();
+	
 	private WPSExecuteResponse results;
 	
+	/**
+	 * TODO: document
+	 * @param results
+	 */
 	public ProcessResultsReceivedEvent(WPSExecuteResponse results) {
 		this.results = results;
 	}
@@ -23,6 +34,10 @@ public class ProcessResultsReceivedEvent extends GwtEvent<ProcessResultsReceived
 		handler.onResultsReceived(this);
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public WPSExecuteResponse getResults() {
 		return results;
 	}

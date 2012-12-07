@@ -21,6 +21,10 @@ public class WMSLayer extends Data {
     private List<String> crsList;
 	private List<String> styles;
 	
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public BoundsSerializable getBbox() {
 		return bbox;
 	}

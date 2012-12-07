@@ -2,9 +2,7 @@ package uk.ac.glam.smartwps.client.addwmsdialog;
 
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.wms.WMSLayerSelector;
-
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.widgets.Window;

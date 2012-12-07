@@ -22,6 +22,9 @@ public class OLMap extends Composite {
     
     private final MapWidget mapWidget;
 
+    /**
+     * TODO: document
+     */
     public OLMap() {
         mapWidget = createMap();
         
@@ -61,34 +64,67 @@ public class OLMap extends Composite {
 		return mw;
 	}
 
+    /**
+     * TODO: document
+     * @return
+     */
     public Map getOLMap() {
         return mapWidget.getMap();
     }
 
+    /**
+     * TODO: document
+     * @param mapLayer
+     */
     public void removeLayer(Layer mapLayer) {
         mapWidget.getMap().removeLayer(mapLayer);
     }
 
+    /**
+     * TODO: document
+     * @param layer
+     * @param i
+     */
     public void setLayerIndex(Layer layer, int i) {
         mapWidget.getMap().setLayerIndex(layer, i);
     }
 
+    /**
+     * TODO: document
+     * @param extent
+     */
     public void zoomToExtent(Bounds extent) {
         mapWidget.getMap().zoomToExtent(extent);
     }
 
+    /**
+     * TODO: document
+     * @param control
+     */
     public void removeControl(Control control) {
         mapWidget.getMap().removeControl(control);
     }
 
+    /**
+     * TODO: document
+     * @param control
+     */
     public void addControl(Control control) {
         mapWidget.getMap().addControl(control);
     }
 
+    /**
+     * TODO: document
+     * @param mapLayer
+     */
     public void addLayer(Layer mapLayer) {
         mapWidget.getMap().addLayer(mapLayer);
     }
 
+    /**
+     * TODO: document
+     * @return
+     */
     public String getProjection() {
         return mapWidget.getMap().getProjection();
     }

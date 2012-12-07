@@ -28,9 +28,10 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 		getElement().getStyle().setZIndex(1000000);
 //		setSize("500px", "500px");
 	}
-	
+
 	@Override
 	public void showDialog() {
+		// TODO Auto-generated method stub
 		center();
 	}
 }

@@ -1,5 +1,12 @@
 package uk.ac.glam.smartwps.client;
 
+import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
+import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
+import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
+import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
+import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
+import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
+
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -9,14 +16,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.web.bindery.event.shared.EventBus;
 
-import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialog;
-import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
-import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
-import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
-import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
-import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
-import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
-
 /**
  * TODO: document.
  * 
@@ -25,7 +24,6 @@ import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
 public class SWPSEntryPoint implements EntryPoint {
 
     private Place defaultPlace = new SmartWPSPlace();
-	private AddWMSPresenter wmsPresenter;
 
     @Override
     public void onModuleLoad() {
@@ -36,7 +34,8 @@ public class SWPSEntryPoint implements EntryPoint {
         
 //        AddWMSPresenter.Display wmsDialog = new AddWMSDialog(eventBus);
         AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
-        wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog);
+        @SuppressWarnings("unused")
+		AddWMSPresenter wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog);
         
         // TODO: this is a temporary measure while I transition to MVP
         SmartWPS.setEventBus(eventBus);

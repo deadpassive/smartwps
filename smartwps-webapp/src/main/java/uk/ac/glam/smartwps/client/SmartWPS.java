@@ -25,11 +25,6 @@ public class SmartWPS {
 	 * Client side logger
 	 */
 	public static final Logger LOGGER = Logger.getLogger("smartwps.client");
-	
-
-	private void testSomething() {
-		//new ErrorWindow().show();
-	}
 
 	/**
 	 * @return the RPC request services for OGC web services
@@ -57,10 +52,18 @@ public class SmartWPS {
 		SmartWPS.appLayout = smartWPSView;
 	}
 
+	/**
+	 * TODO: document
+	 * @return
+	 */
 	public static EventBus getEventBus() {
 		return EVENT_BUS;
 	}
 
+	/**
+	 * TODO: document
+	 * @param eventBus
+	 */
 	public static void setEventBus(EventBus eventBus) {
 		EVENT_BUS = eventBus;
 	}

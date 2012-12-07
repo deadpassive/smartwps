@@ -1,7 +1,8 @@
 package uk.ac.glam.smartwps.client.wms;
 
+import java.util.List;
+
 import uk.ac.glam.smartwps.client.DataSourceManager;
-import uk.ac.glam.smartwps.client.datatree.DataTree;
 import uk.ac.glam.smartwps.client.event.AddLayerEvent;
 import uk.ac.glam.smartwps.client.net.WMSRequestService;
 import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
@@ -22,7 +23,6 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
-import java.util.List;
 
 /**
  * Widget for selecting WMS layers.
@@ -33,15 +33,12 @@ public class WMSLayerSelector extends HLayout {
 
 	private final ListGrid layerList;
 	private final WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
-	private final EventBus eventBus;
 	
 	/**
 	 * TODO: document
-	 * @param dataTree 
 	 * @param eventBus 
 	 */
 	public WMSLayerSelector(final EventBus eventBus) {
-		this.eventBus = eventBus;
 		layerList = new ListGrid() {  
 			
 			@Override

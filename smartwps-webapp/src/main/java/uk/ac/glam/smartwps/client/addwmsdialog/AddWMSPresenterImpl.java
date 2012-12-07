@@ -12,17 +12,12 @@ import com.google.web.bindery.event.shared.EventBus;
  */
 public class AddWMSPresenterImpl implements AddWMSPresenter {
 	
-	private final EventBus eventBus;
-	private final Display display;
-
 	/**
 	 * TODO: document
 	 * @param eventBus
 	 * @param display
 	 */
 	public AddWMSPresenterImpl(EventBus eventBus, final AddWMSPresenter.Display display) {
-		this.eventBus = eventBus;
-		this.display = display;
 		
 		eventBus.addHandler(ShowWMSDialogEvent.TYPE, new ShowWMSDialogHandler() {
 			

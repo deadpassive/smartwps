@@ -187,7 +187,9 @@ public class WCSHandler {
 		String url = request.getCoverageDescription().getServiceURL();
 		WCS111 wcs = webCoverageServices.get(url);
 		if (wcs == null) {
-			// Not found, TODO: try and create WCS
+			// Not found, do a GetCapabilities to create the WCS.
+			String splitUrl = url.split("\\?")[0];
+			wcs = wcsGetCaps1_1_1(splitUrl);
 		}
 		
 		//Get bbox string

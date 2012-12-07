@@ -6,23 +6,30 @@ import uk.ac.glam.smartwps.client.event.ProcessResultsReceivedHandler;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.web.bindery.event.shared.EventBus;
 
+/**
+ * @TODO: document
+ * @author jonb
+ *
+ */
 public class ProcessResultsActivity extends AbstractActivity {
-	private EventBus eventBus;
 	private ClientFactory clientFactory;
 	
+	/**
+	 * TODO: document
+	 * @param mainAppPlace
+	 * @param factory
+	 */
 	public ProcessResultsActivity(SmartWPSPlace mainAppPlace, ClientFactory factory) {
 		this.clientFactory = factory;
 	}
 	
 	@Override
-	public void start(AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus eventBus) {
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		final ProcessResultsView view = clientFactory.getProcessResultsView();
-		
-		this.eventBus = eventBus;
-		
+				
 		eventBus.addHandler(ProcessResultsReceivedEvent.TYPE, new ProcessResultsReceivedHandler() {
 			
 			@Override
