@@ -17,7 +17,13 @@ public class CoverageOfferingBrief implements Serializable {
 	private List<String> keywords;
 	private String label;
 	private BoundsSerializable lonLatEnvelope;
+	/**
+	 * TODO: document
+	 */
 	protected String name;
+	/**
+	 * TODO: document
+	 */
 	protected String serviceURL;
 
 	/**

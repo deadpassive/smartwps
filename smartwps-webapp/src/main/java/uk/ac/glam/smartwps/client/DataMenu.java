@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.client;
 
 import uk.ac.glam.smartwps.client.event.ShowWMSDialogEvent;
+import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.wcs.AddCoverageWindow;
 import uk.ac.glam.smartwps.client.wfs.AddWFSWindow;
 import uk.ac.glam.smartwps.client.wps.AddProcessWindow;
@@ -25,8 +26,9 @@ public class DataMenu extends Menu {
 	/**
 	 * Create a new DataMenu.
 	 * @param eventBus 
+	 * @param wpsService 
 	 */
-	public DataMenu (final EventBus eventBus) {
+	public DataMenu (final EventBus eventBus, final WPSRequestServiceAsync wpsService) {
 		setShowShadow(true);
 		setShadowDepth(3);
 		
@@ -35,7 +37,7 @@ public class DataMenu extends Menu {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
 				if (wpsWindow == null) {
-                    wpsWindow = new AddProcessWindow();
+                    wpsWindow = new AddProcessWindow(wpsService);
                 }
 				wpsWindow.show();
 			}

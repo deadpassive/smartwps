@@ -20,6 +20,7 @@ import uk.ac.glam.smartwps.client.datatree.DataTree;
 import uk.ac.glam.smartwps.client.layout.SmartGWTSimplePanel;
 import uk.ac.glam.smartwps.client.logging.LoggerWindow;
 import uk.ac.glam.smartwps.client.map.OLMap;
+import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 
 /**
@@ -37,13 +38,16 @@ public class AppLayoutImpl extends Composite implements AppLayout {
     private LoggerWindow loggerWindow;
 	private SmartGWTSimplePanel resultsHolder;
 	private final EventBus eventBus;
+	private WPSRequestServiceAsync wpsService;
 
 	/**
 	 * TODO: document
 	 * @param eventBus
+	 * @param wpsService 
 	 */
-	public AppLayoutImpl(EventBus eventBus) {
+	public AppLayoutImpl(EventBus eventBus, WPSRequestServiceAsync wpsService) {
         this.eventBus = eventBus;
+        this.wpsService = wpsService;
         SmartWPS.setAppLayout(this);
         //set a proxyHost
 		OpenLayers.setProxyHost(GWT.getModuleBaseURL() + "gwtOpenLayersProxy?targetURL=");
@@ -126,7 +130,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 	}
     
 	private ToolStripMenuButton createAddMenu() {
-		dataMenu = new DataMenu(eventBus);
+		dataMenu = new DataMenu(eventBus, wpsService);
 		
 		return new ToolStripMenuButton("Add", dataMenu);
 	}

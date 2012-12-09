@@ -1,5 +1,7 @@
 package uk.ac.glam.smartwps.client.wps;
 
+import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
+
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
@@ -21,8 +23,9 @@ public class AddProcessWindow extends Window {
 
 	/**
 	 * Creates a new AddProcessWindow.
+	 * @param wpsService 
 	 */
-	public AddProcessWindow() {
+	public AddProcessWindow(WPSRequestServiceAsync wpsService) {
 		super();
 
 		this.setTitle("Add WPS");
@@ -77,7 +80,7 @@ public class AddProcessWindow extends Window {
 
 		mainLayout.addMember(urlForm);
 
-		processList = new AddProcessListGrid();
+		processList = new AddProcessListGrid(wpsService);
 		processList.setWidth100();
 		processList.setHeight100();
 		

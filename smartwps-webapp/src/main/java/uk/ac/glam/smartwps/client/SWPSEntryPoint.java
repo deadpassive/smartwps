@@ -4,6 +4,8 @@ import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
+import uk.ac.glam.smartwps.client.net.WPSRequestService;
+import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
 
@@ -27,9 +29,10 @@ public class SWPSEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
+    	WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
     	ClientFactory clientFactory = GWT.create(ClientFactory.class);
     	EventBus eventBus = clientFactory.getEventBus();
-    	AppLayout layout = new AppLayoutImpl(eventBus);
+    	AppLayout layout = new AppLayoutImpl(eventBus, wpsService);
         PlaceController placeController = clientFactory.getPlaceController();
         
 //        AddWMSPresenter.Display wmsDialog = new AddWMSDialog(eventBus);

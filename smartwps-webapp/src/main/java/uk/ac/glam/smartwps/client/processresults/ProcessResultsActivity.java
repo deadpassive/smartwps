@@ -22,6 +22,7 @@ public class ProcessResultsActivity extends AbstractActivity {
 	 * @param mainAppPlace
 	 * @param factory
 	 */
+	@SuppressWarnings("unused")
 	public ProcessResultsActivity(SmartWPSPlace mainAppPlace, ClientFactory factory) {
 		this.clientFactory = factory;
 	}

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class ServerToClientHandler extends Handler {
 	
-	ArrayList<LogRecord> logBuffer = new ArrayList<LogRecord>();
+	private ArrayList<LogRecord> logBuffer = new ArrayList<LogRecord>();
 	
     /**
      * TODO: document

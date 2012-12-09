@@ -29,13 +29,15 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  */
 public class AddProcessListGrid extends ListGrid {
 
-	static final Logger LOGGER = Logger.getLogger("smartwps.client");
-	static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
+	private static final Logger LOGGER = Logger.getLogger("AddProcessListGrid");
+	private WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
 	
 	/**
 	 * Creates a new AddProcessListGrid.
+	 * @param wpsService 
 	 */
-	public AddProcessListGrid() {
+	public AddProcessListGrid(WPSRequestServiceAsync wpsService) {
+		this.wpsService = wpsService;
 		ListGridField idField = new ListGridField("id", "ID");
 		ListGridField titleField = new ListGridField("title", "Title");
 		ListGridField addField = new ListGridField("addButton", "Add");
