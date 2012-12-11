@@ -1,5 +1,9 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
+import java.util.List;
+
+import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -19,6 +23,8 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	 */
 	interface AddWMSDialogGwtUiBinder extends UiBinder<Widget, AddWMSDialogGwt> {}
 
+	private AddWMSPresenter presenter;
+
 	/**
 	 * TODO: document
 	 */
@@ -31,7 +37,23 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 
 	@Override
 	public void showDialog() {
-		// TODO Auto-generated method stub
 		center();
+	}
+	
+	@Override
+	public void setPresenter(AddWMSPresenter presenter) {
+		this.presenter = presenter;
+	}
+	
+	@Override
+	public void setWMSLayers(List<WMSLayer> wmsLayers) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void doFailure(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 }

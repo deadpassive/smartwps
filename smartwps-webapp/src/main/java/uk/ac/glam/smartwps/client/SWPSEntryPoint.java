@@ -1,9 +1,12 @@
 package uk.ac.glam.smartwps.client;
 
+import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialog;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
+import uk.ac.glam.smartwps.client.net.WMSRequestService;
+import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.net.WPSRequestService;
 import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
@@ -30,15 +33,16 @@ public class SWPSEntryPoint implements EntryPoint {
     @Override
     public void onModuleLoad() {
     	WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
+    	WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
     	ClientFactory clientFactory = GWT.create(ClientFactory.class);
     	EventBus eventBus = clientFactory.getEventBus();
     	AppLayout layout = new AppLayoutImpl(eventBus, wpsService);
         PlaceController placeController = clientFactory.getPlaceController();
         
-//        AddWMSPresenter.Display wmsDialog = new AddWMSDialog(eventBus);
-        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
+        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
+//        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
         @SuppressWarnings("unused")
-		AddWMSPresenter wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog);
+		AddWMSPresenter wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog, wmsService);
         
         // TODO: this is a temporary measure while I transition to MVP
         SmartWPS.setEventBus(eventBus);

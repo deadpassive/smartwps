@@ -1,10 +1,11 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
+import java.util.List;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.wms.WMSLayerSelector;
+import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
-import com.google.web.bindery.event.shared.EventBus;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
@@ -26,13 +27,14 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 
 	private WMSLayerSelector layerSelector;
 
+	private AddWMSPresenter presenter;
+
 	/**
 	 * Creates a new AddMapWindow.
 	 * 
 	 * TODO: remove dependency on event bus
-	 * @param eventBus 
 	 */
-	public AddWMSDialog(EventBus eventBus) {
+	public AddWMSDialog() {
 		super();
 
 		LOGGER.info("Creating AddMapWindow");
@@ -67,7 +69,7 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 			public void onKeyPress(KeyPressEvent event) {
 				// Enter key pressed
 				if ((event.getCharacterValue() != null) && (event.getCharacterValue() == 13)) {
-					layerSelector.loadWMSLayers((String) urlChooser.getValue());
+					sendRequest(urlChooser.getValueAsString());
 				}
 			}
 		});
@@ -78,7 +80,7 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 		goButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				layerSelector.loadWMSLayers((String) urlChooser.getValue());
+				sendRequest(urlChooser.getValueAsString());
 			}
 		});
 
@@ -86,7 +88,12 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 
 		mainLayout.addMember(urlForm);
 
-		layerSelector = new WMSLayerSelector(eventBus);
+		layerSelector = new WMSLayerSelector(new AddLayerCallback<WMSLayer>() {
+			@Override
+			public void addLayer(WMSLayer wmsLayer) {
+				presenter.addLayer(wmsLayer);
+			}
+		});
 		layerSelector.setWidth100();
 		layerSelector.setHeight100();
 		
@@ -95,9 +102,34 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 		this.addItem(mainLayout);
 	}
 	
+	private void sendRequest(String url) {
+		SC.showPrompt("Contacting WMS server at " + url);
+		presenter.retrieveWMSLayer(url);
+	}
+	
 	@Override
 	public void showDialog() {
 		show();
 	}
 
+	@Override
+	public void setPresenter(AddWMSPresenter presenter) {
+		this.presenter = presenter;
+	}
+	
+	@Override
+	public void setWMSLayers(List<WMSLayer> wmsLayers) {
+		SC.clearPrompt();
+		WMSLayerRecord[] newRecords = new WMSLayerRecord[wmsLayers.size()];
+		for (int i = 0; i < wmsLayers.size(); i++) {
+			newRecords[i] = new WMSLayerRecord(wmsLayers.get(i));
+		}
+		layerSelector.setData(newRecords);
+	}
+	
+	@Override
+	public void doFailure(String message) {
+		SC.clearPrompt();
+		SC.say(message);
+	}
 }
