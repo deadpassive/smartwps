@@ -39,8 +39,8 @@ public class SWPSEntryPoint implements EntryPoint {
     	AppLayout layout = new AppLayoutImpl(eventBus, wpsService);
         PlaceController placeController = clientFactory.getPlaceController();
         
-        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
-//        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
+//        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
+        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
         @SuppressWarnings("unused")
 		AddWMSPresenter wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog, wmsService);
         

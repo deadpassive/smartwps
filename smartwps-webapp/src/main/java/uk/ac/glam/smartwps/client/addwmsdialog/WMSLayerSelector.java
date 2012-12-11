@@ -38,7 +38,7 @@ public class WMSLayerSelector extends HLayout {
 			        button.addClickHandler(new ClickHandler() {  
 			            @Override
 						public void onClick(ClickEvent event) {
-			            	callback.addLayer(((WMSLayerRecord)record).getWMSLayer());
+			            	callback.addLayer(((SmartWMSLayerRecord)record).getWMSLayer());
 			            } 
 			        });  
 			        return button;
@@ -67,9 +67,9 @@ public class WMSLayerSelector extends HLayout {
 	 * TODO: document
 	 * @param records
 	 */
-	public void setData(WMSLayerRecord[] records) {
+	public void setData(SmartWMSLayerRecord[] records) {
 		// For some reason we have to clear the records first...
-		layerList.setData(new WMSLayerRecord[0]);
+		layerList.setData(new SmartWMSLayerRecord[0]);
 		layerList.setData(records);
 	}
 }

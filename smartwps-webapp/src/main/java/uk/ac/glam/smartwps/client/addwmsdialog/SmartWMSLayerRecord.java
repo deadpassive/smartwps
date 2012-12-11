@@ -9,7 +9,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
  * 
  * @author Jon Britton
  */
-public class WMSLayerRecord extends ListGridRecord {
+public class SmartWMSLayerRecord extends ListGridRecord {
 
 	private WMSLayer wmsLayer;
 
@@ -17,11 +17,11 @@ public class WMSLayerRecord extends ListGridRecord {
 	 * Creates a new WMSLayerRecord for the given WMS layer.
 	 * @param wmsLayer
 	 */
-	public WMSLayerRecord(WMSLayer wmsLayer) {
+	public SmartWMSLayerRecord(WMSLayer wmsLayer) {
 		this.wmsLayer = wmsLayer;
 		this.setAttribute("name", wmsLayer.getName());
 		this.setAttribute("title", wmsLayer.getTitle());
-		this.setAttribute("abstract", wmsLayer.getLayerAbstract());
+		this.setAttribute("abstract", wmsLayer.getAbstract());
 	}
 
 	/**

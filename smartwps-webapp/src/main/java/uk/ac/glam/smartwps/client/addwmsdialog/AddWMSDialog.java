@@ -120,9 +120,9 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 	@Override
 	public void setWMSLayers(List<WMSLayer> wmsLayers) {
 		SC.clearPrompt();
-		WMSLayerRecord[] newRecords = new WMSLayerRecord[wmsLayers.size()];
+		SmartWMSLayerRecord[] newRecords = new SmartWMSLayerRecord[wmsLayers.size()];
 		for (int i = 0; i < wmsLayers.size(); i++) {
-			newRecords[i] = new WMSLayerRecord(wmsLayers.get(i));
+			newRecords[i] = new SmartWMSLayerRecord(wmsLayers.get(i));
 		}
 		layerSelector.setData(newRecords);
 	}

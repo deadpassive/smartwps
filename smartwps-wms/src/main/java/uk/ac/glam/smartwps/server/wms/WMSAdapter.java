@@ -29,7 +29,7 @@ public class WMSAdapter {
 		
 		wmsLayer.setTitle(layer.getTitle());
 		wmsLayer.setName(layer.getName());
-		wmsLayer.setLayerAbstract(layer.get_abstract());
+		wmsLayer.setAbstract(layer.get_abstract());
 		wmsLayer.setBbox(latLonBoundingBoxAdapter(layer.getLatLonBoundingBox()));
 		wmsLayer.setStyles(stylesAdapter(layer.getStyles()));
 		//wmsLayer.setCrsList(layer.getSrs().toArray(new String[0]));

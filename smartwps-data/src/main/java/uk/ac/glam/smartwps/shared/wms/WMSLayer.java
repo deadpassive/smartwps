@@ -73,7 +73,7 @@ public class WMSLayer extends Data {
      * TODO: document.
      * @return 
      */
-	public String getLayerAbstract() {
+	public String getAbstract() {
 		return layerAbstract;
 	}
 	
@@ -81,7 +81,7 @@ public class WMSLayer extends Data {
      * TODO: document.
      * @param layerAbstract 
      */
-	public void setLayerAbstract(String layerAbstract) {
+	public void setAbstract(String layerAbstract) {
 		this.layerAbstract = layerAbstract;
 	}
 	
