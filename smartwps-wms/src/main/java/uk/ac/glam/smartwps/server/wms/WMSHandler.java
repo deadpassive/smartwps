@@ -69,7 +69,7 @@ public class WMSHandler {
 		List<Layer> layerList = wms.getCapabilities().getLayerList();
         for (Layer layer : layerList) {
 			if (layer.getName() != null) { // Named (viewable) layers only
-				if (requestLayers == null) { // Add all layers
+				if (requestLayers == null || requestLayers.isEmpty()) { // Add all layers
 					WMSLayer wmsLayer = WMSAdapter.layerAdapter(layer);
 					wmsLayer.setDataSource(dataSource);
 					selectedLayers.add(wmsLayer);
