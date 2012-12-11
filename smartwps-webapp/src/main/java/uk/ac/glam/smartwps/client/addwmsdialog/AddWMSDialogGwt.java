@@ -18,8 +18,12 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
+import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
+import com.google.gwt.user.cellview.client.DataGrid;
+import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
@@ -47,8 +51,10 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	@UiField
 	WaterMarkedTextBox urlInput;
 	@UiField(provided = true)
-	CellTable<WMSLayer> cellTable;
-
+	SimplePager pager;
+	@UiField(provided = true)
+	DataGrid<WMSLayer> dataGrid;
+	
 	private ListDataProvider<WMSLayer> dataProvider;
 
 	/**
@@ -59,12 +65,27 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 				
 		getElement().getStyle().setZIndex(1000000);
 		
-		cellTable = new CellTable<WMSLayer>();
-		cellTable.setPageSize(1000);
+		dataGrid = new DataGrid<WMSLayer>();
+		dataGrid.setWidth("100%");
+		dataGrid.setEmptyTableWidget(new Label("No layers"));
+		
+		SimplePager.Resources pagerResources = GWT.create(SimplePager.Resources.class);
+		pager = new SimplePager(TextLocation.CENTER, pagerResources, false, 0, true);
+		pager.setDisplay(dataGrid);
 		
 		final MultiSelectionModel<WMSLayer> selectionModel = new MultiSelectionModel<WMSLayer>();
-		cellTable.setSelectionModel(selectionModel, DefaultSelectionEventManager.<WMSLayer> createCheckboxManager());
-								
+		dataGrid.setSelectionModel(selectionModel, DefaultSelectionEventManager.<WMSLayer> createCheckboxManager());
+
+		Column<WMSLayer, Boolean> checkColumn = new Column<WMSLayer, Boolean>(new CheckboxCell(true, false)) {
+			@Override
+			public Boolean getValue(WMSLayer object) {
+				// Get the value from the selection model.
+				return selectionModel.isSelected(object);
+			}
+		};
+		dataGrid.addColumn(checkColumn, SafeHtmlUtils.fromSafeConstant("<br/>"));
+		dataGrid.setColumnWidth(checkColumn, 40, Unit.PX);
+		
 		TextColumn<WMSLayer> nameColumn = new TextColumn<WMSLayer>() {
 			
 			@Override
@@ -73,7 +94,7 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 			}
 		};
 		nameColumn.setSortable(true);
-		cellTable.addColumn(nameColumn, "Name");
+		dataGrid.addColumn(nameColumn, "Name");
 		
 		TextColumn<WMSLayer> titleColumn = new TextColumn<WMSLayer>() {
 
@@ -83,7 +104,7 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 			}
 		};
 		titleColumn.setSortable(true);
-		cellTable.addColumn(titleColumn, "Title");
+		dataGrid.addColumn(titleColumn, "Title");
 		
 		TextColumn<WMSLayer> absColumn = new TextColumn<WMSLayer>() {
 			
@@ -93,20 +114,12 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 			}
 		};
 		absColumn.setSortable(true);
-		cellTable.addColumn(absColumn, "Description");
+		dataGrid.addColumn(absColumn, "Description");
 
-		Column<WMSLayer, Boolean> checkColumn = new Column<WMSLayer, Boolean>(new CheckboxCell(true, false)) {
-			@Override
-			public Boolean getValue(WMSLayer object) {
-				// Get the value from the selection model.
-				return selectionModel.isSelected(object);
-			}
-		};
-		cellTable.addColumn(checkColumn, SafeHtmlUtils.fromSafeConstant("<br/>"));
-		cellTable.setColumnWidth(checkColumn, 40, Unit.PX);
+		
 		
 		dataProvider = new ListDataProvider<WMSLayer>();
-		dataProvider.addDataDisplay(cellTable);
+		dataProvider.addDataDisplay(dataGrid);
 
 		setWidget(uiBinder.createAndBindUi(this));
 				
@@ -134,7 +147,7 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 			}
 		});
 		
-		cellTable.addColumnSortHandler(sortHandler);
+		dataGrid.addColumnSortHandler(sortHandler);
 		
 //		setSize("500px", "500px");
 	}

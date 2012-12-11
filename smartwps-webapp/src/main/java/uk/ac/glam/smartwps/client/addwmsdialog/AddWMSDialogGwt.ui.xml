@@ -10,7 +10,18 @@
 		.button {
 			margin: 2px;
 		}
-		.scroller {
+		.bottomPanel {
+			/*background-color: orange;*/
+			border-top: 1px solid rgba(0,0,0,0.6);
+		}
+		.buttonPanel {
+			float: right;
+			/*background-color: green;*/
+			height: 100%;
+		}
+		.pager {
+			float: left;
+			/*background-color: blue;*/
 		}
 	</ui:style>
 
@@ -26,10 +37,15 @@
 			</g:DockLayoutPanel>
 		</g:north>
 		<g:center>
-<!-- 			<c:SimplePager ui:field="pager"/> -->
-			<g:ScrollPanel addStyleNames='{style.scroller}'>
-				<c:CellTable ui:field="cellTable" width="100%"/>
-			</g:ScrollPanel>
+			<c:DataGrid ui:field="dataGrid" width="100%"/>
 		</g:center>
+		<g:south size="30">
+			<g:FlowPanel styleName='{style.bottomPanel}'>
+				<c:SimplePager ui:field="pager" height="100%" addStyleNames='{style.pager}'/>
+				<g:FlowPanel styleName='{style.buttonPanel}'>
+					<g:Button addStyleNames='{style.button}'>Add Selected</g:Button>
+				</g:FlowPanel>
+			</g:FlowPanel>
+		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 
