@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class LogViewer extends VLayout {
 	
-	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
+	private final Logger logger = Logger.getLogger("LogViewer");
 	private Timer timer;
 	private Handler handler;
     private StringBuilder logBuilder = new StringBuilder();
@@ -65,13 +65,13 @@ public class LogViewer extends VLayout {
 		selectLevel.setWidth(120);  
 		selectLevel.setShowTitle(false);  
 		selectLevel.setValueMap("ALL", "FINEST", "FINER", "FINE", "CONFIG", "INFO", "WARNING", "SEVERE", "OFF");  
-		selectLevel.setDefaultValue(LOGGER.getLevel().getName());  
+		selectLevel.setDefaultValue("INFO");
         selectLevel.addChangedHandler(new ChangedHandler() {  
             @Override
 			public void onChanged(ChangedEvent event) {  
             	Level level = Level.parse((String) selectLevel.getValue());
-            	LOGGER.info("Changed logging level to " + level.getName());
-            	LOGGER.setLevel(level);
+            	logger.info("Changed logging level to " + level.getName());
+            	logger.setLevel(level);
             }  
         });
 		toolStrip.addFormItem(selectLevel);
@@ -127,14 +127,14 @@ public class LogViewer extends VLayout {
 			}
 		};
 		
-		LOGGER.addHandler(handler);
+		logger.addHandler(handler);
 	}
 	
 	/**
 	 * TODO: document
 	 */
 	public void startServerLogging() {
-		LOGGER.info("Started logging from server");
+		logger.info("Started logging from server");
 		timer = new Timer() {
 			
 			@Override
@@ -170,7 +170,7 @@ public class LogViewer extends VLayout {
 				List<LogRecord> logs = response.getLogRecords();
                 for (LogRecord logRecord : logs) {
 					// If logging level is ok, publish it
-					if (logRecord.getLevel().intValue() >= LOGGER.getLevel().intValue()) {
+					if (logRecord.getLevel().intValue() >= logger.getLevel().intValue()) {
                         handler.publish(logRecord);
                     }
 				}

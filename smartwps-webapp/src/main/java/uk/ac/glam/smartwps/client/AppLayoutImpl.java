@@ -54,6 +54,8 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 		ClientUtils.setModuleURL();
 //		LOGGER.info(OpenLayers.getProxyHost());
 		
+		loggerWindow = new LoggerWindow();
+		
 		VLayout mainLayout = new VLayout();
 		mainLayout.setWidth100();
 		mainLayout.setHeight100();
