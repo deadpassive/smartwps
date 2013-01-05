@@ -4,6 +4,9 @@ import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialog;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
+import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenter;
+import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenterImpl;
+import uk.ac.glam.smartwps.client.loggerdialog.LoggerDialog;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
 import uk.ac.glam.smartwps.client.net.WMSRequestService;
 import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
@@ -30,7 +33,8 @@ public class SWPSEntryPoint implements EntryPoint {
 
     private Place defaultPlace = new SmartWPSPlace();
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void onModuleLoad() {
     	WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
     	WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
@@ -39,10 +43,12 @@ public class SWPSEntryPoint implements EntryPoint {
     	AppLayout layout = new AppLayoutImpl(eventBus, wpsService);
         PlaceController placeController = clientFactory.getPlaceController();
         
-//        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
-        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
-        @SuppressWarnings("unused")
+        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
+//        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
 		AddWMSPresenter wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog, wmsService);
+        
+        LoggerDialog loggerDialog = new LoggerDialog();
+        LoggerPresenter loggerPresenter = new LoggerPresenterImpl(eventBus, loggerDialog);
         
         // TODO: this is a temporary measure while I transition to MVP
         SmartWPS.setEventBus(eventBus);

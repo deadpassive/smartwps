@@ -44,7 +44,6 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 		this.setShowMinimizeButton(false);
 		this.setIsModal(true);
 		this.setShowModalMask(true);
-		this.centerInPage();
 		this.setCanDragResize(true);
 
 		VLayout mainLayout = new VLayout(5);
@@ -109,6 +108,7 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 	
 	@Override
 	public void showDialog() {
+		centerInPage();
 		show();
 	}
 

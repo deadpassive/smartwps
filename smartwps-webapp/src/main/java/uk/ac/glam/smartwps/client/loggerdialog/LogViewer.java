@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.logging;
+package uk.ac.glam.smartwps.client.loggerdialog;
 
 import java.util.logging.Handler;
 import java.util.logging.Level;

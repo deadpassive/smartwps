@@ -1,5 +1,14 @@
 package uk.ac.glam.smartwps.client;
 
+import org.gwtopenmaps.openlayers.client.OpenLayers;
+
+import uk.ac.glam.smartwps.client.datatree.DataTree;
+import uk.ac.glam.smartwps.client.event.ShowLoggerDialogEvent;
+import uk.ac.glam.smartwps.client.layout.SmartGWTSimplePanel;
+import uk.ac.glam.smartwps.client.map.OLMap;
+import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
+import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasOneWidget;
@@ -15,13 +24,6 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.client.widgets.toolbar.ToolStripMenuButton;
-import org.gwtopenmaps.openlayers.client.OpenLayers;
-import uk.ac.glam.smartwps.client.datatree.DataTree;
-import uk.ac.glam.smartwps.client.layout.SmartGWTSimplePanel;
-import uk.ac.glam.smartwps.client.logging.LoggerWindow;
-import uk.ac.glam.smartwps.client.map.OLMap;
-import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
-import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 
 /**
  * @TODO: document
@@ -35,7 +37,6 @@ public class AppLayoutImpl extends Composite implements AppLayout {
     private final RunProcessListGrid runProcessList;
     private final HTMLPane infoPane;
     private DataMenu dataMenu;
-    private LoggerWindow loggerWindow;
 	private SmartGWTSimplePanel resultsHolder;
 	private final EventBus eventBus;
 	private WPSRequestServiceAsync wpsService;
@@ -53,9 +54,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 		OpenLayers.setProxyHost(GWT.getModuleBaseURL() + "gwtOpenLayersProxy?targetURL=");
 		ClientUtils.setModuleURL();
 //		LOGGER.info(OpenLayers.getProxyHost());
-		
-		loggerWindow = new LoggerWindow();
-		
+				
 		VLayout mainLayout = new VLayout();
 		mainLayout.setWidth100();
 		mainLayout.setHeight100();
@@ -163,7 +162,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 		showLoggerButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				loggerWindow.show();
+				eventBus.fireEvent(new ShowLoggerDialogEvent());
 			}
 		});
 		
