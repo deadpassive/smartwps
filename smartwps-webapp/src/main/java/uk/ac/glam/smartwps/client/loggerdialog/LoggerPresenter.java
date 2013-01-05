@@ -1,21 +1,19 @@
 package uk.ac.glam.smartwps.client.loggerdialog;
 
 /**
- * @TODO: document
- * @author jonb
- *
+ * Presenter for the Logger dialog display for showing client and server-side logs.
+ * 
+ * @author Jon Britton
  */
 public interface LoggerPresenter {
 	
 	/**
-	 * @TODO: document
-	 * @author jonb
-	 *
+	 * The view interface for the Logger dialog.
 	 */
 	public interface Display {
 		
 		/**
-		 * TODO: document
+		 * Display the dialog on the screen.
 		 */
 		public void showDialog();
 	}

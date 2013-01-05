@@ -1,6 +1,8 @@
 package uk.ac.glam.smartwps.shared.wps;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -61,10 +63,10 @@ public class LiteralData extends WPSData {
 
 	/**
 	 * TODO: document
-	 * @return
+	 * @return 
 	 */
 	public List<String> getAllowedValues() {
-		return new ArrayList<String>(allowedValues);
+		return allowedValues == null ? null : Collections.unmodifiableList(allowedValues);
 	}
 	
 }

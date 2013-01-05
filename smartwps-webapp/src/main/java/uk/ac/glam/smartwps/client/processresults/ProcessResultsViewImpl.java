@@ -26,28 +26,23 @@ import com.smartgwt.client.widgets.tab.TabSet;
 /**
  * This tab set is used to store the results of WPS processes in the SmartWPS environment.
  * 
- * @author jbritton
+ * @author Jon Britton
  */
-public class ProcessResultsViewImpl extends Composite implements ProcessResultsView {
-	
-	
-	private final TabSet tabs;
-	
+public class ProcessResultsViewImpl extends TabSet implements ProcessResultsView {
+		
 	/**
 	 * Creates a new ResultsTabSet.
 	 */
 	public ProcessResultsViewImpl() {
-		tabs = new TabSet();
 		
 		Tab welcomeTab = new Tab("Info");
 		HLayout welcomePane = new HLayout();
 		welcomeTab.setPane(welcomePane);
 		
-		tabs.addTab(welcomeTab);
-		tabs.setWidth100();
-		tabs.setHeight100();
+		addTab(welcomeTab);
+		setWidth100();
+		setHeight100();
 		
-		initWidget(tabs);
 	}
 
 	/**
@@ -70,7 +65,7 @@ public class ProcessResultsViewImpl extends Composite implements ProcessResultsV
 			protected Canvas createRecordComponent(ListGridRecord record,
 					Integer colNum) {
 				String fieldName = this.getFieldName(colNum);  
-		        if (fieldName.equals("action")) {
+		        if (fieldName.equals(ACTION)) {
 					final ProcessOutputRecord poRecord = (ProcessOutputRecord)record;
 					final ProcessOutput processOutput = poRecord.getProcessOutput();
 	            	if (processOutput instanceof WCSProcessOutput) {
@@ -110,6 +105,7 @@ public class ProcessResultsViewImpl extends Composite implements ProcessResultsV
 		ListGridField actionField = new ListGridField(ACTION, "Action");
 		actionField.setWidth(100);
 		listGrid.setHeight("*");
+		listGrid.setWidth100();
 		
 		listGrid.setShowRecordComponents(true);          
 		listGrid.setShowRecordComponentsByCell(true);
@@ -123,7 +119,7 @@ public class ProcessResultsViewImpl extends Composite implements ProcessResultsV
 		}
 		
 		newTab.setPane(resultsDetails);
-		
-		tabs.addTab(newTab);
+				
+		addTab(newTab);
 	}
 }

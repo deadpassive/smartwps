@@ -11,21 +11,17 @@ import com.google.web.bindery.event.shared.EventBus;
  */
 public class LoggerPresenterImpl implements LoggerPresenter {
 	
-	private Display view;
-
 	/**
 	 * TODO: document
 	 * @param eventBus
 	 * @param display
 	 */
 	public LoggerPresenterImpl(EventBus eventBus, final LoggerPresenter.Display display) {
-		this.view = display;
-		
 		eventBus.addHandler(ShowLoggerDialogEvent.TYPE, new ShowLoggerDialogHandler() {
 			
 			@Override
 			public void onShowDialog(ShowLoggerDialogEvent event) {
-				view.showDialog();
+				display.showDialog();
 			}
 		});
 	}
