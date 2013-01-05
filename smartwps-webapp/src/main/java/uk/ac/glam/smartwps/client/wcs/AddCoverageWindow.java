@@ -104,15 +104,14 @@ public class AddCoverageWindow extends Window {
 		urlChooser.setTitle("URL");
 		urlChooser.setType("comboBox");
 		urlChooser.setWidth("100%");
-		urlChooser.setDefaultValue("http://li199-25.members.linode.com:8080/geoserver/wcs?request=GetCapabilities&version=1.1.1");
-		urlChooser.setValueMap("http://li199-25.members.linode.com:8080/geoserver/wcs?request=GetCapabilities&version=1.1.1",
-				"http://localhost:8080/geoserver/wcs?request=GetCapabilities&version=1.1.1");
+		urlChooser.setDefaultValue("http://localhost:8080/geoserver/wcs?request=GetCapabilities&version=1.1.1");
+		urlChooser.setValueMap("http://localhost:8080/geoserver/wcs?request=GetCapabilities&version=1.1.1");
 		urlChooser.addKeyPressHandler(new KeyPressHandler() {
 			@Override
 			public void onKeyPress(KeyPressEvent event) {
 				// Enter key pressed
 				if ((event.getCharacterValue() != null) && (event.getCharacterValue() == 13)) {
-					wcsListGrid.loadWCSInfo((String) urlChooser.getValue());
+					wcsListGrid.loadWCSInfo(urlChooser.getValueAsString());
 				}
 			}
 		});
@@ -123,7 +122,7 @@ public class AddCoverageWindow extends Window {
 		goButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				wcsListGrid.loadWCSInfo((String) urlChooser.getValue());
+				wcsListGrid.loadWCSInfo(urlChooser.getValueAsString());
 			}
 		});
 
