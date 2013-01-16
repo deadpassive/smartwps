@@ -13,5 +13,5 @@ public interface AddLayerHandler extends EventHandler {
 	 * TODO: document
 	 * @param event
 	 */
-	void onAddLayer(AddLayerEvent event);
+	void onAddLayer(AddLayersEvent event);
 }

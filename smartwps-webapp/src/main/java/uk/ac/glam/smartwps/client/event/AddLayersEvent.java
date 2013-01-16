@@ -1,5 +1,7 @@
 package uk.ac.glam.smartwps.client.event;
 
+import java.util.Set;
+
 import uk.ac.glam.smartwps.shared.Data;
 
 import com.google.gwt.event.shared.GwtEvent;
@@ -8,18 +10,18 @@ import com.google.gwt.event.shared.GwtEvent;
  * @TODO: document
  * @author jonb
  */
-public class AddLayerEvent extends GwtEvent<AddLayerHandler> {
+public class AddLayersEvent extends GwtEvent<AddLayerHandler> {
 
 	@SuppressWarnings("javadoc")
 	public final static Type<AddLayerHandler> TYPE = new Type<AddLayerHandler>();
-	private final Data layer;
+	private final Set<? extends Data> layers;
 	
 	/**
 	 * TODO: document
-	 * @param layer
+	 * @param layers
 	 */
-	public AddLayerEvent(Data layer) {
-		this.layer = layer;
+	public AddLayersEvent(Set<? extends Data> layers) {
+		this.layers = layers;
 	}
 	
 	@Override
@@ -36,7 +38,7 @@ public class AddLayerEvent extends GwtEvent<AddLayerHandler> {
 	 * TODO: document
 	 * @return
 	 */
-	public Data getLayer() {
-		return layer;
+	public Set<? extends Data> getLayers() {
+		return layers;
 	}
 }

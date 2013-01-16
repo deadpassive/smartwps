@@ -1,9 +1,10 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
 import java.util.List;
+import java.util.Set;
 
 import uk.ac.glam.smartwps.client.DataSourceManager;
-import uk.ac.glam.smartwps.client.event.AddLayerEvent;
+import uk.ac.glam.smartwps.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.client.event.ShowWMSDialogEvent;
 import uk.ac.glam.smartwps.client.event.ShowWMSDialogHandler;
 import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
@@ -76,8 +77,8 @@ public class AddWMSPresenterImpl implements AddWMSPresenter {
 	}
 	
 	@Override
-	public void addLayer(WMSLayer wmsLayer) {
-		eventBus.fireEvent(new AddLayerEvent((wmsLayer)));
+	public void addLayers(Set<WMSLayer> wmsLayers) {
+		eventBus.fireEvent(new AddLayersEvent((wmsLayers)));
 	}
 }
 

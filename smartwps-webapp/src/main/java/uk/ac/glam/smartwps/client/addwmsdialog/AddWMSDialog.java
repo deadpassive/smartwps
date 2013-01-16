@@ -1,5 +1,6 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -90,7 +91,9 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 		layerSelector = new WMSLayerSelector(new AddLayerCallback<WMSLayer>() {
 			@Override
 			public void addLayer(WMSLayer wmsLayer) {
-				presenter.addLayer(wmsLayer);
+				HashSet<WMSLayer> layers = new HashSet<WMSLayer>(1);
+				layers.add(wmsLayer);
+				presenter.addLayers(layers);
 			}
 		});
 		layerSelector.setWidth100();

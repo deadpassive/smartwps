@@ -32,7 +32,7 @@
 					<g:Button addStyleNames='{style.button}' ui:field="goButton">Go</g:Button>
 				</g:east>
 				<g:center>
-					<swps:WaterMarkedTextBox ui:field="urlInput" placeholder="WMS GetCapabilities URL"></swps:WaterMarkedTextBox>
+					<swps:WaterMarkedTextBox ui:field="urlInput" placeholder="Enter GetCapabilities URL"></swps:WaterMarkedTextBox>
 				</g:center>
 			</g:DockLayoutPanel>
 		</g:north>
@@ -43,7 +43,7 @@
 			<g:FlowPanel styleName='{style.bottomPanel}'>
 				<c:SimplePager ui:field="pager" height="100%" addStyleNames='{style.pager}'/>
 				<g:FlowPanel styleName='{style.buttonPanel}'>
-					<g:Button addStyleNames='{style.button}'>Add Selected</g:Button>
+					<g:Button ui:field="addButton" addStyleNames='{style.button}'>Add Selected</g:Button>
 				</g:FlowPanel>
 			</g:FlowPanel>
 		</g:south>

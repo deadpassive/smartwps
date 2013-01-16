@@ -1,6 +1,8 @@
 package uk.ac.glam.smartwps.client.datatree;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.gwtopenmaps.openlayers.client.control.WMSGetFeatureInfo;
@@ -39,7 +41,7 @@ import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
 
-import uk.ac.glam.smartwps.client.event.AddLayerEvent;
+import uk.ac.glam.smartwps.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.client.event.AddLayerHandler;
 import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
@@ -122,14 +124,17 @@ public class DataTree extends TreeGrid {
 
 		createContextMenu();
 		
-		eventBus.addHandler(AddLayerEvent.TYPE, new AddLayerHandler() {
+		eventBus.addHandler(AddLayersEvent.TYPE, new AddLayerHandler() {
 			
 			@Override
-			public void onAddLayer(AddLayerEvent event) {
+			public void onAddLayer(AddLayersEvent event) {
 				// TODO: must refactor so that DataTree doesn't know about layer types!!
-				Data layer = event.getLayer();
-				if (layer instanceof WMSLayer) {
-					addWMSLayer((WMSLayer) layer);
+				Set<? extends Data> layers = event.getLayers();
+				for (Iterator<? extends Data> iterator = layers.iterator(); iterator.hasNext();) {
+					Data layer = iterator.next();
+					if (layer instanceof WMSLayer) {
+						addWMSLayer((WMSLayer) layer);
+					}
 				}
 			}
 		});

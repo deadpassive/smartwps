@@ -1,9 +1,10 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
+import uk.ac.glam.smartwps.client.CloseCaption;
 import uk.ac.glam.smartwps.client.widget.WaterMarkedTextBox;
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
@@ -11,26 +12,25 @@ import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.rpc.client.ast.SetCommand;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
-import com.google.gwt.view.client.ProvidesKey;
-import com.google.gwt.view.client.SelectionModel;
 
 /**
  * TODO: document
@@ -48,6 +48,9 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 
 	private AddWMSPresenter presenter;
 	
+	/**
+	 * The URL text input
+	 */
 	@UiField
 	WaterMarkedTextBox urlInput;
 	@UiField(provided = true)
@@ -57,14 +60,33 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	
 	private ListDataProvider<WMSLayer> dataProvider;
 
+	private MultiSelectionModel<WMSLayer> selectionModel;
+
 	/**
 	 * TODO: document
 	 */
 	public AddWMSDialogGwt() {
+		super(new CloseCaption(new Command() {
+			
+			@Override
+			public void execute() {
+				Window.alert("Close");
+			}
+		}));
 		setText("Add WMS Layers");
-				
+		
 		getElement().getStyle().setZIndex(1000000);
 		
+		createDataGrid();
+
+		setWidget(uiBinder.createAndBindUi(this));
+		
+		urlInput.setText("http://localhost:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities");
+
+//		setSize("500px", "500px");
+	}
+	
+	private void createDataGrid() {
 		dataGrid = new DataGrid<WMSLayer>();
 		dataGrid.setWidth("100%");
 		dataGrid.setEmptyTableWidget(new Label("No layers"));
@@ -73,7 +95,7 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 		pager = new SimplePager(TextLocation.CENTER, pagerResources, false, 0, true);
 		pager.setDisplay(dataGrid);
 		
-		final MultiSelectionModel<WMSLayer> selectionModel = new MultiSelectionModel<WMSLayer>();
+		selectionModel = new MultiSelectionModel<WMSLayer>();
 		dataGrid.setSelectionModel(selectionModel, DefaultSelectionEventManager.<WMSLayer> createCheckboxManager());
 
 		Column<WMSLayer, Boolean> checkColumn = new Column<WMSLayer, Boolean>(new CheckboxCell(true, false)) {
@@ -115,18 +137,14 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 		};
 		absColumn.setSortable(true);
 		dataGrid.addColumn(absColumn, "Description");
-
-		
 		
 		dataProvider = new ListDataProvider<WMSLayer>();
 		dataProvider.addDataDisplay(dataGrid);
 
-		setWidget(uiBinder.createAndBindUi(this));
-				
 		ListHandler<WMSLayer> sortHandler = new ListHandler<WMSLayer>(dataProvider.getList());
-		
+
 		sortHandler.setComparator(nameColumn, new Comparator<WMSLayer>() {
-			
+
 			@Override
 			public int compare(WMSLayer layer1, WMSLayer layer2) {
 				return layer1.getName().compareTo(layer2.getName());
@@ -148,8 +166,6 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 		});
 		
 		dataGrid.addColumnSortHandler(sortHandler);
-		
-//		setSize("500px", "500px");
 	}
 
 	@Override
@@ -183,5 +199,15 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	@UiHandler("goButton")
 	void goPressed(ClickEvent event) {
 		presenter.retrieveWMSLayer(urlInput.getText());
+	}
+	
+	/**
+	 * TODO: document
+	 * @param event
+	 */
+	@UiHandler("addButton")
+	void addPressed(@SuppressWarnings("unused") ClickEvent event) {
+		Set<WMSLayer> selected = selectionModel.getSelectedSet();
+		presenter.addLayers(selected);
 	}
 }

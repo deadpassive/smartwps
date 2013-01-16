@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
 import java.util.List;
+import java.util.Set;
 
 import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
@@ -50,7 +51,7 @@ public interface AddWMSPresenter {
 
 	/**
 	 * TODO: document
-	 * @param wmsLayer
+	 * @param wmsLayers
 	 */
-	public void addLayer(WMSLayer wmsLayer);
+	public void addLayers(Set<WMSLayer> wmsLayers);
 }
