@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.wcs100;
+package uk.ac.glam.smartwps.wcs.shared.v100;
 
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;

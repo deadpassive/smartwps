@@ -1,6 +1,6 @@
-package uk.ac.glam.smartwps.shared.wcs;
+package uk.ac.glam.smartwps.wcs.shared;
 
-import uk.ac.glam.smartwps.client.SmartWPSException;
+import uk.ac.glam.smartwps.base.shared.SmartWPSException;
 
 /**
  * TODO: document

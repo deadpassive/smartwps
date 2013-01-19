@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.shared.request;
 
-import uk.ac.glam.smartwps.shared.wcs111.CoverageSummary;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageSummary;
 
 /**
  * @TODO: document

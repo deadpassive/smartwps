@@ -1,8 +1,8 @@
 package uk.ac.glam.smartwps.client.wcs;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.smartgwt.client.widgets.Window;

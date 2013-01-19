@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 import org.eclipse.emf.common.util.EList;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
-import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
-import uk.ac.glam.smartwps.shared.wcs111.CoverageSummary;
-import uk.ac.glam.smartwps.shared.wcs111.Domain;
-import uk.ac.glam.smartwps.shared.wcs111.SpatialDomain;
-import uk.ac.glam.smartwps.shared.wcs111.WCSCapabilities111;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageSummary;
+import uk.ac.glam.smartwps.wcs.shared.v111.Domain;
+import uk.ac.glam.smartwps.wcs.shared.v111.SpatialDomain;
+import uk.ac.glam.smartwps.wcs.shared.v111.WCSCapabilities111;
 import uk.ac.glam.wcsclient.WCS111;
 import uk.ac.glam.wcsclient.ows110.BoundingBoxType;
 import uk.ac.glam.wcsclient.ows110.LanguageStringType;

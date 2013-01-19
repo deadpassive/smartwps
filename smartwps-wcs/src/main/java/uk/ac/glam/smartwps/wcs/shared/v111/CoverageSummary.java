@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.wcs111;
+package uk.ac.glam.smartwps.wcs.shared.v111;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client;
+package uk.ac.glam.smartwps.base.shared;
 
 /**
  * TODO: document

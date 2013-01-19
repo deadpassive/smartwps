@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.wcs100;
+package uk.ac.glam.smartwps.wcs.shared.v111;
 
 import java.io.Serializable;
 
@@ -7,24 +7,24 @@ import java.io.Serializable;
  * @author jonb
  *
  */
-public class DomainSet implements Serializable {
-
-	private SpatialDomain spatialDoman;
+@SuppressWarnings("serial")
+public class Domain implements Serializable {
+	
+	private SpatialDomain spatialDomain;
 
 	/**
 	 * TODO: document
 	 * @param spatialDomain
 	 */
 	public void setSpatialDomain(SpatialDomain spatialDomain) {
-		this.spatialDoman = spatialDomain;
+		this.spatialDomain = spatialDomain;
 	}
-	
+
 	/**
 	 * TODO: document
 	 * @return
 	 */
 	public SpatialDomain getSpatialDomain() {
-		return spatialDoman;
+		return spatialDomain;
 	}
-
 }

@@ -9,7 +9,7 @@ import uk.ac.glam.smartwps.shared.request.WCSGetCoverageAndStoreRequest;
 import uk.ac.glam.smartwps.shared.response.WCSCapabilitiesResponse;
 import uk.ac.glam.smartwps.shared.response.WCSDescribeCoverageResponse;
 import uk.ac.glam.smartwps.shared.response.WCSGetCoverageAndStoreResponse;
-import uk.ac.glam.smartwps.shared.wcs.WCSConnectionException;
+import uk.ac.glam.smartwps.wcs.shared.WCSConnectionException;
 import uk.ac.glam.smartwps.wms.shared.WMSConnectionException;
 
 import com.google.gwt.user.client.rpc.RemoteService;

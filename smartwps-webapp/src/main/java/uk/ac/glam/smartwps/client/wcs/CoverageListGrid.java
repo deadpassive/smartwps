@@ -9,9 +9,9 @@ import uk.ac.glam.smartwps.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.wps.ProcessRecord;
 import uk.ac.glam.smartwps.shared.request.WCSGetCapabilitiesRequest;
 import uk.ac.glam.smartwps.shared.response.WCSCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wcs111.CoverageRecord;
-import uk.ac.glam.smartwps.shared.wcs111.CoverageSummary;
-import uk.ac.glam.smartwps.shared.wcs111.WCSCapabilities111;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageRecord;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageSummary;
+import uk.ac.glam.smartwps.wcs.shared.v111.WCSCapabilities111;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

@@ -10,8 +10,8 @@ import uk.ac.glam.smartwps.shared.request.WPSExecuteRequest;
 import uk.ac.glam.smartwps.shared.request.WPSGetCapabilitiesRequest;
 import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
 import uk.ac.glam.smartwps.shared.response.WPSGetCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wcs.WCSConnectionException;
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
+import uk.ac.glam.smartwps.wcs.shared.WCSConnectionException;
 import uk.ac.glam.smartwps.wms.shared.WMSConnectionException;
 
 import com.google.gwt.user.client.rpc.RemoteService;
