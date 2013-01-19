@@ -23,7 +23,7 @@ public interface AddWMSPresenter {
 		 * TODO: document
 		 */
 		public void showDialog();
-		
+				
 		/**
 		 * TODO: document
 		 * @param presenter

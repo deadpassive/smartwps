@@ -12,16 +12,15 @@ import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.rpc.client.ast.SetCommand;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
-import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.cellview.client.SimplePager;
+import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
@@ -33,7 +32,7 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
 
 /**
- * TODO: document
+ * Native GWT implementation of the Add WMS dialog.
  * 
  * @author Jon Britton
  */
@@ -53,8 +52,14 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	 */
 	@UiField
 	WaterMarkedTextBox urlInput;
+	/**
+	 * Pager for the data grid
+	 */
 	@UiField(provided = true)
 	SimplePager pager;
+	/**
+	 * Data grid for displaying WMS layers
+	 */
 	@UiField(provided = true)
 	DataGrid<WMSLayer> dataGrid;
 	
@@ -66,13 +71,15 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	 * TODO: document
 	 */
 	public AddWMSDialogGwt() {
-		super(new CloseCaption(new Command() {
+		super(new CloseCaption());
+		CloseCaption caption = (CloseCaption) getCaption();
+		caption.doOnClose(new Command() {
 			
 			@Override
 			public void execute() {
-				Window.alert("Close");
+				hide();
 			}
-		}));
+		});
 		setText("Add WMS Layers");
 		
 		getElement().getStyle().setZIndex(1000000);
