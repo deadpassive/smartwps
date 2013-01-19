@@ -1,7 +1,8 @@
-package uk.ac.glam.smartwps.shared.wcs111;
+package uk.ac.glam.smartwps.wcs.shared;
 
 import uk.ac.glam.smartwps.shared.Data;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
  * This class contains coverage info and an associated WMS layer for visualisation.

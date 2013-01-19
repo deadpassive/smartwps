@@ -6,7 +6,8 @@ import uk.ac.glam.smartwps.shared.Data;
  * TODO: document
  * 
  * @author Jon Britton
- * @param <LayerType> 
+ * @param <LayerType>
+ * @deprecated 
  */
 public interface AddLayerCallback<LayerType extends Data> {
 

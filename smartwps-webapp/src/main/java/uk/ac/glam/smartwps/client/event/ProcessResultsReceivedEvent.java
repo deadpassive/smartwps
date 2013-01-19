@@ -6,8 +6,8 @@ import com.google.gwt.event.shared.GwtEvent;
 
 /**
  * @TODO: document
+ * 
  * @author jonb
- *
  */
 public class ProcessResultsReceivedEvent extends GwtEvent<ProcessResultsReceivedHandler> {
 

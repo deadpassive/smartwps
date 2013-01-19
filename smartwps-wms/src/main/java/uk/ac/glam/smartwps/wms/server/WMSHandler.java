@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.server.wms;
+package uk.ac.glam.smartwps.wms.server;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -12,10 +12,10 @@ import org.geotools.data.ows.Layer;
 import org.geotools.data.wms.WebMapServer;
 
 import uk.ac.glam.smartwps.server.ServerUtils;
-import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wms.WMSConnectionException;
-import uk.ac.glam.smartwps.shared.wms.WMSDataSource;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSConnectionException;
+import uk.ac.glam.smartwps.wms.shared.WMSDataSource;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
 
 /**
  * TODO: document

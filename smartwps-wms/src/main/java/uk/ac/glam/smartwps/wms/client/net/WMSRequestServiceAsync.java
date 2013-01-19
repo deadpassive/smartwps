@@ -1,7 +1,7 @@
-package uk.ac.glam.smartwps.client.net;
+package uk.ac.glam.smartwps.wms.client.net;
 
-import uk.ac.glam.smartwps.shared.request.WMSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
+import uk.ac.glam.smartwps.wms.shared.request.WMSGetCapabilitiesRequest;
+import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

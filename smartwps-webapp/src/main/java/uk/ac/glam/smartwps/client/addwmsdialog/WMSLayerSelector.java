@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -15,6 +15,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
  * Widget for selecting WMS layers.
  * 
  * @author Jon Britton
+ * @deprecated
  */
 public class WMSLayerSelector extends HLayout {
 

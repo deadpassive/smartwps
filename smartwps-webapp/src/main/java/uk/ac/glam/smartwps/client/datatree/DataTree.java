@@ -14,9 +14,7 @@ import org.gwtopenmaps.openlayers.client.layer.WMS;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.shared.Data;
-import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.types.Alignment;
@@ -45,6 +43,8 @@ import uk.ac.glam.smartwps.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.client.event.AddLayerHandler;
 import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
+import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
  * A DataTree displays the current layers in a SmartWPS workspace.

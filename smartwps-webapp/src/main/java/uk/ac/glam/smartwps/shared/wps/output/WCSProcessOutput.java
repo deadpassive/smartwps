@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.shared.wps.output;
 
-import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
+import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 
 /**
  * A ProcessOutput containing a reference to a WFS service.

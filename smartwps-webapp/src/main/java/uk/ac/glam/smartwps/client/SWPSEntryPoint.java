@@ -1,19 +1,18 @@
 package uk.ac.glam.smartwps.client;
 
-import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialog;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSDialogGwt;
-import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenter;
 import uk.ac.glam.smartwps.client.addwmsdialog.AddWMSPresenterImpl;
+import uk.ac.glam.smartwps.client.loggerdialog.LoggerDialog;
 import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenter;
 import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenterImpl;
-import uk.ac.glam.smartwps.client.loggerdialog.LoggerDialog;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
-import uk.ac.glam.smartwps.client.net.WMSRequestService;
-import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.net.WPSRequestService;
 import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
+import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
+import uk.ac.glam.smartwps.wms.client.net.WMSRequestService;
+import uk.ac.glam.smartwps.wms.client.net.WMSRequestServiceAsync;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;

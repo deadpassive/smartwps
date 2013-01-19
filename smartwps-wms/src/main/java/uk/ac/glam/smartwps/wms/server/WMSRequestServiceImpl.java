@@ -1,12 +1,11 @@
-package uk.ac.glam.smartwps.server;
+package uk.ac.glam.smartwps.wms.server;
 
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.net.WMSRequestService;
-import uk.ac.glam.smartwps.server.wms.WMSHandler;
-import uk.ac.glam.smartwps.shared.request.WMSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wms.WMSConnectionException;
+import uk.ac.glam.smartwps.wms.client.net.WMSRequestService;
+import uk.ac.glam.smartwps.wms.shared.WMSConnectionException;
+import uk.ac.glam.smartwps.wms.shared.request.WMSGetCapabilitiesRequest;
+import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

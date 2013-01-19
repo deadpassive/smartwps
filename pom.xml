@@ -19,7 +19,8 @@
         <module>smartwps-webapp</module>
         <module>smartwps-wms</module>
         <module>smartwps-data</module>
-  </modules>
+    	<module>smartwps-wcs</module>
+    </modules>
 
 	<dependencies>
 <!-- 		<dependency> -->

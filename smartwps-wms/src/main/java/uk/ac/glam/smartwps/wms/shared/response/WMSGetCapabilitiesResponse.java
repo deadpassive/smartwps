@@ -1,10 +1,10 @@
-package uk.ac.glam.smartwps.shared.response;
+package uk.ac.glam.smartwps.wms.shared.response;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.glam.smartwps.shared.response.ServiceResponse;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
  * TODO: document

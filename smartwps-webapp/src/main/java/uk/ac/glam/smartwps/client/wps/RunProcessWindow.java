@@ -13,7 +13,6 @@ import uk.ac.glam.smartwps.client.net.WPSRequestService;
 import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.shared.request.WPSExecuteRequest;
 import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
-import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
 import uk.ac.glam.smartwps.shared.wps.ComplexData;
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
@@ -45,6 +44,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import java.util.List;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
+import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 
 /**
  * A SmartGWT window for running a WPS process. The window contents are generated 

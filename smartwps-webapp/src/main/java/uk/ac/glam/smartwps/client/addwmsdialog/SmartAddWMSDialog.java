@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Window;
@@ -21,8 +22,10 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * A Window for adding WMS layers to the current SmartWPS session.
  * 
  * @author Jon Britton
+ * @deprecated use GWT implementation instead
  */
-public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
+@Deprecated
+public class SmartAddWMSDialog extends Window implements AddWMSPresenter.Display {
 	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
 
@@ -35,7 +38,7 @@ public class AddWMSDialog extends Window implements AddWMSPresenter.Display {
 	 * 
 	 * TODO: remove dependency on event bus
 	 */
-	public AddWMSDialog() {
+	public SmartAddWMSDialog() {
 		super();
 
 		LOGGER.info("Creating AddMapWindow");

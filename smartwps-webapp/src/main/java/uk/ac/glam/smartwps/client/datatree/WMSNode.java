@@ -7,7 +7,7 @@ import org.gwtopenmaps.openlayers.client.layer.WMSOptions;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.widgets.menu.Menu;

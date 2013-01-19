@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.wms;
+package uk.ac.glam.smartwps.wms.shared;
 
 
 /**

@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 

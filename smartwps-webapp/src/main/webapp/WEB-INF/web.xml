@@ -13,7 +13,7 @@
 	
 	<servlet>
 		<servlet-name>wmsRequestServiceImpl</servlet-name>
-		<servlet-class>uk.ac.glam.smartwps.server.WMSRequestServiceImpl</servlet-class>
+		<servlet-class>uk.ac.glam.smartwps.wms.server.WMSRequestServiceImpl</servlet-class>
 	</servlet>
 	
 	<servlet>

@@ -7,11 +7,12 @@ import uk.ac.glam.smartwps.client.DataSourceManager;
 import uk.ac.glam.smartwps.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.client.event.ShowWMSDialogEvent;
 import uk.ac.glam.smartwps.client.event.ShowWMSDialogHandler;
-import uk.ac.glam.smartwps.client.net.WMSRequestServiceAsync;
 import uk.ac.glam.smartwps.shared.DataSource;
-import uk.ac.glam.smartwps.shared.request.WMSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.shared.response.WMSGetCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
+import uk.ac.glam.smartwps.wms.client.net.WMSRequestServiceAsync;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.request.WMSGetCapabilitiesRequest;
+import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

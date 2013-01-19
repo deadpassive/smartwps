@@ -2,7 +2,7 @@ package uk.ac.glam.smartwps.shared.wps.input;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.shared.wcs111.CoverageDescription;
-import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
+import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 
 /**
  * A WCS coverage input to a WPS process.

@@ -1,9 +1,9 @@
-package uk.ac.glam.smartwps.client.addwmsdialog;
+package uk.ac.glam.smartwps.wms.client;
 
 import java.util.List;
 import java.util.Set;
 
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
  * @TODO: document

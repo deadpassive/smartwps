@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.datatree;
 
-import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
+import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 
 import com.smartgwt.client.widgets.menu.Menu;
 

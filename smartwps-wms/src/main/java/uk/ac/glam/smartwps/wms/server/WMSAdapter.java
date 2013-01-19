@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.server.wms;
+package uk.ac.glam.smartwps.wms.server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.geotools.data.ows.Layer;
 import org.geotools.data.ows.StyleImpl;
 
 import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
  * TODO: document

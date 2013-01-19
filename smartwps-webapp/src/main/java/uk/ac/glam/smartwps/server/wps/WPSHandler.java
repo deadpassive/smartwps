@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.opengis.ows.x11.ExceptionReportDocument;
 import net.opengis.wps.x100.DataType;
 import net.opengis.wps.x100.ExecuteResponseDocument;
 import net.opengis.wps.x100.OutputDataType;
@@ -36,9 +37,7 @@ import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
 import uk.ac.glam.smartwps.shared.response.WPSGetCapabilitiesResponse;
 import uk.ac.glam.smartwps.shared.util.StringUtils;
 import uk.ac.glam.smartwps.shared.wcs.WCSConnectionException;
-import uk.ac.glam.smartwps.shared.wcs111.WCSCoverage;
 import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
-import uk.ac.glam.smartwps.shared.wms.WMSConnectionException;
 import uk.ac.glam.smartwps.shared.wps.ComplexData;
 import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
 import uk.ac.glam.smartwps.shared.wps.Format;
@@ -53,6 +52,8 @@ import uk.ac.glam.smartwps.shared.wps.output.LiteralProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.WCSProcessOutput;
 import uk.ac.glam.smartwps.shared.wps.output.WFSProcessOutput;
+import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
+import uk.ac.glam.smartwps.wms.shared.WMSConnectionException;
 import uk.ac.glam.smartwps.xml.XMLUtils;
 import uk.ac.glam.wcsclient.StoredCoverage;
 import uk.ac.glam.wcsclient.WCS111;
@@ -186,7 +187,7 @@ public class WPSHandler {
 	
 		// INPUTS
 		ArrayList<ProcessInput> inputs = request.getInputs();
-        for (ProcessInput processInput : inputs) {	
+        for (ProcessInput processInput : inputs) {
 			if (processInput instanceof WCSProcessInput) {
 				WCSProcessInput wcsInput = (WCSProcessInput) processInput;
 				
@@ -272,10 +273,16 @@ public class WPSHandler {
 		LOGGER.log(Level.INFO, "Execute Document:\n{0}", requestBuilder.getExecute());
 	
 		// TODO: This assumed that the process succeeded...
+		Object responseObject = null;
 		ExecuteResponseDocument erd = null;
 		try {
-			erd = (ExecuteResponseDocument) wpsClient.execute(request
-					.getServiceUrl(), requestBuilder.getExecute());
+			responseObject = wpsClient.execute(request.getServiceUrl(), requestBuilder.getExecute());
+			if (responseObject instanceof ExceptionReportDocument) {
+				// an error has occurred
+				ExceptionReportDocument exceptionReport = (ExceptionReportDocument) responseObject;
+				LOGGER.severe("Failed to execute WPS request, received ExceptionReport: " + exceptionReport.toString());
+				throw new WPSExecuteException("Failed to execute WPS process: " + exceptionReport.getExceptionReport().toString());
+			}
 		} catch (WPSClientException e) {
 			LOGGER.log(Level.SEVERE, "Failed to execute WPS process: " + e.getMessage(), e);
 			throw new WPSExecuteException("Failed to execute WPS process: " + e.getMessage());

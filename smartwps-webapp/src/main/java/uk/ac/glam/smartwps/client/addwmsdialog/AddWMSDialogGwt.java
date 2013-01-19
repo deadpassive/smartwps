@@ -6,7 +6,8 @@ import java.util.Set;
 
 import uk.ac.glam.smartwps.client.CloseCaption;
 import uk.ac.glam.smartwps.client.widget.WaterMarkedTextBox;
-import uk.ac.glam.smartwps.shared.wms.WMSLayer;
+import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
+import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
@@ -23,7 +24,6 @@ import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
