@@ -1,15 +1,14 @@
 package uk.ac.glam.smartwps.client.wfs;
 
-
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.client.net.WFSRequestService;
-import uk.ac.glam.smartwps.client.net.WFSRequestServiceAsync;
-import uk.ac.glam.smartwps.shared.request.WFSDescribeFeatureTypeRequest;
-import uk.ac.glam.smartwps.shared.request.WFSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.shared.response.WFSDescribeFeatureTypeResponse;
-import uk.ac.glam.smartwps.shared.response.WFSGetCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
-import uk.ac.glam.smartwps.shared.wfs.WFSFeatureTypeBase;
+import uk.ac.glam.smartwps.wfs.client.net.WFSRequestService;
+import uk.ac.glam.smartwps.wfs.client.net.WFSRequestServiceAsync;
+import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeRequest;
+import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeResponse;
+import uk.ac.glam.smartwps.wfs.shared.WFSFeatureType;
+import uk.ac.glam.smartwps.wfs.shared.WFSFeatureTypeBase;
+import uk.ac.glam.smartwps.wfs.shared.WFSGetCapabilitiesRequest;
+import uk.ac.glam.smartwps.wfs.shared.WFSGetCapabilitiesResponse;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

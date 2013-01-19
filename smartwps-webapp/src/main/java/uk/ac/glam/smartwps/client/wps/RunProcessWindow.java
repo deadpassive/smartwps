@@ -9,19 +9,7 @@ import java.util.logging.Logger;
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.datatree.CoverageNode;
 import uk.ac.glam.smartwps.client.event.ProcessResultsReceivedEvent;
-import uk.ac.glam.smartwps.client.net.WPSRequestService;
-import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
-import uk.ac.glam.smartwps.shared.request.WPSExecuteRequest;
-import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
-import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
-import uk.ac.glam.smartwps.shared.wps.ComplexData;
-import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
-import uk.ac.glam.smartwps.shared.wps.Format;
-import uk.ac.glam.smartwps.shared.wps.LiteralData;
-import uk.ac.glam.smartwps.shared.wps.WPSData;
-import uk.ac.glam.smartwps.shared.wps.input.LiteralProcessInput;
-import uk.ac.glam.smartwps.shared.wps.input.WCSProcessInput;
-import uk.ac.glam.smartwps.shared.wps.input.WFSProcessInput;
+import uk.ac.glam.smartwps.data.shared.util.StringUtils;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.AttachEvent;
@@ -43,8 +31,20 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import java.util.List;
-import uk.ac.glam.smartwps.shared.util.StringUtils;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
+import uk.ac.glam.smartwps.wfs.shared.WFSFeatureType;
+import uk.ac.glam.smartwps.wps.client.net.WPSRequestService;
+import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
+import uk.ac.glam.smartwps.wps.shared.ComplexData;
+import uk.ac.glam.smartwps.wps.shared.DetailedProcessDescriptor;
+import uk.ac.glam.smartwps.wps.shared.Format;
+import uk.ac.glam.smartwps.wps.shared.LiteralData;
+import uk.ac.glam.smartwps.wps.shared.WPSData;
+import uk.ac.glam.smartwps.wps.shared.WPSExecuteRequest;
+import uk.ac.glam.smartwps.wps.shared.WPSExecuteResponse;
+import uk.ac.glam.smartwps.wps.shared.input.LiteralProcessInput;
+import uk.ac.glam.smartwps.wps.shared.input.WCSProcessInput;
+import uk.ac.glam.smartwps.wps.shared.input.WFSProcessInput;
 
 /**
  * A SmartGWT window for running a WPS process. The window contents are generated 

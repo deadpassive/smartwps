@@ -1,12 +1,12 @@
 package uk.ac.glam.smartwps.server;
 
-import uk.ac.glam.smartwps.client.net.WFSRequestService;
-import uk.ac.glam.smartwps.client.wfs.WFSConnectionException;
-import uk.ac.glam.smartwps.server.wfs.WFSHandler;
-import uk.ac.glam.smartwps.shared.request.WFSDescribeFeatureTypeRequest;
-import uk.ac.glam.smartwps.shared.request.WFSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.shared.response.WFSDescribeFeatureTypeResponse;
-import uk.ac.glam.smartwps.shared.response.WFSGetCapabilitiesResponse;
+import uk.ac.glam.smartwps.wfs.client.net.WFSRequestService;
+import uk.ac.glam.smartwps.wfs.server.WFSHandler;
+import uk.ac.glam.smartwps.wfs.shared.WFSConnectionException;
+import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeRequest;
+import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeResponse;
+import uk.ac.glam.smartwps.wfs.shared.WFSGetCapabilitiesRequest;
+import uk.ac.glam.smartwps.wfs.shared.WFSGetCapabilitiesResponse;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

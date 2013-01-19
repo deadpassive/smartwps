@@ -6,8 +6,8 @@ import uk.ac.glam.smartwps.client.datatree.DataTree;
 import uk.ac.glam.smartwps.client.event.ShowLoggerDialogEvent;
 import uk.ac.glam.smartwps.client.layout.SmartGWTSimplePanel;
 import uk.ac.glam.smartwps.client.map.OLMap;
-import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
+import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;

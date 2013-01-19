@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.client.net.WPSRequestService;
-import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
-import uk.ac.glam.smartwps.shared.request.WPSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.shared.response.WPSGetCapabilitiesResponse;
-import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
-import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
+import uk.ac.glam.smartwps.wps.client.net.WPSRequestService;
+import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
+import uk.ac.glam.smartwps.wps.shared.DetailedProcessDescriptor;
+import uk.ac.glam.smartwps.wps.shared.ProcessDescriptor;
+import uk.ac.glam.smartwps.wps.shared.WPSGetCapabilitiesRequest;
+import uk.ac.glam.smartwps.wps.shared.WPSGetCapabilitiesResponse;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

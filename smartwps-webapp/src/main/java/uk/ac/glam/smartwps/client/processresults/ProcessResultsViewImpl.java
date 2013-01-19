@@ -4,10 +4,10 @@ import java.util.List;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.wps.ProcessOutputRecord;
-import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
-import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.output.WCSProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.output.WFSProcessOutput;
+import uk.ac.glam.smartwps.wps.shared.WPSExecuteResponse;
+import uk.ac.glam.smartwps.wps.shared.output.ProcessOutput;
+import uk.ac.glam.smartwps.wps.shared.output.WCSProcessOutput;
+import uk.ac.glam.smartwps.wps.shared.output.WFSProcessOutput;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.smartgwt.client.widgets.Canvas;

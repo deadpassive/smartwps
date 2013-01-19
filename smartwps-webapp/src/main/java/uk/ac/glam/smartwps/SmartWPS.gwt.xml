@@ -16,6 +16,7 @@
 	<!-- SmartWPS inherits -->
 	<inherits name="uk.ac.glam.smartwps.wms.GwtWms" />
 	<inherits name="uk.ac.glam.smartwps.wcs.GwtWcs" />
+	<inherits name="uk.ac.glam.smartwps.wps.GwtWps" />
 
 	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
 

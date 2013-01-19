@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import org.gwtopenmaps.openlayers.client.Bounds;
 
-import uk.ac.glam.smartwps.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

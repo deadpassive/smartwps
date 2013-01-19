@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.wps;
 
-import uk.ac.glam.smartwps.client.net.WPSRequestServiceAsync;
+import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
 
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;

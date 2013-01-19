@@ -2,7 +2,7 @@ package uk.ac.glam.smartwps.client.event;
 
 import java.util.Set;
 
-import uk.ac.glam.smartwps.shared.Data;
+import uk.ac.glam.smartwps.data.shared.Data;
 
 import com.google.gwt.event.shared.GwtEvent;
 

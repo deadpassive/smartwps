@@ -18,7 +18,7 @@
 	
 	<servlet>
 		<servlet-name>wcsRequestServiceImpl</servlet-name>
-		<servlet-class>uk.ac.glam.smartwps.server.WCSRequestServiceImpl</servlet-class>
+		<servlet-class>uk.ac.glam.smartwps.wcs.server.WCSRequestServiceImpl</servlet-class>
 	</servlet>
 	
 	<servlet>
@@ -28,7 +28,7 @@
 	
 	<servlet>
 		<servlet-name>wpsRequestServiceImpl</servlet-name>
-		<servlet-class>uk.ac.glam.smartwps.server.WPSRequestServiceImpl</servlet-class>
+		<servlet-class>uk.ac.glam.smartwps.wps.server.WPSRequestServiceImpl</servlet-class>
 	</servlet>
 	
 	<servlet>

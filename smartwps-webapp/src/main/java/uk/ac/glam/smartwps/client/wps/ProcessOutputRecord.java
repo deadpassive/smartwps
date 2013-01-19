@@ -1,9 +1,9 @@
 package uk.ac.glam.smartwps.client.wps;
 
-import uk.ac.glam.smartwps.shared.wps.output.ComplexProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.output.LiteralProcessOutput;
-import uk.ac.glam.smartwps.shared.wps.output.ProcessOutput;
 import static uk.ac.glam.smartwps.client.processresults.ProcessResultsView.*;
+import uk.ac.glam.smartwps.wps.shared.output.ComplexProcessOutput;
+import uk.ac.glam.smartwps.wps.shared.output.LiteralProcessOutput;
+import uk.ac.glam.smartwps.wps.shared.output.ProcessOutput;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 

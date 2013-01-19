@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.wps;
 
-import uk.ac.glam.smartwps.shared.wps.ProcessDescriptor;
+import uk.ac.glam.smartwps.wps.shared.ProcessDescriptor;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 

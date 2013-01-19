@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.addwmsdialog;
 
-import uk.ac.glam.smartwps.shared.Data;
+import uk.ac.glam.smartwps.data.shared.Data;
 
 /**
  * TODO: document

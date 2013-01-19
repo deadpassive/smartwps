@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.processresults;
 
-import uk.ac.glam.smartwps.shared.response.WPSExecuteResponse;
+import uk.ac.glam.smartwps.wps.shared.WPSExecuteResponse;
 
 import com.google.gwt.user.client.ui.IsWidget;
 

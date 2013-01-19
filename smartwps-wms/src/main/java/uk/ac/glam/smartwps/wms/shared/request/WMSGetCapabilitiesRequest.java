@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import uk.ac.glam.smartwps.shared.request.ServiceRequest;
+import uk.ac.glam.smartwps.base.shared.ServiceRequest;
+
 
 /**
  * TODO: document

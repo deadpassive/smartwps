@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.wms.shared;
 
-import uk.ac.glam.smartwps.shared.DataSource;
+import uk.ac.glam.smartwps.data.shared.DataSource;
 
 /**
  * TODO: document

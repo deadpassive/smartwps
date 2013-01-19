@@ -11,7 +11,7 @@ import org.geotools.data.ServiceInfo;
 import org.geotools.data.ows.Layer;
 import org.geotools.data.wms.WebMapServer;
 
-import uk.ac.glam.smartwps.server.ServerUtils;
+import uk.ac.glam.smartwps.data.server.ServerUtils;
 import uk.ac.glam.smartwps.wms.shared.WMSConnectionException;
 import uk.ac.glam.smartwps.wms.shared.WMSDataSource;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;

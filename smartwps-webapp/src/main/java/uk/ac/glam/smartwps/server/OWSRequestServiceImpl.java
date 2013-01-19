@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 
+import uk.ac.glam.smartwps.base.server.WPSProperties;
 import uk.ac.glam.smartwps.client.net.OWSRequestService;
 import uk.ac.glam.smartwps.server.logging.ServerToClientHandler;
 import uk.ac.glam.smartwps.shared.response.RetrieveServerLogsResponse;

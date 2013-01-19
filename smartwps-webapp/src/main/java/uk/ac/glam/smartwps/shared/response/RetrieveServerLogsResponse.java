@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.logging.LogRecord;
 
+import uk.ac.glam.smartwps.base.shared.ServiceResponse;
+
 /**
  * @TODO: document
  * @author jonb

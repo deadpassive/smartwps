@@ -12,7 +12,7 @@ import org.gwtopenmaps.openlayers.client.protocol.WFSProtocolOptions;
 
 import uk.ac.glam.smartwps.client.ClientUtils;
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.shared.wfs.WFSFeatureType;
+import uk.ac.glam.smartwps.wfs.shared.WFSFeatureType;
 
 import com.smartgwt.client.widgets.menu.Menu;
 

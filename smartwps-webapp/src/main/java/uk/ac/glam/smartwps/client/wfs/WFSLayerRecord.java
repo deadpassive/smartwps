@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.wfs;
 
-import uk.ac.glam.smartwps.shared.wfs.WFSFeatureTypeBase;
+import uk.ac.glam.smartwps.wfs.shared.WFSFeatureTypeBase;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 

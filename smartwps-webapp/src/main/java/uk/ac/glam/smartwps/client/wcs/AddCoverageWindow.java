@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.client.net.WCSRequestService;
-import uk.ac.glam.smartwps.client.net.WCSRequestServiceAsync;
-import uk.ac.glam.smartwps.shared.request.WCSDescribeCoverageRequest;
-import uk.ac.glam.smartwps.shared.request.WCSGetCoverageAndStoreRequest;
-import uk.ac.glam.smartwps.shared.response.WCSDescribeCoverageResponse;
-import uk.ac.glam.smartwps.shared.response.WCSGetCoverageAndStoreResponse;
+import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
+import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
+import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageRequest;
+import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageResponse;
+import uk.ac.glam.smartwps.wcs.shared.WCSGetCoverageAndStoreRequest;
+import uk.ac.glam.smartwps.wcs.shared.WCSGetCoverageAndStoreResponse;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageSummary;
 import uk.ac.glam.smartwps.wms.client.net.WMSRequestService;

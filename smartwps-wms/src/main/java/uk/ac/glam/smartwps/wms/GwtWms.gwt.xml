@@ -3,11 +3,12 @@
 
 <module>
   <!-- Inherit the core Web Toolkit stuff.                        -->
-  <inherits name='com.google.gwt.user.User'/>
-  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+<!--   <inherits name='com.google.gwt.user.User'/> -->
   
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
   <source path='shared'/>
+  
+  <inherits name="uk.ac.glam.smartwps.data.GwtGisData"/>
 
 </module>

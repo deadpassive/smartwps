@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.client.wps;
 
-import uk.ac.glam.smartwps.shared.wps.DetailedProcessDescriptor;
+import uk.ac.glam.smartwps.wps.shared.DetailedProcessDescriptor;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;

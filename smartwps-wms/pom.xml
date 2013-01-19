@@ -33,5 +33,10 @@
 			<artifactId>smartwps-data</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>uk.ac.glam.smartwps</groupId>
+			<artifactId>smartwps-base</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

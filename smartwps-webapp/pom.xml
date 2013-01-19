@@ -87,11 +87,6 @@
 			<version>${geotools.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>1.6</version>
-		</dependency>
-		<dependency>
 			<groupId>uk.ac.glam</groupId>
 			<artifactId>wcsclient</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
@@ -125,6 +120,16 @@
 			<groupId>uk.ac.glam.smartwps</groupId>
 			<artifactId>smartwps-wcs</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>uk.ac.glam.smartwps</groupId>
+			<artifactId>smartwps-wfs</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>uk.ac.glam.smartwps</groupId>
+			<artifactId>smartwps-wps</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
