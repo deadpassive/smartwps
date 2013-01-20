@@ -23,7 +23,7 @@
 	
 	<servlet>
 		<servlet-name>wfsRequestServiceImpl</servlet-name>
-		<servlet-class>uk.ac.glam.smartwps.server.WFSRequestServiceImpl</servlet-class>
+		<servlet-class>uk.ac.glam.smartwps.wfs.server.WFSRequestServiceImpl</servlet-class>
 	</servlet>
 	
 	<servlet>

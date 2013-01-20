@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client;
+package uk.ac.glam.smartwps.base.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

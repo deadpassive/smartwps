@@ -1,7 +1,6 @@
-package uk.ac.glam.smartwps.server;
+package uk.ac.glam.smartwps.wfs.server;
 
 import uk.ac.glam.smartwps.wfs.client.net.WFSRequestService;
-import uk.ac.glam.smartwps.wfs.server.WFSHandler;
 import uk.ac.glam.smartwps.wfs.shared.WFSConnectionException;
 import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeRequest;
 import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeResponse;

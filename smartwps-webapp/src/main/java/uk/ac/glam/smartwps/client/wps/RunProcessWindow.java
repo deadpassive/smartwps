@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.datatree.CoverageNode;
-import uk.ac.glam.smartwps.client.event.ProcessResultsReceivedEvent;
 import uk.ac.glam.smartwps.data.shared.util.StringUtils;
 
 import com.google.gwt.core.client.GWT;
@@ -33,6 +32,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import java.util.List;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 import uk.ac.glam.smartwps.wfs.shared.WFSFeatureType;
+import uk.ac.glam.smartwps.wps.client.event.ProcessResultsReceivedEvent;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestService;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.wps.shared.ComplexData;

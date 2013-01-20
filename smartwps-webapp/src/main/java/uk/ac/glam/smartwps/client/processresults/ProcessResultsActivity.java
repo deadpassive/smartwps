@@ -1,9 +1,9 @@
 package uk.ac.glam.smartwps.client.processresults;
 
 import uk.ac.glam.smartwps.client.ClientFactory;
-import uk.ac.glam.smartwps.client.event.ProcessResultsReceivedEvent;
-import uk.ac.glam.smartwps.client.event.ProcessResultsReceivedHandler;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
+import uk.ac.glam.smartwps.wps.client.event.ProcessResultsReceivedEvent;
+import uk.ac.glam.smartwps.wps.client.event.ProcessResultsReceivedHandler;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;

@@ -14,6 +14,7 @@ import net.opengis.ows.x11.ExceptionReportDocument;
 import net.opengis.wps.x100.DataType;
 import net.opengis.wps.x100.ExecuteResponseDocument;
 import net.opengis.wps.x100.OutputDataType;
+import net.opengis.wps.x100.OutputReferenceType;
 import net.opengis.wps.x100.ProcessDescriptionType;
 import net.opengis.wps.x100.ProcessFailedType;
 
@@ -210,7 +211,7 @@ public class WPSHandler {
 								
 				// Get the KVP request for this coverage
 				requestBuilder.addComplexDataReference(wcsInput.getId(),
-						remoteCoverage.getCoverageHref(), null, null, null);
+						remoteCoverage.getCoverageHref(), null, null, Format.IMAGE_TIFF);
 				LOGGER.log(Level.INFO, "WCS URI: {0}", remoteCoverage.getCoverageHref());
 			} else if (processInput instanceof WFSProcessInput) {
 				WFSProcessInput wfsInput = (WFSProcessInput) processInput;
@@ -281,6 +282,10 @@ public class WPSHandler {
 				ExceptionReportDocument exceptionReport = (ExceptionReportDocument) responseObject;
 				LOGGER.severe("Failed to execute WPS request, received ExceptionReport: " + exceptionReport.toString());
 				throw new WPSExecuteException("Failed to execute WPS process: " + exceptionReport.getExceptionReport().toString());
+			} else if (responseObject instanceof ExecuteResponseDocument) {
+				erd = (ExecuteResponseDocument) responseObject;
+			} else {
+				// TODO: do something with known response type.
 			}
 		} catch (WPSClientException e) {
 			LOGGER.log(Level.SEVERE, "Failed to execute WPS process: " + e.getMessage(), e);
@@ -307,20 +312,10 @@ public class WPSHandler {
 		
 		for (int i = 0; i < outData.length; i++) {
 			ProcessOutput processOutput = null;
-			
 			OutputDataType od = outData[i];
-			DataType dataType = od.getData();
-			String identifier = od.getIdentifier().getStringValue();
 			
 			// Determine whether this is a literal or complex output
-			if (dataType.getLiteralData() != null) {
-				// this is a literal data output
-				String value = od.getData().getLiteralData().getStringValue();
-				processOutput = new LiteralProcessOutput(identifier, value);
-			} else if (dataType.getComplexData() != null) {
-				// this is a complex data type
-				processOutput = createComplexProcessOutput(od);
-			}
+			processOutput = determineOutputType(od);
 	
 			if (processOutput != null) {
 				response.addProcessOutput(processOutput);
@@ -329,6 +324,40 @@ public class WPSHandler {
 			}
 		}
 		return response;
+	}
+	
+	/**
+	 * TODO: document
+	 * 
+	 * @param output
+	 * @return a process output created from the given data type. May be null.
+	 * @throws WCSConnectionException
+	 * @throws RESTConnectionException
+	 * @throws IOException
+	 * @throws WFSConnectionException
+	 * @throws WPSExecuteException
+	 */
+	private ProcessOutput determineOutputType(OutputDataType output) throws WCSConnectionException, RESTConnectionException, IOException, WFSConnectionException, WPSExecuteException {
+		String identifier = output.getIdentifier().getStringValue();
+		DataType dataType = output.getData();
+		
+		if (dataType != null) {
+			if (dataType.getLiteralData() != null) {
+				// this is a literal data output
+				String value = output.getData().getLiteralData().getStringValue();
+				return new LiteralProcessOutput(identifier, value);
+			} else if (dataType.getComplexData() != null) {
+				// this is a complex data type
+				return createComplexProcessOutput(output);
+			}
+		} else {
+			// for some reason the datatype is null. Let's see if it's a reference
+			OutputReferenceType outputRef = output.getReference();
+			if (outputRef != null) {
+				return createComplexProcessOutput(output);
+			}
+		}
+		return null;
 	}
 
 	private ComplexProcessOutput createComplexProcessOutput(OutputDataType outputDataType) throws RESTConnectionException, WCSConnectionException, IOException, WFSConnectionException, WPSExecuteException {

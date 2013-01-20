@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.event;
+package uk.ac.glam.smartwps.wps.client.event;
 
 import uk.ac.glam.smartwps.wps.shared.WPSExecuteResponse;
 

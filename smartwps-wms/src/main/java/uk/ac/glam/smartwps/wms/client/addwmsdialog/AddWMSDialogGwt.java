@@ -1,11 +1,11 @@
-package uk.ac.glam.smartwps.client.addwmsdialog;
+package uk.ac.glam.smartwps.wms.client.addwmsdialog;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import uk.ac.glam.smartwps.client.CloseCaption;
-import uk.ac.glam.smartwps.client.widget.WaterMarkedTextBox;
+import uk.ac.glam.smartwps.base.client.ui.CloseCaption;
+import uk.ac.glam.smartwps.base.client.ui.WaterMarkedTextBox;
 import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 

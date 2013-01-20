@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.event;
+package uk.ac.glam.smartwps.data.client.event;
 
 import com.google.gwt.event.shared.EventHandler;
 
@@ -7,7 +7,7 @@ import com.google.gwt.event.shared.EventHandler;
  * @author jonb
  *
  */
-public interface AddLayerHandler extends EventHandler {
+public interface AddLayersHandler extends EventHandler {
 	
 	/**
 	 * TODO: document

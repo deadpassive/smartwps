@@ -2,8 +2,8 @@ package uk.ac.glam.smartwps.client;
 
 import org.gwtopenmaps.openlayers.client.OpenLayers;
 
+import uk.ac.glam.smartwps.base.client.event.ShowLoggerDialogEvent;
 import uk.ac.glam.smartwps.client.datatree.DataTree;
-import uk.ac.glam.smartwps.client.event.ShowLoggerDialogEvent;
 import uk.ac.glam.smartwps.client.layout.SmartGWTSimplePanel;
 import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;

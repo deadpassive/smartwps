@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.widget;
+package uk.ac.glam.smartwps.base.client.ui;
 
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -8,15 +8,12 @@ import com.google.gwt.user.client.ui.TextBox;
  * @author Jon Britton
  */
 public class WaterMarkedTextBox extends TextBox {
-//	private String placeholder;
 	
 	/**
 	 * TODO: document
 	 * @param placeholder
 	 */
 	public void setPlaceholder(String placeholder) {
-//		this.placeholder = placeholder;
-//		getElement().getStyle().setProperty("placeholder", placeholder);
 		getElement().setAttribute("placeholder", placeholder);
 	}
 }

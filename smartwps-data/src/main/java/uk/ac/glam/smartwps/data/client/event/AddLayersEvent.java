@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.event;
+package uk.ac.glam.smartwps.data.client.event;
 
 import java.util.Set;
 
@@ -10,10 +10,10 @@ import com.google.gwt.event.shared.GwtEvent;
  * @TODO: document
  * @author jonb
  */
-public class AddLayersEvent extends GwtEvent<AddLayerHandler> {
+public class AddLayersEvent extends GwtEvent<AddLayersHandler> {
 
 	@SuppressWarnings("javadoc")
-	public final static Type<AddLayerHandler> TYPE = new Type<AddLayerHandler>();
+	public final static Type<AddLayersHandler> TYPE = new Type<AddLayersHandler>();
 	private final Set<? extends Data> layers;
 	
 	/**
@@ -25,12 +25,12 @@ public class AddLayersEvent extends GwtEvent<AddLayerHandler> {
 	}
 	
 	@Override
-	public Type<AddLayerHandler> getAssociatedType() {
+	public Type<AddLayersHandler> getAssociatedType() {
 		return TYPE;
 	}
 
 	@Override
-	protected void dispatch(AddLayerHandler handler) {
+	protected void dispatch(AddLayersHandler handler) {
 		handler.onAddLayer(this);
 	}
 	

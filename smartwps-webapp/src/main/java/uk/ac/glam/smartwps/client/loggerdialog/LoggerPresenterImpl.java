@@ -1,7 +1,8 @@
 package uk.ac.glam.smartwps.client.loggerdialog;
 
-import uk.ac.glam.smartwps.client.event.ShowLoggerDialogEvent;
-import uk.ac.glam.smartwps.client.event.ShowLoggerDialogHandler;
+import uk.ac.glam.smartwps.base.client.event.ShowLoggerDialogEvent;
+import uk.ac.glam.smartwps.base.client.event.ShowLoggerDialogHandler;
+
 import com.google.web.bindery.event.shared.EventBus;
 
 /**

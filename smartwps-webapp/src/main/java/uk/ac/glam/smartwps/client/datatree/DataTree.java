@@ -37,9 +37,9 @@ import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
 
-import uk.ac.glam.smartwps.client.event.AddLayersEvent;
-import uk.ac.glam.smartwps.client.event.AddLayerHandler;
 import uk.ac.glam.smartwps.client.map.OLMap;
+import uk.ac.glam.smartwps.data.client.event.AddLayersEvent;
+import uk.ac.glam.smartwps.data.client.event.AddLayersHandler;
 import uk.ac.glam.smartwps.data.shared.Data;
 import uk.ac.glam.smartwps.data.shared.util.StringUtils;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
@@ -124,7 +124,7 @@ public class DataTree extends TreeGrid {
 
 		createContextMenu();
 		
-		eventBus.addHandler(AddLayersEvent.TYPE, new AddLayerHandler() {
+		eventBus.addHandler(AddLayersEvent.TYPE, new AddLayersHandler() {
 			
 			@Override
 			public void onAddLayer(AddLayersEvent event) {

@@ -1,14 +1,14 @@
-package uk.ac.glam.smartwps.client.addwmsdialog;
+package uk.ac.glam.smartwps.wms.client.addwmsdialog;
 
 import java.util.List;
 import java.util.Set;
 
-import uk.ac.glam.smartwps.client.event.AddLayersEvent;
-import uk.ac.glam.smartwps.client.event.ShowWMSDialogEvent;
-import uk.ac.glam.smartwps.client.event.ShowWMSDialogHandler;
 import uk.ac.glam.smartwps.data.client.DataSourceManager;
+import uk.ac.glam.smartwps.data.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.data.shared.DataSource;
 import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
+import uk.ac.glam.smartwps.wms.client.event.ShowWMSDialogEvent;
+import uk.ac.glam.smartwps.wms.client.event.ShowWMSDialogHandler;
 import uk.ac.glam.smartwps.wms.client.net.WMSRequestServiceAsync;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 import uk.ac.glam.smartwps.wms.shared.request.WMSGetCapabilitiesRequest;
