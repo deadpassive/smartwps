@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.wcs.shared;
 
-import uk.ac.glam.smartwps.data.shared.Data;
+import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 

@@ -1,7 +1,7 @@
 package uk.ac.glam.smartwps.wcs.shared;
 
 import uk.ac.glam.smartwps.base.shared.ServiceRequest;
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 
 /**

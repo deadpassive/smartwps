@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import uk.ac.glam.smartwps.base.shared.utils.StringUtils;
 import uk.ac.glam.smartwps.client.SmartWPS;
 import uk.ac.glam.smartwps.client.datatree.CoverageNode;
-import uk.ac.glam.smartwps.data.shared.util.StringUtils;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.AttachEvent;

@@ -1,8 +1,8 @@
-package uk.ac.glam.smartwps.data.client;
+package uk.ac.glam.smartwps.base.client;
 
 import java.util.HashMap;
 
-import uk.ac.glam.smartwps.data.shared.DataSource;
+import uk.ac.glam.smartwps.base.shared.DataSource;
 
 /**
  * TODO: document

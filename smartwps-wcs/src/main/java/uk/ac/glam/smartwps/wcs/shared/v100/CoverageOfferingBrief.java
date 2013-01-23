@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 
 /**
  * @TODO: document

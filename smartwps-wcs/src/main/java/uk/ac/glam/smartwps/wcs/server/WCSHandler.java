@@ -9,9 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.base.server.GeoServerREST;
+import uk.ac.glam.smartwps.base.server.ServerUtils;
 import uk.ac.glam.smartwps.base.server.WPSProperties;
 import uk.ac.glam.smartwps.base.shared.RESTConnectionException;
-import uk.ac.glam.smartwps.data.server.ServerUtils;
 import uk.ac.glam.smartwps.wcs.shared.WCSCapabilitiesResponse;
 import uk.ac.glam.smartwps.wcs.shared.WCSConnectionException;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
@@ -234,8 +234,7 @@ public class WCSHandler {
 		geoserverREST.setAllStylesForLayer(layerName);
 
 		// Set default style
-		// GeoServerREST.setDefaultStyle(geoserverURL, coverageName,
-		// "difference");
+		geoserverREST.setDefaultStyle(layerName, "raster");
 
 		// Enable layer
 		geoserverREST.setLayerEnabled(layerName, true);

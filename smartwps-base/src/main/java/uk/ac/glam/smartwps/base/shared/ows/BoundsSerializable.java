@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.data.shared.ows;
+package uk.ac.glam.smartwps.base.shared.ows;
 
 import java.io.Serializable;
 

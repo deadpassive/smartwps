@@ -11,7 +11,7 @@ import org.geotools.data.wfs.WFSDataStore;
 import org.geotools.data.wfs.WFSDataStoreFactory;
 import org.opengis.feature.simple.SimpleFeatureType;
 
-import uk.ac.glam.smartwps.data.server.ServerUtils;
+import uk.ac.glam.smartwps.base.server.ServerUtils;
 import uk.ac.glam.smartwps.wfs.shared.WFSConnectionException;
 import uk.ac.glam.smartwps.wfs.shared.WFSDataSource;
 import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeRequest;

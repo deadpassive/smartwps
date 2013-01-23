@@ -3,8 +3,8 @@ package uk.ac.glam.smartwps.wms.shared;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.glam.smartwps.data.shared.Data;
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.Data;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 
 /**
  * TODO: document.

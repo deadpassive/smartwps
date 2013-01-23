@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 
 /**
  * @TODO: document

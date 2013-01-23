@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageSummary;
 import uk.ac.glam.smartwps.wcs.shared.v111.Domain;

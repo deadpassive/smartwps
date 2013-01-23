@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 import uk.ac.glam.smartwps.wcs.shared.v100.CoverageOffering;
 import uk.ac.glam.smartwps.wcs.shared.v100.CoverageOfferingBrief;
 import uk.ac.glam.smartwps.wcs.shared.v100.DomainSet;

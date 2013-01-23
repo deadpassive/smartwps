@@ -3,7 +3,7 @@ package uk.ac.glam.smartwps.wps.shared;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.glam.smartwps.data.shared.util.StringUtils;
+import uk.ac.glam.smartwps.base.shared.utils.StringUtils;
 
 /**
  * Metadata for a complex WPS input or output.

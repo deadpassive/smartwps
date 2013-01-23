@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.wfs.shared;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 
 /**
  * Contains basic information describing a WFS feature type, including info 

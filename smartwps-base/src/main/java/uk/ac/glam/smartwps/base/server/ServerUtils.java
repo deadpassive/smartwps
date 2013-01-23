@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.data.server;
+package uk.ac.glam.smartwps.base.server;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 import org.geotools.geometry.jts.ReferencedEnvelope;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 
 /**
  * Some useful methods for the server side.

@@ -2,7 +2,7 @@ package uk.ac.glam.smartwps.wcs.shared.v111;
 
 import java.io.Serializable;
 
-import uk.ac.glam.smartwps.data.shared.ows.BoundsSerializable;
+import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
 
 /**
  * @TODO: document

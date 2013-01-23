@@ -1,6 +1,6 @@
 package uk.ac.glam.smartwps.wfs.shared;
 
-import uk.ac.glam.smartwps.data.shared.Data;
+import uk.ac.glam.smartwps.base.shared.Data;
 
 /**
  * Contains basic information describing a WFS feature type. Only contains info

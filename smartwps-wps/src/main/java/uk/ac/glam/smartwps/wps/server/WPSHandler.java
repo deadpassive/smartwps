@@ -24,10 +24,10 @@ import org.n52.wps.client.WPSClientSession;
 import org.xml.sax.SAXException;
 
 import uk.ac.glam.smartwps.base.server.GeoServerREST;
+import uk.ac.glam.smartwps.base.server.ServerUtils;
 import uk.ac.glam.smartwps.base.server.WPSProperties;
 import uk.ac.glam.smartwps.base.shared.RESTConnectionException;
-import uk.ac.glam.smartwps.data.server.ServerUtils;
-import uk.ac.glam.smartwps.data.shared.util.StringUtils;
+import uk.ac.glam.smartwps.base.shared.utils.StringUtils;
 import uk.ac.glam.smartwps.wcs.server.WCSHandler;
 import uk.ac.glam.smartwps.wcs.shared.WCSConnectionException;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;

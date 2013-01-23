@@ -12,6 +12,10 @@ import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.layer.Layer;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 
+import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
+import uk.ac.glam.smartwps.base.client.event.AddLayersHandler;
+import uk.ac.glam.smartwps.base.shared.Data;
+import uk.ac.glam.smartwps.base.shared.utils.StringUtils;
 import uk.ac.glam.smartwps.client.SmartWPS;
 
 import com.google.web.bindery.event.shared.EventBus;
@@ -38,10 +42,6 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
 
 import uk.ac.glam.smartwps.client.map.OLMap;
-import uk.ac.glam.smartwps.data.client.event.AddLayersEvent;
-import uk.ac.glam.smartwps.data.client.event.AddLayersHandler;
-import uk.ac.glam.smartwps.data.shared.Data;
-import uk.ac.glam.smartwps.data.shared.util.StringUtils;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 import uk.ac.glam.smartwps.wfs.shared.WFSFeatureType;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;

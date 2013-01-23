@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.data.shared.util;
+package uk.ac.glam.smartwps.base.shared.utils;
 
 /**
  * TODO: document

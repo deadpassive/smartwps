@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.data.client.event;
+package uk.ac.glam.smartwps.base.client.event;
 
 import com.google.gwt.event.shared.EventHandler;
 
