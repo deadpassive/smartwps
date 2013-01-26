@@ -2,8 +2,6 @@ package uk.ac.glam.smartwps.client.datatree;
 
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 
-import com.smartgwt.client.widgets.menu.Menu;
-
 /**
  * TODO: document
  * 
@@ -31,10 +29,5 @@ public class CoverageNode extends WMSNode {
 	 */
 	public WCSCoverage getCoverage() {
 		return coverage;
-	}
-
-	@Override
-	public Menu getContextMenu() {
-		return null;
 	}
 }
