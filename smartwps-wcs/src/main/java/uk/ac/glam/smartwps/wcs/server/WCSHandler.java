@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.geotools.data.Query;
+
 import uk.ac.glam.smartwps.base.server.GeoServerREST;
 import uk.ac.glam.smartwps.base.server.ServerUtils;
 import uk.ac.glam.smartwps.base.server.WPSProperties;
@@ -231,17 +233,19 @@ public class WCSHandler {
 		geoserverREST.uploadCoverage(file, workspace, layerName, layerName);
 
 		// All layer to use all styles on the server
-		geoserverREST.setAllStylesForLayer(layerName);
+//		geoserverREST.setAllStylesForLayer(layerName);
 
 		// Set default style
 		geoserverREST.setDefaultStyle(layerName, "raster");
+		
+		Query query;
 
 		// Enable layer
 		geoserverREST.setLayerEnabled(layerName, true);
 
 		// Create WMSLayer for new layer
 		ArrayList<String> wmsLayers = new ArrayList<String>();
-		wmsLayers.add(workspace + ":" + layerName);
+		wmsLayers.add(layerName);
 		// There should only be one WMSLayer in the response
 		// WCS module depends on WMS module...
 		WMSLayer wmsLayer = WMSHandler.instance().wmsGetCapabilities(

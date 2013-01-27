@@ -1,6 +1,7 @@
-package uk.ac.glam.smartwps.client.wfs;
+package uk.ac.glam.smartwps.wfs.client;
 
 
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
@@ -24,7 +25,7 @@ public class AddWFSWindow extends Window {
 	/**
 	 * Creates a new AddMapWindow;
 	 */
-	public AddWFSWindow() {
+	public AddWFSWindow(EventBus eventBus) {
 		super();
 
 		this.setTitle("Add WFS");
@@ -51,7 +52,7 @@ public class AddWFSWindow extends Window {
 		urlChooser.setTitle("URL");
 		urlChooser.setType("comboBox");
 		urlChooser.setWidth("100%");
-		urlChooser.setDefaultValue("http://localhost:8080/geoserver/ows?service=wfs&version=1.1.0&request=GetCapabilities");
+		urlChooser.setDefaultValue("http://localhost:8484/geoserver/ows?service=wfs&version=1.1.0&request=GetCapabilities");
 		urlChooser.setValueMap("http://li199-25.members.linode.com:8080/geoserver/ows?service=wfs&version=1.0.0&request=GetCapabilities",
 				"http://li199-25.members.linode.com:8080/geoserver/ows?service=wfs&version=1.1.0&request=GetCapabilities",
 				"http://localhost:8080/geoserver/ows?service=wfs&version=1.0.0&request=GetCapabilities",
@@ -84,7 +85,7 @@ public class AddWFSWindow extends Window {
 		// Middle layout for process selection
 		// HLayout processSelectionLayout = new HLayout();
 
-		layerSelector = new WFSLayerSelector();
+		layerSelector = new WFSLayerSelector(eventBus);
 		layerSelector.setWidth100();
 		layerSelector.setHeight100();
 		

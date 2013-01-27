@@ -134,6 +134,8 @@ public class DataTree extends TreeGrid {
 					Data layer = iterator.next();
 					if (layer instanceof WMSLayer) {
 						addWMSLayer((WMSLayer) layer);
+					} else if (layer instanceof WFSFeatureType) {
+						addWFSFeature((WFSFeatureType) layer);
 					}
 				}
 			}

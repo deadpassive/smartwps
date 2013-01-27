@@ -1,6 +1,7 @@
-package uk.ac.glam.smartwps.client.wfs;
+package uk.ac.glam.smartwps.wfs.client;
 
-import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
+import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wfs.client.net.WFSRequestService;
 import uk.ac.glam.smartwps.wfs.client.net.WFSRequestServiceAsync;
 import uk.ac.glam.smartwps.wfs.shared.WFSDescribeFeatureTypeRequest;
@@ -12,6 +13,7 @@ import uk.ac.glam.smartwps.wfs.shared.WFSGetCapabilitiesResponse;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -21,6 +23,8 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
+
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -36,7 +40,7 @@ public class WFSLayerSelector extends HLayout {
 	/**
 	 * TODO: document
 	 */
-	public WFSLayerSelector() {
+	public WFSLayerSelector(final EventBus eventBus) {
 		layerList = new ListGrid() {  
 			
 			@Override
@@ -65,7 +69,9 @@ public class WFSLayerSelector extends HLayout {
 								public void onSuccess(WFSDescribeFeatureTypeResponse result) {
 			        				GWT.log("SUCCESS");
 			        				WFSFeatureType featureType = result.getFeatureType();
-					            	SmartWPS.getSmartWPS().getDataTree().addWFSFeature(featureType);
+			        				HashSet<Data> layers = new HashSet<Data>(1);
+			        				layers.add(featureType);
+			        				eventBus.fireEvent(new AddLayersEvent(layers));
 					            	SC.clearPrompt();
 			        			}
 			        		};

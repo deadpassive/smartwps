@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.wfs;
+package uk.ac.glam.smartwps.wfs.client;
 
 import uk.ac.glam.smartwps.wfs.shared.WFSFeatureTypeBase;
 
