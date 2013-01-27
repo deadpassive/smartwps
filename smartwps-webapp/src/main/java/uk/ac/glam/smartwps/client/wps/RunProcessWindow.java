@@ -56,7 +56,7 @@ public class RunProcessWindow extends Window {
 	private DetailedProcessDescriptor process;
 //	private WPSExecuteResponse result;
 	private DynamicForm literalsForm;
-	private static final Logger LOGGER = SmartWPS.LOGGER;
+	private static final Logger LOGGER = Logger.getLogger("RunProcessWindow");
 	private ProcessInputManager inputManager;
 	private Map<FormItem, String> defaultValues = new HashMap<FormItem, String>();
 	private static WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);

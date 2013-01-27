@@ -1,6 +1,6 @@
-package uk.ac.glam.smartwps.client.net;
+package uk.ac.glam.smartwps.base.shared.ows;
 
-import uk.ac.glam.smartwps.shared.response.RetrieveServerLogsResponse;
+import uk.ac.glam.smartwps.base.shared.response.RetrieveServerLogsResponse;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;

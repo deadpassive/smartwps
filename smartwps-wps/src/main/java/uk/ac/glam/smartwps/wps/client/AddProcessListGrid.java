@@ -1,9 +1,9 @@
-package uk.ac.glam.smartwps.client.wps;
+package uk.ac.glam.smartwps.wps.client;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.base.client.event.AddProcessEvent;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestService;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
 import uk.ac.glam.smartwps.wps.shared.DetailedProcessDescriptor;
@@ -13,6 +13,7 @@ import uk.ac.glam.smartwps.wps.shared.WPSGetCapabilitiesResponse;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -31,13 +32,16 @@ public class AddProcessListGrid extends ListGrid {
 
 	private static final Logger LOGGER = Logger.getLogger("AddProcessListGrid");
 	private WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
+	private final EventBus eventBus;
 	
 	/**
 	 * Creates a new AddProcessListGrid.
+	 * @param eventBus 
 	 * @param wpsService 
 	 */
-	public AddProcessListGrid(WPSRequestServiceAsync wpsService) {
+	public AddProcessListGrid(EventBus eventBus, WPSRequestServiceAsync wpsService) {
 		this.wpsService = wpsService;
+		this.eventBus = eventBus;
 		ListGridField idField = new ListGridField("id", "ID");
 		ListGridField titleField = new ListGridField("title", "Title");
 		ListGridField addField = new ListGridField("addButton", "Add");
@@ -112,7 +116,7 @@ public class AddProcessListGrid extends ListGrid {
 						@Override
 						public void onSuccess(DetailedProcessDescriptor result) {
 							ProcessRecord newRecord = new ProcessRecord(result);
-							SmartWPS.getSmartWPS().getRunProcessList().addData(newRecord);
+							eventBus.fireEvent(new AddProcessEvent(newRecord));
 			                button.setDisabled(true);
 			                SC.clearPrompt();
 						}

@@ -1,13 +1,12 @@
-package uk.ac.glam.smartwps.server;
+package uk.ac.glam.smartwps.base.server;
 
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 
-import uk.ac.glam.smartwps.base.server.WPSProperties;
-import uk.ac.glam.smartwps.client.net.OWSRequestService;
-import uk.ac.glam.smartwps.server.logging.ServerToClientHandler;
-import uk.ac.glam.smartwps.shared.response.RetrieveServerLogsResponse;
+import uk.ac.glam.smartwps.base.server.logging.ServerToClientHandler;
+import uk.ac.glam.smartwps.base.shared.ows.OWSRequestService;
+import uk.ac.glam.smartwps.base.shared.response.RetrieveServerLogsResponse;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

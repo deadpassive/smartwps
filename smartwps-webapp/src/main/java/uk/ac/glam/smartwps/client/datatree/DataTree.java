@@ -14,6 +14,7 @@ import org.gwtopenmaps.openlayers.client.layer.WMS;
 
 import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.base.client.event.AddLayersHandler;
+import uk.ac.glam.smartwps.base.client.ui.OLMap;
 import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.base.shared.utils.StringUtils;
 import uk.ac.glam.smartwps.client.SmartWPS;
@@ -41,7 +42,6 @@ import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import java.util.List;
 
-import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 import uk.ac.glam.smartwps.wfs.shared.WFSFeatureType;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
@@ -132,7 +132,9 @@ public class DataTree extends TreeGrid {
 				Set<? extends Data> layers = event.getLayers();
 				for (Iterator<? extends Data> iterator = layers.iterator(); iterator.hasNext();) {
 					Data layer = iterator.next();
-					if (layer instanceof WMSLayer) {
+					if (layer instanceof WCSCoverage) {
+						addWCSCoverage((WCSCoverage) layer);
+					} else if (layer instanceof WMSLayer) {
 						addWMSLayer((WMSLayer) layer);
 					} else if (layer instanceof WFSFeatureType) {
 						addWFSFeature((WFSFeatureType) layer);

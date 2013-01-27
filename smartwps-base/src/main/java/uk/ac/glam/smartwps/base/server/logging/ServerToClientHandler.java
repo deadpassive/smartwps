@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.server.logging;
+package uk.ac.glam.smartwps.base.server.logging;
 
 import java.util.ArrayList;
 import java.util.logging.Handler;

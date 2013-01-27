@@ -1,9 +1,11 @@
-package uk.ac.glam.smartwps.client.wcs;
+package uk.ac.glam.smartwps.wcs.client;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
+import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageRequest;
@@ -20,6 +22,7 @@ import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RadioButton;
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
@@ -66,11 +69,13 @@ public class AddCoverageWindow extends Window {
 	private WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
 	
 	private WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
+	private final EventBus eventBus;
 
 	/**
 	 * Creates a new AddWCSWindow.
+	 * @param eventBus 
 	 */
-	public AddCoverageWindow() {
+	public AddCoverageWindow(EventBus eventBus) {
 		super();
 
 		this.setTitle("Add WCS");
@@ -82,6 +87,8 @@ public class AddCoverageWindow extends Window {
 		this.centerInPage();
 		this.urlInputPage = createURLInputPage();
 		this.addItem(urlInputPage);
+		
+		this.eventBus = eventBus;
 	}
 
 	/**
@@ -406,7 +413,7 @@ public class AddCoverageWindow extends Window {
 									LOGGER.info("Remote procedure call successful.");
 									SC.clearPrompt();
 
-									WMSSelector wmsSelector = new WMSSelector(result.getWMSLayers(), selectedCoverage);
+									WMSSelector wmsSelector = new WMSSelector(eventBus, result.getWMSLayers(), selectedCoverage);
 									wmsSelector.show();
 									resetWindow();
 									hide();
@@ -437,9 +444,9 @@ public class AddCoverageWindow extends Window {
 										WCSGetCoverageAndStoreResponse response) {
 									LOGGER.info("Remote procedure call successful");
 									SC.clearPrompt();
-									SmartWPS.getSmartWPS().getDataTree()
-											.addWCSCoverage(
-													response.getWCSCoverage());
+									HashSet<Data> layers = new HashSet<Data>(1);
+									layers.add(response.getWCSCoverage());
+									eventBus.fireEvent(new AddLayersEvent(layers));
 									AddCoverageWindow.this.hide();
 								}
 							};

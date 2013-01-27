@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.shared.response;
+package uk.ac.glam.smartwps.base.shared.response;
 
 import java.util.ArrayList;
 import java.util.Collection;

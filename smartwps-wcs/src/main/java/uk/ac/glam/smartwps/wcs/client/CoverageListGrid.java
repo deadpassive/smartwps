@@ -1,10 +1,8 @@
-package uk.ac.glam.smartwps.client.wcs;
+package uk.ac.glam.smartwps.wcs.client;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.client.wps.ProcessRecord;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.wcs.shared.WCSCapabilitiesResponse;
@@ -26,7 +24,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
  *
  */
 public class CoverageListGrid extends ListGrid {
-	private static final Logger LOGGER = SmartWPS.LOGGER;
+	private static final Logger LOGGER = Logger.getLogger("CoverageListGrid");
 	private WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
 	
 	/**
@@ -70,7 +68,7 @@ public class CoverageListGrid extends ListGrid {
 					newRecords[i] = new CoverageRecord(contents.get(i));
 				}
 				// For some reason we have to clear the records first...
-				CoverageListGrid.this.setData(new ProcessRecord[0]);
+				CoverageListGrid.this.setData(new CoverageRecord[0]);
 				// Add the new records
 				CoverageListGrid.this.setData(newRecords);
 				SC.clearPrompt();

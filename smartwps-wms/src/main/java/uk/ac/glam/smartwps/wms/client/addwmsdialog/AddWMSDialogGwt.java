@@ -6,7 +6,6 @@ import java.util.Set;
 
 import uk.ac.glam.smartwps.base.client.ui.CloseCaption;
 import uk.ac.glam.smartwps.base.client.ui.WaterMarkedTextBox;
-import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.google.gwt.cell.client.CheckboxCell;

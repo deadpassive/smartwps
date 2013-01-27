@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.map;
+package uk.ac.glam.smartwps.base.client.ui;
 
 import com.google.gwt.user.client.ui.Composite;
 import org.gwtopenmaps.openlayers.client.Bounds;

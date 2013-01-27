@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import uk.ac.glam.smartwps.client.wps.RunProcessWindow.InputForm;
 
+
 /**
  * Manages process inputs for the RunProcessWindow. Helps associated UI forms with WPS inputs.
  * 

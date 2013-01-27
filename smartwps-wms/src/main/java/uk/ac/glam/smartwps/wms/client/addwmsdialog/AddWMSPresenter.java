@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.wms.client;
+package uk.ac.glam.smartwps.wms.client.addwmsdialog;
 
 import java.util.List;
 import java.util.Set;

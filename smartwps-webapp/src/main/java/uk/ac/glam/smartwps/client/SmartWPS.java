@@ -2,8 +2,8 @@ package uk.ac.glam.smartwps.client;
 
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.client.net.OWSRequestService;
-import uk.ac.glam.smartwps.client.net.OWSRequestServiceAsync;
+import uk.ac.glam.smartwps.base.shared.ows.OWSRequestService;
+import uk.ac.glam.smartwps.base.shared.ows.OWSRequestServiceAsync;
 
 import com.google.gwt.core.client.GWT;
 import com.google.web.bindery.event.shared.EventBus;

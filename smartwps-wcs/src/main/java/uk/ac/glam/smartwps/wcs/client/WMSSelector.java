@@ -1,16 +1,20 @@
-package uk.ac.glam.smartwps.client.wcs;
+package uk.ac.glam.smartwps.wcs.client;
 
-import uk.ac.glam.smartwps.client.SmartWPS;
+import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
+import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wcs.shared.WCSCoverage;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
+
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -22,11 +26,11 @@ public class WMSSelector extends Window {
 
     /**
      * Create a new WMSSelector window.
-     *
+     * @param eventBus 
      * @param wmsLayers
      * @param coverage
      */
-    public WMSSelector(final List<WMSLayer> wmsLayers, final CoverageDescription coverage) {
+    public WMSSelector(final EventBus eventBus, final List<WMSLayer> wmsLayers, final CoverageDescription coverage) {
         this.setIsModal(true);
         this.setShowMinimizeButton(false);
         this.setShowCloseButton(false);
@@ -57,7 +61,9 @@ public class WMSSelector extends Window {
                 }
                 if (selectedLayer != null) {
                     WCSCoverage wcsCoverage = new WCSCoverage(coverage, selectedLayer);
-                    SmartWPS.getSmartWPS().getDataTree().addWCSCoverage(wcsCoverage);
+                    HashSet<Data> layers = new HashSet<Data>(1);
+                    layers.add(wcsCoverage);
+                    eventBus.fireEvent(new AddLayersEvent(layers));
                     WMSSelector.this.hide();
                 }
             }

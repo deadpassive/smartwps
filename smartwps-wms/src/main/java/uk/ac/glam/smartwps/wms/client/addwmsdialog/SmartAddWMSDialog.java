@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 
-import uk.ac.glam.smartwps.wms.client.AddWMSPresenter;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 import com.smartgwt.client.util.SC;

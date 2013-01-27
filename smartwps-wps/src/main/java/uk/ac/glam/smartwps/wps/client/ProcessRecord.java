@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.client.wps;
+package uk.ac.glam.smartwps.wps.client;
 
 import uk.ac.glam.smartwps.wps.shared.ProcessDescriptor;
 

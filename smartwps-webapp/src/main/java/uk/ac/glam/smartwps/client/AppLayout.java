@@ -3,8 +3,9 @@ package uk.ac.glam.smartwps.client;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.smartgwt.client.widgets.HTMLPane;
+
+import uk.ac.glam.smartwps.base.client.ui.OLMap;
 import uk.ac.glam.smartwps.client.datatree.DataTree;
-import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 
 /**

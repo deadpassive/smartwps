@@ -8,7 +8,7 @@
 	<!-- Servlets -->
 	<servlet>
 		<servlet-name>owsRequestServiceImpl</servlet-name>
-		<servlet-class>uk.ac.glam.smartwps.server.OWSRequestServiceImpl</servlet-class>
+		<servlet-class>uk.ac.glam.smartwps.base.server.OWSRequestServiceImpl</servlet-class>
 	</servlet>
 	
 	<servlet>

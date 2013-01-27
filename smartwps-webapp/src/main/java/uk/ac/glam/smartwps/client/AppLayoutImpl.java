@@ -3,9 +3,9 @@ package uk.ac.glam.smartwps.client;
 import org.gwtopenmaps.openlayers.client.OpenLayers;
 
 import uk.ac.glam.smartwps.base.client.event.ShowLoggerDialogEvent;
+import uk.ac.glam.smartwps.base.client.ui.OLMap;
 import uk.ac.glam.smartwps.client.datatree.DataTree;
 import uk.ac.glam.smartwps.client.layout.SmartGWTSimplePanel;
-import uk.ac.glam.smartwps.client.map.OLMap;
 import uk.ac.glam.smartwps.client.wps.RunProcessListGrid;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
 
@@ -86,7 +86,7 @@ public class AppLayoutImpl extends Composite implements AppLayout {
 		
 		// PROCESSES SECTION
 		SectionStackSection processSection = new SectionStackSection("Processes");
-		runProcessList = new RunProcessListGrid();
+		runProcessList = new RunProcessListGrid(eventBus);
 		processSection.setItems(runProcessList);
 		
 		// INFO SECTION

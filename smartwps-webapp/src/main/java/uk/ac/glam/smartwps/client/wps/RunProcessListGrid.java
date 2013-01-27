@@ -1,7 +1,11 @@
 package uk.ac.glam.smartwps.client.wps;
 
+import uk.ac.glam.smartwps.base.client.event.AddProcessEvent;
+import uk.ac.glam.smartwps.base.client.event.AddProcessHandler;
+import uk.ac.glam.smartwps.wps.client.ProcessRecord;
 import uk.ac.glam.smartwps.wps.shared.DetailedProcessDescriptor;
 
+import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -23,8 +27,9 @@ public class RunProcessListGrid extends ListGrid {
 	
 	/**
 	 * TODO: document
+	 * @param eventBus 
 	 */
-	public RunProcessListGrid() {
+	public RunProcessListGrid(EventBus eventBus) {
 		ListGridField idField = new ListGridField("id","ID");
 		//ListGridField titleField = new ListGridField("title", "Title");
 		ListGridField runField = new ListGridField("runButton", "Run");
@@ -45,6 +50,14 @@ public class RunProcessListGrid extends ListGrid {
 		});
         
         createContextMenu();
+        
+        eventBus.addHandler(AddProcessEvent.TYPE, new AddProcessHandler() {
+			
+			@Override
+			public void onAddProcess(AddProcessEvent event) {
+				addData(event.getProcessRecord());
+			}
+		});
 	}
 	
 	@Override

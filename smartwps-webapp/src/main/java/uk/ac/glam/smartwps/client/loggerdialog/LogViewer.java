@@ -5,8 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
+import uk.ac.glam.smartwps.base.shared.response.RetrieveServerLogsResponse;
 import uk.ac.glam.smartwps.client.SmartWPS;
-import uk.ac.glam.smartwps.shared.response.RetrieveServerLogsResponse;
 
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
