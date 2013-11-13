@@ -10,7 +10,6 @@ import uk.ac.glam.smartwps.base.shared.ows.BoundsSerializable;
  * TODO: document.
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WMSLayer extends Data {
 
 	private String name;

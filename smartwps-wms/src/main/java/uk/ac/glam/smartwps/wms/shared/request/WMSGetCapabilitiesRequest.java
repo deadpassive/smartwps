@@ -12,7 +12,6 @@ import uk.ac.glam.smartwps.base.shared.ServiceRequest;
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WMSGetCapabilitiesRequest extends ServiceRequest {
 
 	private List<String> layers = new ArrayList<String>();
@@ -75,5 +74,4 @@ public class WMSGetCapabilitiesRequest extends ServiceRequest {
 	public void setExactMatches(boolean exactMatches) {
 		this.exactMatches = exactMatches;
 	}
-
 }

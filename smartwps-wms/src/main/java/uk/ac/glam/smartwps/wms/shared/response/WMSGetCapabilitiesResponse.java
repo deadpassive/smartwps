@@ -7,26 +7,24 @@ import uk.ac.glam.smartwps.base.shared.ServiceResponse;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
- * TODO: document
+ * Used to send WMS layers between the server and the client.
  * 
  * @author Jon Britton
  */
-@SuppressWarnings("serial")
 public class WMSGetCapabilitiesResponse implements ServiceResponse {
 
 	private List<WMSLayer> wmsLayers;
 
 	/**
-	 * TODO: document
-	 * @param layers
+	 * Set the WMS layers to include in the response.
+	 * @param layers the WMS layers
 	 */
 	public void setWMSLayers(List<WMSLayer> layers) {
 		this.wmsLayers = new ArrayList<WMSLayer>(layers);
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the WMS layers in the response
 	 */
 	public List<WMSLayer> getWMSLayers() {
 		return new ArrayList<WMSLayer>(wmsLayers);
