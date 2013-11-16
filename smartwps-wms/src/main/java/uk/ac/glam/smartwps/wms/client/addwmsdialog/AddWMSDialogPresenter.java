@@ -10,7 +10,7 @@ import uk.ac.glam.smartwps.wms.shared.WMSLayer;
  * @author jonb
  *
  */
-public interface AddWMSPresenter {
+public interface AddWMSDialogPresenter {
 	
 	/**
 	 * @TODO: document
@@ -28,7 +28,7 @@ public interface AddWMSPresenter {
 		 * TODO: document
 		 * @param presenter
 		 */
-		public void setPresenter(AddWMSPresenter presenter);
+		public void setPresenter(AddWMSDialogPresenter presenter);
 		
 		/**
 		 * TODO: document

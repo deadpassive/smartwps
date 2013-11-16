@@ -35,16 +35,16 @@ import com.google.gwt.view.client.MultiSelectionModel;
  * 
  * @author Jon Britton
  */
-public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Display {
+public class AddWMSDialogView extends DialogBox implements AddWMSDialogPresenter.Display {
 
 	private static AddWMSDialogGwtUiBinder uiBinder = GWT.create(AddWMSDialogGwtUiBinder.class);
 
 	/**
 	 * TODO: document
 	 */
-	interface AddWMSDialogGwtUiBinder extends UiBinder<Widget, AddWMSDialogGwt> {}
+	interface AddWMSDialogGwtUiBinder extends UiBinder<Widget, AddWMSDialogView> {}
 
-	private AddWMSPresenter presenter;
+	private AddWMSDialogPresenter presenter;
 	
 	/**
 	 * The URL text input
@@ -69,7 +69,7 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	/**
 	 * TODO: document
 	 */
-	public AddWMSDialogGwt() {
+	public AddWMSDialogView() {
 		super(new CloseCaption());
 		CloseCaption caption = (CloseCaption) getCaption();
 		caption.doOnClose(new Command() {
@@ -180,7 +180,7 @@ public class AddWMSDialogGwt extends DialogBox implements AddWMSPresenter.Displa
 	}
 	
 	@Override
-	public void setPresenter(AddWMSPresenter presenter) {
+	public void setPresenter(AddWMSDialogPresenter presenter) {
 		this.presenter = presenter;
 	}
 	

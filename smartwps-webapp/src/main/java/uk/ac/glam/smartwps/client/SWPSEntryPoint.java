@@ -6,9 +6,9 @@ import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
-import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogGwt;
-import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSPresenter;
-import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSPresenterImpl;
+import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogView;
+import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogPresenter;
+import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogPresenterImpl;
 import uk.ac.glam.smartwps.wms.client.net.WMSRequestService;
 import uk.ac.glam.smartwps.wms.client.net.WMSRequestServiceAsync;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestService;
@@ -43,8 +43,8 @@ public class SWPSEntryPoint implements EntryPoint {
         PlaceController placeController = clientFactory.getPlaceController();
         
 //        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
-        AddWMSPresenter.Display wmsDialog = new AddWMSDialogGwt();
-		AddWMSPresenter wmsPresenter = new AddWMSPresenterImpl(eventBus, wmsDialog, wmsService);
+        AddWMSDialogPresenter.Display wmsDialog = new AddWMSDialogView();
+		AddWMSDialogPresenter wmsPresenter = new AddWMSDialogPresenterImpl(eventBus, wmsDialog, wmsService);
         
         LoggerDialog loggerDialog = new LoggerDialog();
         LoggerPresenter loggerPresenter = new LoggerPresenterImpl(eventBus, loggerDialog);

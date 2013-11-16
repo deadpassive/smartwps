@@ -17,7 +17,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.DialogBox.Caption;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -44,7 +43,6 @@ public class CloseCaption extends Composite implements Caption {
 	
 	/**
 	 * TODO: document
-	 * @param onClose
 	 */
 	public CloseCaption() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -60,6 +58,10 @@ public class CloseCaption extends Composite implements Caption {
 		setWidth("100%");
 	}
 	
+	/**
+	 * TODO: document
+	 * @param onClose
+	 */
 	public void doOnClose(Command onClose) {
 		this.onClose = onClose;
 	}

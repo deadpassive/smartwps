@@ -22,7 +22,7 @@ import com.google.web.bindery.event.shared.EventBus;
  * 
  * @author Jon Britton
  */
-public class AddWMSPresenterImpl implements AddWMSPresenter {
+public class AddWMSDialogPresenterImpl implements AddWMSDialogPresenter {
 	
 	private Display view;
 	private WMSRequestServiceAsync wmsService;
@@ -34,7 +34,7 @@ public class AddWMSPresenterImpl implements AddWMSPresenter {
 	 * @param display
 	 * @param wmsService 
 	 */
-	public AddWMSPresenterImpl(EventBus eventBus, final AddWMSPresenter.Display display, WMSRequestServiceAsync wmsService) {
+	public AddWMSDialogPresenterImpl(EventBus eventBus, final AddWMSDialogPresenter.Display display, WMSRequestServiceAsync wmsService) {
 		this.view = display;
 		this.wmsService = wmsService;
 		this.eventBus = eventBus;
