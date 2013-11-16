@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.base.shared.Data;
+import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenter;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageRequest;
@@ -53,7 +54,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * @author Jon Britton
  * 
  */
-public class AddCoverageWindow extends Window {
+public class AddCoverageWindow extends Window implements AddCoverageDialogPresenter.Display {
 
 	private Canvas urlInputPage;
 	private Canvas displayMethodPage;
@@ -70,6 +71,7 @@ public class AddCoverageWindow extends Window {
 	
 	private WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
 	private final EventBus eventBus;
+	private AddCoverageDialogPresenter presenter;
 
 	/**
 	 * Creates a new AddWCSWindow.
@@ -490,5 +492,15 @@ public class AddCoverageWindow extends Window {
 			existingWMSForm.enable();
 			existingWMSLayer = true;
 		}
+	}
+	
+	@Override
+	public void showDialog() {
+		show();
+	}
+	
+	@Override
+	public void setPresenter(AddCoverageDialogPresenter presenter) {
+		this.presenter = presenter;
 	}
 }
