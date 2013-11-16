@@ -6,6 +6,11 @@ import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
+import uk.ac.glam.smartwps.wcs.client.AddCoverageWindow;
+import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenter;
+import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenterImpl;
+import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
+import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogView;
 import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogPresenter;
 import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogPresenterImpl;
@@ -37,6 +42,8 @@ public class SWPSEntryPoint implements EntryPoint {
     public void onModuleLoad() {
     	WPSRequestServiceAsync wpsService = GWT.create(WPSRequestService.class);
     	WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
+    	WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
+    	
     	ClientFactory clientFactory = GWT.create(ClientFactory.class);
     	EventBus eventBus = clientFactory.getEventBus();
     	AppLayout layout = new AppLayoutImpl(eventBus, wpsService);
@@ -45,6 +52,9 @@ public class SWPSEntryPoint implements EntryPoint {
 //        AddWMSPresenter.Display wmsDialog = new AddWMSDialog();
         AddWMSDialogPresenter.Display wmsDialog = new AddWMSDialogView();
 		AddWMSDialogPresenter wmsPresenter = new AddWMSDialogPresenterImpl(eventBus, wmsDialog, wmsService);
+		
+		AddCoverageDialogPresenter.Display wcsDialog = new AddCoverageWindow(eventBus);
+		AddCoverageDialogPresenter wcsPresenter = new AddCoverageDialogPresenterImpl(eventBus, wcsDialog);
         
         LoggerDialog loggerDialog = new LoggerDialog();
         LoggerPresenter loggerPresenter = new LoggerPresenterImpl(eventBus, loggerDialog);

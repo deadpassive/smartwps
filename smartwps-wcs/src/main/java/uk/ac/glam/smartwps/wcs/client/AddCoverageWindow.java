@@ -62,12 +62,11 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	private RadioButton existingWMSRadioButton;
 	private RadioButton createWMSRadioButton;
 	private CoverageListGrid wcsListGrid;
-	private CoverageDescription selectedCoverage;
 	private DynamicForm existingWMSForm;
 	private DynamicForm createWMSForm;
-	private boolean existingWMSLayer = true;
+	
 	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
-	private WCSRequestServiceAsync wcsService = GWT.create(WCSRequestService.class);
+	
 	
 	private WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
 	private final EventBus eventBus;
@@ -91,6 +90,16 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		this.addItem(urlInputPage);
 		
 		this.eventBus = eventBus;
+	}
+	
+	@Override
+	public String getUrl() {
+		return existingWMSForm.getValueAsString("URL");
+	}
+	
+	@Override
+	public String getLayer() {
+		return existingWMSForm.getValueAsString("LAYER");
 	}
 
 	/**
@@ -391,71 +400,7 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 					@Override
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
-						if (existingWMSLayer) {
-							String serviceURL = existingWMSForm
-									.getValueAsString("URL");
-							String layer = existingWMSForm
-									.getValueAsString("LAYER");
-							ArrayList<String> layerList = new ArrayList<String>();
-							layerList.add(layer);
-							SC.showPrompt("Contacting WMS server at "
-									+ serviceURL);
-
-							// Set up the callback object.
-							AsyncCallback<WMSGetCapabilitiesResponse> callback = new AsyncCallback<WMSGetCapabilitiesResponse>() {
-								@Override
-								public void onFailure(Throwable caught) {
-									LOGGER.severe("Remote procedure call successful failed.");
-									SC.say(caught.getClass().getName() + ": " + caught.getMessage());
-									SC.clearPrompt();
-								}
-
-								@Override
-								public void onSuccess(WMSGetCapabilitiesResponse result) {
-									LOGGER.info("Remote procedure call successful.");
-									SC.clearPrompt();
-
-									WMSSelector wmsSelector = new WMSSelector(eventBus, result.getWMSLayers(), selectedCoverage);
-									wmsSelector.show();
-									resetWindow();
-									hide();
-								}
-							};
-							
-							WMSGetCapabilitiesRequest request = new WMSGetCapabilitiesRequest(serviceURL, layerList);
-							request.setExactMatches(false);
-
-							LOGGER.info("Making wmsGetCapabilities remote procedure call");
-							wmsService.wmsGetCapabilities(request, callback);
-						} else {
-							String layer = createWMSForm.getValueAsString("LAYER_NAME");
-							WCSGetCoverageAndStoreRequest request = new WCSGetCoverageAndStoreRequest(
-									selectedCoverage);
-							request.setLayerName(layer);
-
-							// Set up the callback object.
-							AsyncCallback<WCSGetCoverageAndStoreResponse> callback = new AsyncCallback<WCSGetCoverageAndStoreResponse>() {
-								@Override
-								public void onFailure(Throwable caught) {
-									SC.clearPrompt();
-									SC.say(caught.getMessage());
-								}
-
-								@Override
-								public void onSuccess(
-										WCSGetCoverageAndStoreResponse response) {
-									LOGGER.info("Remote procedure call successful");
-									SC.clearPrompt();
-									HashSet<Data> layers = new HashSet<Data>(1);
-									layers.add(response.getWCSCoverage());
-									eventBus.fireEvent(new AddLayersEvent(layers));
-									AddCoverageWindow.this.hide();
-								}
-							};
-
-							LOGGER.info("Making service call");
-							wcsService.wcsGetCoverageAndStore(request, callback);
-						}
+						presenter.doNext();
 					}
 				});
 
@@ -473,7 +418,8 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		return layout;
 	}
 
-	private void resetWindow() {
+	@Override
+	public void resetWindow() {
 		// remove current items
 		Canvas[] items = getItems();
 		for (int i = 0; i < items.length; i++) {
@@ -497,6 +443,11 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	@Override
 	public void showDialog() {
 		show();
+	}
+	
+	@Override
+	public void hideDialog() {
+		hide();
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 package uk.ac.glam.smartwps.client;
 
 import uk.ac.glam.smartwps.client.wps.AddProcessWindow;
-import uk.ac.glam.smartwps.wcs.client.AddCoverageWindow;
+import uk.ac.glam.smartwps.wcs.client.event.ShowWCSDialogEvent;
 import uk.ac.glam.smartwps.wfs.client.AddWFSWindow;
 import uk.ac.glam.smartwps.wms.client.event.ShowWMSDialogEvent;
 import uk.ac.glam.smartwps.wps.client.net.WPSRequestServiceAsync;
@@ -19,7 +19,6 @@ import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
  */
 public class DataMenu extends Menu {
 	
-	private AddCoverageWindow wcsWindow;
 	private AddWFSWindow wfsWindow;
 	private AddProcessWindow wpsWindow;
 
@@ -55,10 +54,7 @@ public class DataMenu extends Menu {
 		wcsItem.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(MenuItemClickEvent event) {
-				if (wcsWindow == null) {
-                    wcsWindow = new AddCoverageWindow(eventBus);
-                }
-				wcsWindow.show();
+				eventBus.fireEvent(new ShowWCSDialogEvent());
 			}
 		});
 		
