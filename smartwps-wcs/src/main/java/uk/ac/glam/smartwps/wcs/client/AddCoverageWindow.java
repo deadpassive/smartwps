@@ -1,30 +1,8 @@
 package uk.ac.glam.smartwps.wcs.client;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.logging.Logger;
-
-import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
-import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenter;
-import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
-import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
-import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageRequest;
-import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageResponse;
-import uk.ac.glam.smartwps.wcs.shared.WCSGetCoverageAndStoreRequest;
-import uk.ac.glam.smartwps.wcs.shared.WCSGetCoverageAndStoreResponse;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
-import uk.ac.glam.smartwps.wcs.shared.v111.CoverageSummary;
-import uk.ac.glam.smartwps.wms.client.net.WMSRequestService;
-import uk.ac.glam.smartwps.wms.client.net.WMSRequestServiceAsync;
-import uk.ac.glam.smartwps.wms.shared.request.WMSGetCapabilitiesRequest;
-import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RadioButton;
-import com.google.web.bindery.event.shared.EventBus;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.IButton;
@@ -64,19 +42,12 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	private CoverageListGrid wcsListGrid;
 	private DynamicForm existingWMSForm;
 	private DynamicForm createWMSForm;
-	
-	private static final Logger LOGGER = Logger.getLogger("smartwps.client");
-	
-	
-	private WMSRequestServiceAsync wmsService = GWT.create(WMSRequestService.class);
-	private final EventBus eventBus;
 	private AddCoverageDialogPresenter presenter;
 
 	/**
 	 * Creates a new AddWCSWindow.
-	 * @param eventBus 
 	 */
-	public AddCoverageWindow(EventBus eventBus) {
+	public AddCoverageWindow() {
 		super();
 
 		this.setTitle("Add WCS");
@@ -88,8 +59,6 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		this.centerInPage();
 		this.urlInputPage = createURLInputPage();
 		this.addItem(urlInputPage);
-		
-		this.eventBus = eventBus;
 	}
 	
 	@Override
@@ -98,8 +67,20 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	}
 	
 	@Override
-	public String getLayer() {
+	public String getExistingLayer() {
 		return existingWMSForm.getValueAsString("LAYER");
+	}
+	
+	@Override
+	public String getCreateLayer() {
+		return createWMSForm.getValueAsString("LAYER_NAME");
+	}
+	
+	@Override
+	public void coverageDetailsRetrieved(CoverageDescription coverageInfo) {
+		coverageOverviewPage = createCoverageOverviewPage(coverageInfo);
+		removeItem(urlInputPage);
+		addItem(coverageOverviewPage);
 	}
 
 	/**
@@ -162,8 +143,7 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
 						// Switch to coverage details page
-						getCoverageDetails(wcsListGrid.getSelectedRecord()
-								.getCoverageSummary());
+						presenter.retrieveCoverageDetails(wcsListGrid.getSelectedRecord().getCoverageSummary());
 					}
 				});
 
@@ -187,44 +167,6 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		});
 
 		return layout;
-	}
-
-	/**
-	 * Creates and executes a DescribeCoverage request for the given coverage.
-	 * This data is then used to create the coverage overview page.
-	 * 
-	 * @param coverageOfferingBrief
-	 *            coverage info
-	 */
-	private void getCoverageDetails(CoverageSummary coverageSummary) {
-		SC.showPrompt("Loading coverage details...");
-		LOGGER.info("Loading coverage details...");
-
-		// Set up the callback object.
-		AsyncCallback<WCSDescribeCoverageResponse> callback = new AsyncCallback<WCSDescribeCoverageResponse>() {
-			@Override
-			public void onFailure(Throwable caught) {
-				SC.clearPrompt();
-				SC.say(caught.getMessage());
-			}
-
-			@Override
-			public void onSuccess(WCSDescribeCoverageResponse result) {
-				LOGGER.info("RPC successful");
-				SC.clearPrompt();
-				selectedCoverage = result.getCoverageOffering();
-				coverageOverviewPage = createCoverageOverviewPage(selectedCoverage);
-				AddCoverageWindow.this.removeItem(urlInputPage);
-				AddCoverageWindow.this.addItem(coverageOverviewPage);
-			}
-
-		};
-
-		// Make the call to the stock price service.
-		LOGGER.info("Making wcsDescribeCoverage remote procedure call");
-		WCSDescribeCoverageRequest request = new WCSDescribeCoverageRequest(coverageSummary, false);
-		wcsService.wcsDescribeCoverage(
-				request, callback);
 	}
 
 	/**
@@ -333,13 +275,13 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		urlTextItem.setName("URL");
 		urlTextItem.setTitle("URL");
 		urlTextItem.setWidth("100%");
-		urlTextItem.setValue(selectedCoverage.getServiceURL().replaceAll("wcs",
+		urlTextItem.setValue(presenter.getSelectedCoverage().getServiceURL().replaceAll("wcs",
 				"wms"));
 
 		TextItem layerTextItem = new TextItem();
 		layerTextItem.setTitle("Layer");
 		layerTextItem.setName("LAYER");
-		layerTextItem.setValue(selectedCoverage.getIdentifier());
+		layerTextItem.setValue(presenter.getSelectedCoverage().getIdentifier());
 
 		existingWMSForm.setItems(urlTextItem, layerTextItem);
 
@@ -366,7 +308,7 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		layerName.setTitle("Name");
 		layerName.setWidth("100%");
 		// TODO: make sure string is valid format for a filename
-		layerName.setValue(selectedCoverage.getIdentifier().replaceAll(":", ""));
+		layerName.setValue(presenter.getSelectedCoverage().getIdentifier().replaceAll(":", ""));
 		layerName.setName("LAYER_NAME");
 
 		createWMSForm.setItems(layerName);
@@ -432,11 +374,11 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 		if (createWMSRadioButton.getValue() == true) {
 			createWMSForm.enable();
 			existingWMSForm.disable();
-			existingWMSLayer = false;
+			presenter.setExistingWMSLayer(false);
 		} else {
 			createWMSForm.disable();
 			existingWMSForm.enable();
-			existingWMSLayer = true;
+			presenter.setExistingWMSLayer(true);
 		}
 	}
 	
@@ -446,14 +388,11 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	}
 	
 	@Override
-<<<<<<< HEAD
 	public void hideDialog() {
 		hide();
 	}
 	
 	@Override
-=======
->>>>>>> f466f9e87cf8fe0d482d99eea71e904fce56cd96
 	public void setPresenter(AddCoverageDialogPresenter presenter) {
 		this.presenter = presenter;
 	}

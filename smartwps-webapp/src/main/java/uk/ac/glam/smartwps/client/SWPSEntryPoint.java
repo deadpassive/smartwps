@@ -53,8 +53,8 @@ public class SWPSEntryPoint implements EntryPoint {
         AddWMSDialogPresenter.Display wmsDialog = new AddWMSDialogView();
 		AddWMSDialogPresenter wmsPresenter = new AddWMSDialogPresenterImpl(eventBus, wmsDialog, wmsService);
 		
-		AddCoverageDialogPresenter.Display wcsDialog = new AddCoverageWindow(eventBus);
-		AddCoverageDialogPresenter wcsPresenter = new AddCoverageDialogPresenterImpl(eventBus, wcsDialog);
+		AddCoverageDialogPresenter.Display wcsDialog = new AddCoverageWindow();
+		AddCoverageDialogPresenter wcsPresenter = new AddCoverageDialogPresenterImpl(eventBus, wcsDialog, wmsService, wcsService);
         
         LoggerDialog loggerDialog = new LoggerDialog();
         LoggerPresenter loggerPresenter = new LoggerPresenterImpl(eventBus, loggerDialog);
