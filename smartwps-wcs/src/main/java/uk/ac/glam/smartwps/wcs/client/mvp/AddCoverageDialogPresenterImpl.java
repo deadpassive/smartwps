@@ -1,5 +1,6 @@
 package uk.ac.glam.smartwps.wcs.client.mvp;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Logger;
@@ -21,6 +22,9 @@ import uk.ac.glam.smartwps.wms.shared.response.WMSGetCapabilitiesResponse;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.smartgwt.client.util.SC;
+=======
+import com.google.web.bindery.event.shared.EventBus;
+>>>>>>> f466f9e87cf8fe0d482d99eea71e904fce56cd96
 
 /**
  * TODO: document
@@ -29,6 +33,7 @@ import com.smartgwt.client.util.SC;
  */
 public class AddCoverageDialogPresenterImpl implements AddCoverageDialogPresenter {
 	
+<<<<<<< HEAD
 	private static final Logger logger = Logger.getLogger("AddCoverageDialogPresenter");
 	
 	private final EventBus eventBus;
@@ -42,12 +47,17 @@ public class AddCoverageDialogPresenterImpl implements AddCoverageDialogPresente
 	
 
 	
+=======
+	private EventBus eventBus;
+	private Display display;
+>>>>>>> f466f9e87cf8fe0d482d99eea71e904fce56cd96
 
 	/**
 	 * TODO: document
 	 * @param eventBus
 	 * @param display
 	 */
+<<<<<<< HEAD
 	public AddCoverageDialogPresenterImpl(EventBus eventBus, final AddCoverageDialogPresenter.Display display, WMSRequestServiceAsync wmsService, 
 			WCSRequestServiceAsync wcsService) {
 		this.eventBus = eventBus;
@@ -129,6 +139,11 @@ public class AddCoverageDialogPresenterImpl implements AddCoverageDialogPresente
 			logger.info("Making service call");
 			wcsService.wcsGetCoverageAndStore(request, callback);
 		}
+=======
+	public AddCoverageDialogPresenterImpl(EventBus eventBus, AddCoverageDialogPresenter.Display display) {
+		this.eventBus = eventBus;
+		this.display = display;
+>>>>>>> f466f9e87cf8fe0d482d99eea71e904fce56cd96
 	}
 
 }

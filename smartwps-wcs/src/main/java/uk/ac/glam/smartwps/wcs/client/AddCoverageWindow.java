@@ -446,11 +446,14 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public void hideDialog() {
 		hide();
 	}
 	
 	@Override
+=======
+>>>>>>> f466f9e87cf8fe0d482d99eea71e904fce56cd96
 	public void setPresenter(AddCoverageDialogPresenter presenter) {
 		this.presenter = presenter;
 	}
