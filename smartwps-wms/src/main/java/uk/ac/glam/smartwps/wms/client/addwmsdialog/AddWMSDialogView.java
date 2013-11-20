@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import uk.ac.glam.smartwps.base.client.ui.CloseCaption;
+import uk.ac.glam.smartwps.base.client.mvp.DialogViewWidget;
 import uk.ac.glam.smartwps.base.client.ui.WaterMarkedTextBox;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
@@ -22,8 +22,6 @@ import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
@@ -35,7 +33,7 @@ import com.google.gwt.view.client.MultiSelectionModel;
  * 
  * @author Jon Britton
  */
-public class AddWMSDialogView extends DialogBox implements AddWMSDialogPresenter.Display {
+public class AddWMSDialogView extends DialogViewWidget<AddWMSDialogPresenter> implements AddWMSDialogPresenter.Display {
 
 	private static AddWMSDialogGwtUiBinder uiBinder = GWT.create(AddWMSDialogGwtUiBinder.class);
 
@@ -43,8 +41,6 @@ public class AddWMSDialogView extends DialogBox implements AddWMSDialogPresenter
 	 * TODO: document
 	 */
 	interface AddWMSDialogGwtUiBinder extends UiBinder<Widget, AddWMSDialogView> {}
-
-	private AddWMSDialogPresenter presenter;
 	
 	/**
 	 * The URL text input
@@ -70,18 +66,7 @@ public class AddWMSDialogView extends DialogBox implements AddWMSDialogPresenter
 	 * TODO: document
 	 */
 	public AddWMSDialogView() {
-		super(new CloseCaption());
-		CloseCaption caption = (CloseCaption) getCaption();
-		caption.doOnClose(new Command() {
-			
-			@Override
-			public void execute() {
-				hide();
-			}
-		});
-		setText("Add WMS Layers");
-		
-		getElement().getStyle().setZIndex(1000000);
+		super("Add WMS Layers");
 		
 		createDataGrid();
 
@@ -174,15 +159,6 @@ public class AddWMSDialogView extends DialogBox implements AddWMSDialogPresenter
 		dataGrid.addColumnSortHandler(sortHandler);
 	}
 
-	@Override
-	public void showDialog() {
-		center();
-	}
-	
-	@Override
-	public void setPresenter(AddWMSDialogPresenter presenter) {
-		this.presenter = presenter;
-	}
 	
 	@Override
 	public void setWMSLayers(List<WMSLayer> wmsLayers) {

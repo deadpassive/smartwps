@@ -8,7 +8,6 @@ import com.google.gwt.event.shared.GwtEvent;
  */
 public class ShowWMSDialogEvent extends GwtEvent<ShowWMSDialogHandler> {
 
-	@SuppressWarnings("javadoc")
 	public final static Type<ShowWMSDialogHandler> TYPE = new Type<ShowWMSDialogHandler>();
 	
 	@Override

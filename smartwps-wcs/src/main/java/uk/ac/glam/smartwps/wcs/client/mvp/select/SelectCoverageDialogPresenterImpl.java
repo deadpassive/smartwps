@@ -1,10 +1,11 @@
-package uk.ac.glam.smartwps.wcs.client.mvp;
+package uk.ac.glam.smartwps.wcs.client.mvp.select;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
+import uk.ac.glam.smartwps.base.client.mvp.PresenterBase;
 import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wcs.client.WMSSelectorDialog;
 import uk.ac.glam.smartwps.wcs.client.event.ShowWCSDialogEvent;
@@ -29,11 +30,10 @@ import com.smartgwt.client.util.SC;
  * 
  * @author Jon Britton
  */
-public class AddCoverageDialogPresenterImpl implements AddCoverageDialogPresenter {
+public class SelectCoverageDialogPresenterImpl extends PresenterBase implements SelectCoverageDialogPresenter {
 	
 	private static final Logger logger = Logger.getLogger("AddCoverageDialogPresenter");
 	
-	private final EventBus eventBus;
 	private final Display display;
 	private final WCSRequestServiceAsync wcsService;
 	private final WMSRequestServiceAsync wmsService;
@@ -41,20 +41,15 @@ public class AddCoverageDialogPresenterImpl implements AddCoverageDialogPresente
 	private boolean existingWMSLayer = true;
 	private CoverageDescription selectedCoverage;
 
-	/**
-	 * TODO: document
-	 * @param eventBus
-	 * @param display
-	 */
-	public AddCoverageDialogPresenterImpl(EventBus eventBus, final AddCoverageDialogPresenter.Display display, WMSRequestServiceAsync wmsService, 
-			WCSRequestServiceAsync wcsService) {
-		this.eventBus = eventBus;
+	public SelectCoverageDialogPresenterImpl(EventBus eventBus, final SelectCoverageDialogPresenter.Display display,
+			WMSRequestServiceAsync wmsService, WCSRequestServiceAsync wcsService) {
+		super(eventBus, "SelectCoverage");
 		this.display = display;
 		this.wcsService = wcsService;
 		this.wmsService = wmsService;
-		
+
 		eventBus.addHandler(ShowWCSDialogEvent.TYPE, new ShowWCSDialogHandler() {
-			
+
 			@Override
 			public void onShowDialog(ShowWCSDialogEvent event) {
 				display.showDialog();

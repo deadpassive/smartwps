@@ -1,11 +1,13 @@
-package uk.ac.glam.smartwps.wcs.client.mvp;
+package uk.ac.glam.smartwps.wcs.client.mvp.select;
 
+import uk.ac.glam.smartwps.base.client.sgwt.SGWTDialogViewWidget;
+import uk.ac.glam.smartwps.wcs.client.mvp.CoverageListGrid;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
+
 import com.google.gwt.user.client.ui.RadioButton;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.IButton;
-import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
@@ -31,7 +33,8 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * @author Jon Britton
  * 
  */
-public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDialogPresenter.Display {
+public class SelectCoverageDialogViewSGWT extends SGWTDialogViewWidget<SelectCoverageDialogPresenter> implements
+		SelectCoverageDialogPresenter.Display {
 
 	private Canvas urlInputPage;
 	private Canvas displayMethodPage;
@@ -41,21 +44,16 @@ public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDial
 	private CoverageListGrid wcsListGrid;
 	private DynamicForm existingWMSForm;
 	private DynamicForm createWMSForm;
-	private AddCoverageDialogPresenter presenter;
 
 	/**
 	 * Creates a new AddWCSWindow.
 	 */
-	public AddCoverageDialogViewSGWT() {
-		super();
-
-		this.setTitle("Add WCS");
-		this.setWidth(600);
-		this.setHeight(600);
+	public SelectCoverageDialogViewSGWT() {
+		super("Add WCS", 600, 600);
+		
 		this.setShowMinimizeButton(false);
 		this.setIsModal(true);
 		this.setShowModalMask(true);
-		this.centerInPage();
 		this.urlInputPage = createURLInputPage();
 		this.addItem(urlInputPage);
 	}
@@ -214,8 +212,8 @@ public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDial
 					@Override
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
-						AddCoverageDialogViewSGWT.this.removeItem(coverageOverviewPage);
-						AddCoverageDialogViewSGWT.this.addItem(urlInputPage);
+						removeItem(coverageOverviewPage);
+						addItem(urlInputPage);
 					}
 				});
 
@@ -225,10 +223,8 @@ public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDial
 					@Override
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
-
-						AddCoverageDialogViewSGWT.this.removeItem(coverageOverviewPage);
-						AddCoverageDialogViewSGWT.this
-								.addItem(createDisplayMethodPage());
+						removeItem(coverageOverviewPage);
+						addItem(createDisplayMethodPage());
 
 					}
 				});
@@ -330,8 +326,8 @@ public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDial
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
 						// Switch to display method page
-						AddCoverageDialogViewSGWT.this.removeItem(displayMethodPage);
-						AddCoverageDialogViewSGWT.this.addItem(coverageOverviewPage);
+						removeItem(displayMethodPage);
+						addItem(coverageOverviewPage);
 					}
 				});
 
@@ -379,20 +375,5 @@ public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDial
 			existingWMSForm.enable();
 			presenter.setExistingWMSLayer(true);
 		}
-	}
-	
-	@Override
-	public void showDialog() {
-		show();
-	}
-	
-	@Override
-	public void hideDialog() {
-		hide();
-	}
-	
-	@Override
-	public void setPresenter(AddCoverageDialogPresenter presenter) {
-		this.presenter = presenter;
 	}
 }
