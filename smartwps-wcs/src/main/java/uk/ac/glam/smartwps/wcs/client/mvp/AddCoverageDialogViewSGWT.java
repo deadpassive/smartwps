@@ -1,6 +1,5 @@
-package uk.ac.glam.smartwps.wcs.client;
+package uk.ac.glam.smartwps.wcs.client.mvp;
 
-import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenter;
 import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.smartgwt.client.widgets.Canvas;
@@ -32,7 +31,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
  * @author Jon Britton
  * 
  */
-public class AddCoverageWindow extends Window implements AddCoverageDialogPresenter.Display {
+public class AddCoverageDialogViewSGWT extends Window implements AddCoverageDialogPresenter.Display {
 
 	private Canvas urlInputPage;
 	private Canvas displayMethodPage;
@@ -47,7 +46,7 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 	/**
 	 * Creates a new AddWCSWindow.
 	 */
-	public AddCoverageWindow() {
+	public AddCoverageDialogViewSGWT() {
 		super();
 
 		this.setTitle("Add WCS");
@@ -215,8 +214,8 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 					@Override
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
-						AddCoverageWindow.this.removeItem(coverageOverviewPage);
-						AddCoverageWindow.this.addItem(urlInputPage);
+						AddCoverageDialogViewSGWT.this.removeItem(coverageOverviewPage);
+						AddCoverageDialogViewSGWT.this.addItem(urlInputPage);
 					}
 				});
 
@@ -227,8 +226,8 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
 
-						AddCoverageWindow.this.removeItem(coverageOverviewPage);
-						AddCoverageWindow.this
+						AddCoverageDialogViewSGWT.this.removeItem(coverageOverviewPage);
+						AddCoverageDialogViewSGWT.this
 								.addItem(createDisplayMethodPage());
 
 					}
@@ -331,8 +330,8 @@ public class AddCoverageWindow extends Window implements AddCoverageDialogPresen
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
 						// Switch to display method page
-						AddCoverageWindow.this.removeItem(displayMethodPage);
-						AddCoverageWindow.this.addItem(coverageOverviewPage);
+						AddCoverageDialogViewSGWT.this.removeItem(displayMethodPage);
+						AddCoverageDialogViewSGWT.this.addItem(coverageOverviewPage);
 					}
 				});
 

@@ -1,4 +1,4 @@
-package uk.ac.glam.smartwps.wcs.client;
+package uk.ac.glam.smartwps.wcs.client.mvp;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;

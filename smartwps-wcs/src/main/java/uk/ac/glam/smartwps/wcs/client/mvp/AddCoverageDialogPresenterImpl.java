@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import uk.ac.glam.smartwps.base.client.event.AddLayersEvent;
 import uk.ac.glam.smartwps.base.shared.Data;
-import uk.ac.glam.smartwps.wcs.client.WMSSelector;
+import uk.ac.glam.smartwps.wcs.client.WMSSelectorDialog;
 import uk.ac.glam.smartwps.wcs.client.event.ShowWCSDialogEvent;
 import uk.ac.glam.smartwps.wcs.client.event.ShowWCSDialogHandler;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
@@ -86,7 +86,7 @@ public class AddCoverageDialogPresenterImpl implements AddCoverageDialogPresente
 					logger.info("Remote procedure call successful.");
 					SC.clearPrompt();
 
-					WMSSelector wmsSelector = new WMSSelector(eventBus, result.getWMSLayers(), selectedCoverage);
+					WMSSelectorDialog wmsSelector = new WMSSelectorDialog(eventBus, result.getWMSLayers(), selectedCoverage);
 					wmsSelector.show();
 					display.resetWindow();
 					display.hideDialog();

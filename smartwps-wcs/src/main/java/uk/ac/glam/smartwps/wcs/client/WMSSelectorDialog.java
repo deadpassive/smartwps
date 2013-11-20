@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author Jon Britton
  */
-public class WMSSelector extends Window {
+public class WMSSelectorDialog extends Window {
 
     /**
      * Create a new WMSSelector window.
@@ -30,7 +30,7 @@ public class WMSSelector extends Window {
      * @param wmsLayers
      * @param coverage
      */
-    public WMSSelector(final EventBus eventBus, final List<WMSLayer> wmsLayers, final CoverageDescription coverage) {
+    public WMSSelectorDialog(final EventBus eventBus, final List<WMSLayer> wmsLayers, final CoverageDescription coverage) {
         this.setIsModal(true);
         this.setShowMinimizeButton(false);
         this.setShowCloseButton(false);
@@ -64,7 +64,7 @@ public class WMSSelector extends Window {
                     HashSet<Data> layers = new HashSet<Data>(1);
                     layers.add(wcsCoverage);
                     eventBus.fireEvent(new AddLayersEvent(layers));
-                    WMSSelector.this.hide();
+                    WMSSelectorDialog.this.hide();
                 }
             }
         });

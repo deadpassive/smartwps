@@ -6,9 +6,9 @@ import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
-import uk.ac.glam.smartwps.wcs.client.AddCoverageWindow;
 import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenter;
 import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogPresenterImpl;
+import uk.ac.glam.smartwps.wcs.client.mvp.AddCoverageDialogViewSGWT;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestService;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.wms.client.addwmsdialog.AddWMSDialogView;
@@ -53,7 +53,7 @@ public class SWPSEntryPoint implements EntryPoint {
         AddWMSDialogPresenter.Display wmsDialog = new AddWMSDialogView();
 		AddWMSDialogPresenter wmsPresenter = new AddWMSDialogPresenterImpl(eventBus, wmsDialog, wmsService);
 		
-		AddCoverageDialogPresenter.Display wcsDialog = new AddCoverageWindow();
+		AddCoverageDialogPresenter.Display wcsDialog = new AddCoverageDialogViewSGWT();
 		AddCoverageDialogPresenter wcsPresenter = new AddCoverageDialogPresenterImpl(eventBus, wcsDialog, wmsService, wcsService);
         
         LoggerDialog loggerDialog = new LoggerDialog();
