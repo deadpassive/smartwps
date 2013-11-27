@@ -3,7 +3,7 @@ package uk.ac.glam.smartwps.wms.client.addwmsdialog;
 import java.util.List;
 import java.util.Set;
 
-import uk.ac.glam.smartwps.base.client.mvp.DialogDisplay;
+import uk.ac.glam.smartwps.base.client.mvp.DialogView;
 import uk.ac.glam.smartwps.wms.shared.WMSLayer;
 
 /**
@@ -18,7 +18,7 @@ public interface AddWMSDialogPresenter {
 	 * @author jonb
 	 *
 	 */
-	public interface Display extends DialogDisplay<AddWMSDialogPresenter> {
+	public interface Display extends DialogView<AddWMSDialogPresenter> {
 		
 		/**
 		 * TODO: document

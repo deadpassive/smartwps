@@ -6,11 +6,7 @@ package uk.ac.glam.smartwps.base.client.mvp;
  * @author Jon Britton
  * @param <PresenterType>
  */
-public interface DialogDisplay<PresenterType> {
-	/**
-	 * TODO: document
-	 */
-	public void showDialog();
+public interface DialogView<PresenterType> extends View {
 			
 	/**
 	 * TODO: document

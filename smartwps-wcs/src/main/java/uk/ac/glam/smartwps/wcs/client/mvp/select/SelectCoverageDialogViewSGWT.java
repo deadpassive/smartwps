@@ -38,7 +38,6 @@ public class SelectCoverageDialogViewSGWT extends SGWTDialogViewWidget<SelectCov
 
 	private Canvas urlInputPage;
 	private Canvas displayMethodPage;
-	private Canvas coverageOverviewPage;
 	private RadioButton existingWMSRadioButton;
 	private RadioButton createWMSRadioButton;
 	private CoverageListGrid wcsListGrid;
@@ -71,13 +70,6 @@ public class SelectCoverageDialogViewSGWT extends SGWTDialogViewWidget<SelectCov
 	@Override
 	public String getCreateLayer() {
 		return createWMSForm.getValueAsString("LAYER_NAME");
-	}
-	
-	@Override
-	public void coverageDetailsRetrieved(CoverageDescription coverageInfo) {
-		coverageOverviewPage = createCoverageOverviewPage(coverageInfo);
-		removeItem(urlInputPage);
-		addItem(coverageOverviewPage);
 	}
 
 	/**
@@ -167,81 +159,6 @@ public class SelectCoverageDialogViewSGWT extends SGWTDialogViewWidget<SelectCov
 	}
 
 	/**
-	 * Creates the page for displaying the coverage details.
-	 * 
-	 * @param coverage
-	 *            coverage details
-	 * @return
-	 */
-	private Canvas createCoverageOverviewPage(CoverageDescription coverage) {
-		VLayout layout = new VLayout();
-		layout.setLayoutMargin(5);
-		layout.setWidth100();
-		layout.setHeight100();
-
-		String contents = "<h2>" + coverage.getTitle() + "</h2>";
-		contents += "<h3>" + coverage.getIdentifier() + "</h3>";
-		contents += "<table>";
-		contents += "<tr><td><b>Description: </b></td><td>"
-				+ coverage.getAbstract() + "</td></tr>";
-		// LonLatEnvelope
-		//contents += "<tr><td><b>LonLatEnvelope: </b></td><td>("
-		//		+ coverage.getLonLatEnvelope().getMinX() + ", "
-		//		+ coverage.getLonLatEnvelope().getMinY() + "), ("
-		//		+ coverage.getLonLatEnvelope().getMaxX() + ", "
-		//		+ coverage.getLonLatEnvelope().getMaxY() + ") ["
-		//		+ coverage.getLonLatEnvelope().getProjection() + "]</td><tr>";
-		// Request CRSs
-		//contents += "<tr><td><b>Request CRSs: </b></td><td>"
-		//		+ coverage.getRequestCRSs() + "</td></tr>";
-		// Response CRSs
-		//contents += "<tr><td><b>Response CRSs: </b></td><td>"
-		//		+ coverage.getResponseCRSs() + "</td></tr>";
-		contents += "</table>";
-
-		HTMLPane htmlPane = new HTMLPane();
-		htmlPane.setWidth100();
-		htmlPane.setHeight100();
-		htmlPane.setContents(contents);
-
-		layout.addMember(htmlPane);
-
-		IButton previousButton = new IButton("Previous");
-		previousButton
-				.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-					@Override
-					public void onClick(
-							com.smartgwt.client.widgets.events.ClickEvent event) {
-						removeItem(coverageOverviewPage);
-						addItem(urlInputPage);
-					}
-				});
-
-		IButton nextButton = new IButton("Next");
-		nextButton
-				.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-					@Override
-					public void onClick(
-							com.smartgwt.client.widgets.events.ClickEvent event) {
-						removeItem(coverageOverviewPage);
-						addItem(createDisplayMethodPage());
-
-					}
-				});
-
-		HLayout bottomLayout = new HLayout();
-		Canvas blankCanvas = new Canvas();
-		blankCanvas.setWidth100();
-		bottomLayout.addMember(blankCanvas);
-		bottomLayout.addMember(previousButton);
-		bottomLayout.addMember(nextButton);
-
-		layout.addMember(bottomLayout);
-
-		return layout;
-	}
-
-	/**
 	 * Creates the page for choosing how to display the coverage. The user can
 	 * choose between an existing WMS layer, or can download the data into a new
 	 * WMS layer.
@@ -326,8 +243,8 @@ public class SelectCoverageDialogViewSGWT extends SGWTDialogViewWidget<SelectCov
 					public void onClick(
 							com.smartgwt.client.widgets.events.ClickEvent event) {
 						// Switch to display method page
-						removeItem(displayMethodPage);
-						addItem(coverageOverviewPage);
+//						removeItem(displayMethodPage);
+//						addItem(coverageOverviewPage);
 					}
 				});
 

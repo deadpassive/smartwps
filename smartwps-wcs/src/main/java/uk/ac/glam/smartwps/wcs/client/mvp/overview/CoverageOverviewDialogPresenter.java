@@ -1,6 +1,7 @@
 package uk.ac.glam.smartwps.wcs.client.mvp.overview;
 
-import uk.ac.glam.smartwps.base.client.mvp.DialogDisplay;
+import uk.ac.glam.smartwps.base.client.mvp.DialogView;
+import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
 
 /**
  * TODO: document
@@ -14,7 +15,13 @@ public interface CoverageOverviewDialogPresenter {
 	 * 
 	 * @author Jon Britton
 	 */
-	public interface Display extends DialogDisplay<CoverageOverviewDialogPresenter> {
-		
+	public interface Display extends DialogView<CoverageOverviewDialogPresenter> {
+		public void setCoverageInfo(String coverageInfo);
 	}
+
+	void goToPrevious();
+
+	void goToNext();
+
+	void setCoverageInfo(CoverageDescription selectedCoverage);
 }

@@ -5,21 +5,27 @@ import uk.ac.glam.smartwps.base.client.event.PlaceRequestEventHandler;
 
 import com.google.web.bindery.event.shared.EventBus;
 
-public class PresenterBase {
+public class PresenterBase<ViewType extends View> {
 
 	protected final EventBus eventBus;
+	protected final ViewType view;
 
-	public PresenterBase(EventBus eventBus, final String placeName) {
+	public PresenterBase(EventBus eventBus, final ViewType view, final String placeName) {
 		this.eventBus = eventBus;
+		this.view = view;
 		
 		eventBus.addHandler(PlaceRequestEvent.TYPE, new PlaceRequestEventHandler() {
 			
 			@Override
 			public void onPlaceRequest(PlaceRequestEvent request) {
 				if (request.getPlaceName().equals(placeName)) {
-					// TODO: show the view - what should I do if it's NOT this presenter?
+					showView();
 				}
 			}
 		});
+	}
+	
+	protected void showView() {
+		view.showView();
 	}
 }

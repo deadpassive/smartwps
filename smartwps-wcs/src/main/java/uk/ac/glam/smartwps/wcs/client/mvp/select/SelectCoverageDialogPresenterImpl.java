@@ -10,6 +10,7 @@ import uk.ac.glam.smartwps.base.shared.Data;
 import uk.ac.glam.smartwps.wcs.client.WMSSelectorDialog;
 import uk.ac.glam.smartwps.wcs.client.event.ShowWCSDialogEvent;
 import uk.ac.glam.smartwps.wcs.client.event.ShowWCSDialogHandler;
+import uk.ac.glam.smartwps.wcs.client.mvp.overview.CoverageOverviewDialogPresenter;
 import uk.ac.glam.smartwps.wcs.client.net.WCSRequestServiceAsync;
 import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageRequest;
 import uk.ac.glam.smartwps.wcs.shared.WCSDescribeCoverageResponse;
@@ -30,29 +31,30 @@ import com.smartgwt.client.util.SC;
  * 
  * @author Jon Britton
  */
-public class SelectCoverageDialogPresenterImpl extends PresenterBase implements SelectCoverageDialogPresenter {
+public class SelectCoverageDialogPresenterImpl extends PresenterBase<SelectCoverageDialogPresenter.Display> implements SelectCoverageDialogPresenter {
 	
 	private static final Logger logger = Logger.getLogger("AddCoverageDialogPresenter");
 	
-	private final Display display;
 	private final WCSRequestServiceAsync wcsService;
 	private final WMSRequestServiceAsync wmsService;
 	
 	private boolean existingWMSLayer = true;
 	private CoverageDescription selectedCoverage;
 
+	private final CoverageOverviewDialogPresenter coverageOverviewPresenter;
+
 	public SelectCoverageDialogPresenterImpl(EventBus eventBus, final SelectCoverageDialogPresenter.Display display,
-			WMSRequestServiceAsync wmsService, WCSRequestServiceAsync wcsService) {
-		super(eventBus, "SelectCoverage");
-		this.display = display;
+			WMSRequestServiceAsync wmsService, WCSRequestServiceAsync wcsService, CoverageOverviewDialogPresenter coverageOverviewPresenter) {
+		super(eventBus, display, PLACE_NAME);
 		this.wcsService = wcsService;
 		this.wmsService = wmsService;
+		this.coverageOverviewPresenter = coverageOverviewPresenter;
 
 		eventBus.addHandler(ShowWCSDialogEvent.TYPE, new ShowWCSDialogHandler() {
 
 			@Override
 			public void onShowDialog(ShowWCSDialogEvent event) {
-				display.showDialog();
+				display.showView();
 			}
 		});
 	}
@@ -60,8 +62,8 @@ public class SelectCoverageDialogPresenterImpl extends PresenterBase implements 
 	@Override
 	public void doNext() {
 		if (existingWMSLayer) {
-			String serviceURL = display.getUrl();
-			String layer = display.getExistingLayer();
+			String serviceURL = view.getUrl();
+			String layer = view.getExistingLayer();
 			ArrayList<String> layerList = new ArrayList<String>();
 			layerList.add(layer);
 			SC.showPrompt("Contacting WMS server at "
@@ -83,8 +85,8 @@ public class SelectCoverageDialogPresenterImpl extends PresenterBase implements 
 
 					WMSSelectorDialog wmsSelector = new WMSSelectorDialog(eventBus, result.getWMSLayers(), selectedCoverage);
 					wmsSelector.show();
-					display.resetWindow();
-					display.hideDialog();
+					view.resetWindow();
+					view.hideDialog();
 				}
 			};
 			
@@ -94,7 +96,7 @@ public class SelectCoverageDialogPresenterImpl extends PresenterBase implements 
 			logger.info("Making wmsGetCapabilities remote procedure call");
 			wmsService.wmsGetCapabilities(request, callback);
 		} else {
-			String layer = display.getCreateLayer();
+			String layer = view.getCreateLayer();
 			WCSGetCoverageAndStoreRequest request = new WCSGetCoverageAndStoreRequest(
 					selectedCoverage);
 			request.setLayerName(layer);
@@ -114,7 +116,7 @@ public class SelectCoverageDialogPresenterImpl extends PresenterBase implements 
 					HashSet<Data> layers = new HashSet<Data>(1);
 					layers.add(response.getWCSCoverage());
 					eventBus.fireEvent(new AddLayersEvent(layers));
-					display.hideDialog();
+					view.hideDialog();
 				}
 			};
 
@@ -147,7 +149,7 @@ public class SelectCoverageDialogPresenterImpl extends PresenterBase implements 
 				logger.info("RPC successful");
 				SC.clearPrompt();
 				selectedCoverage = result.getCoverageOffering();
-				display.coverageDetailsRetrieved(selectedCoverage);
+				coverageOverviewPresenter.setCoverageInfo(selectedCoverage);
 			}
 		};
 

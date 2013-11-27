@@ -2,7 +2,7 @@ package uk.ac.glam.smartwps.base.client.sgwt;
 
 import com.smartgwt.client.widgets.Window;
 
-import uk.ac.glam.smartwps.base.client.mvp.DialogDisplay;
+import uk.ac.glam.smartwps.base.client.mvp.DialogView;
 
 /**
  * Base class for SmartGWT dialog views.
@@ -10,7 +10,7 @@ import uk.ac.glam.smartwps.base.client.mvp.DialogDisplay;
  * @author Jon Britton
  * @param <PresenterType>
  */
-public class SGWTDialogViewWidget<PresenterType> extends Window implements DialogDisplay<PresenterType> {
+public class SGWTDialogViewWidget<PresenterType> extends Window implements DialogView<PresenterType> {
 
 	protected PresenterType presenter;
 	
@@ -28,7 +28,7 @@ public class SGWTDialogViewWidget<PresenterType> extends Window implements Dialo
 	}
 	
 	@Override
-	public void showDialog() {
+	public void showView() {
 		show();
 	}
 

@@ -5,7 +5,7 @@ import uk.ac.glam.smartwps.base.client.ui.CloseCaption;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.DialogBox;
 
-public class DialogViewWidget<PresenterType> extends DialogBox implements DialogDisplay<PresenterType> {
+public class DialogViewWidget<PresenterType> extends DialogBox implements DialogView<PresenterType> {
 
 	protected PresenterType presenter;
 
@@ -27,7 +27,7 @@ public class DialogViewWidget<PresenterType> extends DialogBox implements Dialog
 	}
 	
 	@Override
-	public void showDialog() {
+	public void showView() {
 		center();
 	}
 	
