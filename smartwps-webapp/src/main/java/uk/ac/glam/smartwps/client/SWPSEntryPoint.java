@@ -6,6 +6,9 @@ import uk.ac.glam.smartwps.client.loggerdialog.LoggerPresenterImpl;
 import uk.ac.glam.smartwps.client.mvp.AppPlaceHistoryMapper;
 import uk.ac.glam.smartwps.client.place.SmartWPSPlace;
 import uk.ac.glam.smartwps.client.processresults.ProcessResultsActivityMapper;
+import uk.ac.glam.smartwps.wcs.client.mvp.overview.CoverageOverviewDialogPresenter;
+import uk.ac.glam.smartwps.wcs.client.mvp.overview.CoverageOverviewDialogViewSGWT;
+import uk.ac.glam.smartwps.wcs.client.mvp.overview.CoverageOverviewDialogPresenterImpl;
 import uk.ac.glam.smartwps.wcs.client.mvp.select.SelectCoverageDialogPresenter;
 import uk.ac.glam.smartwps.wcs.client.mvp.select.SelectCoverageDialogPresenterImpl;
 import uk.ac.glam.smartwps.wcs.client.mvp.select.SelectCoverageDialogViewSGWT;
@@ -53,8 +56,11 @@ public class SWPSEntryPoint implements EntryPoint {
         AddWMSDialogPresenter.Display wmsDialog = new AddWMSDialogView();
 		AddWMSDialogPresenter wmsPresenter = new AddWMSDialogPresenterImpl(eventBus, wmsDialog, wmsService);
 		
+		CoverageOverviewDialogPresenter.Display  wcsOverviewDialog = new CoverageOverviewDialogViewSGWT();
+		CoverageOverviewDialogPresenter wcsOverviewPresenter = new CoverageOverviewDialogPresenterImpl(eventBus, wcsOverviewDialog);
+		
 		SelectCoverageDialogPresenter.Display wcsDialog = new SelectCoverageDialogViewSGWT();
-		SelectCoverageDialogPresenter wcsPresenter = new SelectCoverageDialogPresenterImpl(eventBus, wcsDialog, wmsService, wcsService);
+		SelectCoverageDialogPresenter wcsPresenter = new SelectCoverageDialogPresenterImpl(eventBus, wcsDialog, wmsService, wcsService, wcsOverviewPresenter);
         
         LoggerDialog loggerDialog = new LoggerDialog();
         LoggerPresenter loggerPresenter = new LoggerPresenterImpl(eventBus, loggerDialog);

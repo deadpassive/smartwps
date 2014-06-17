@@ -63,7 +63,7 @@ public class AddWMSDialogView extends DialogViewWidget<AddWMSDialogPresenter> im
 	private MultiSelectionModel<WMSLayer> selectionModel;
 
 	/**
-	 * TODO: document
+	 * Constructor.
 	 */
 	public AddWMSDialogView() {
 		super("Add WMS Layers");
@@ -174,21 +174,20 @@ public class AddWMSDialogView extends DialogViewWidget<AddWMSDialogPresenter> im
 	}
 	
 	/**
-	 * TODO: document
+	 * Handler for the Go button.
 	 * @param event
 	 */
-	@SuppressWarnings("unused")
 	@UiHandler("goButton")
 	void goPressed(ClickEvent event) {
 		presenter.retrieveWMSLayer(urlInput.getText());
 	}
 	
 	/**
-	 * TODO: document
+	 * Handler for the Add button.
 	 * @param event
 	 */
 	@UiHandler("addButton")
-	void addPressed(@SuppressWarnings("unused") ClickEvent event) {
+	void addPressed(ClickEvent event) {
 		Set<WMSLayer> selected = selectionModel.getSelectedSet();
 		presenter.addLayers(selected);
 	}

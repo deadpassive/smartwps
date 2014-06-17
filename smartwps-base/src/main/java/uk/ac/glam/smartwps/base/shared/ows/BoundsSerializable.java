@@ -70,64 +70,60 @@ public class BoundsSerializable implements Serializable {
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the minimum X value
 	 */
 	public double getMinX() {
 		return minX;
 	}
 	
 	/**
-	 * TODO: document
-	 * @param minX
+	 * Set the minimum X value
+	 * @param minX the minimum X value
 	 */
 	public void setMinX(double minX) {
 		this.minX = minX;
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the minimum Y value
 	 */
 	public double getMinY() {
 		return minY;
 	}
 	
 	/**
-	 * TODO: document
-	 * @param minY
+	 * Set the minimum Y value.
+	 * @param minY the minimum Y value
 	 */
 	public void setMinY(double minY) {
 		this.minY = minY;
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the maxmimum X value
 	 */
 	public double getMaxX() {
 		return maxX;
 	}
 	
 	/**
-	 * TODO: document
-	 * @param maxX
+	 * Set the maximum X value
+	 * @param maxX the maximum X value
 	 */
 	public void setMaxX(double maxX) {
 		this.maxX = maxX;
 	}
 	
 	/**
-	 * TODO: document
-	 * @return
+	 * @return the maximum Y value
 	 */
 	public double getMaxY() {
 		return maxY;
 	}
 	
 	/**
-	 * TODO: document
-	 * @param maxY
+	 * Set the maximum Y value
+	 * @param maxY the maximum Y value
 	 */
 	public void setMaxY(double maxY) {
 		this.maxY = maxY;
@@ -139,7 +135,7 @@ public class BoundsSerializable implements Serializable {
 	}
 	
 	/**
-	 * TODO: document
+	 * Return the OpenLayers equivalent of this bounds.
 	 * @return new OpenLayers Bounds object
 	 */
 	public Bounds getAsOLBounds() {

@@ -7,7 +7,7 @@ import uk.ac.glam.smartwps.base.shared.Data;
 import com.google.gwt.event.shared.GwtEvent;
 
 /**
- * @TODO: document
+ * An event for adding layers.
  * @author jonb
  */
 public class AddLayersEvent extends GwtEvent<AddLayersHandler> {
@@ -17,8 +17,8 @@ public class AddLayersEvent extends GwtEvent<AddLayersHandler> {
 	private final Set<? extends Data> layers;
 	
 	/**
-	 * TODO: document
-	 * @param layers
+	 * Construct a new AddLayersEvent.
+	 * @param layers the layers to add
 	 */
 	public AddLayersEvent(Set<? extends Data> layers) {
 		this.layers = layers;
@@ -35,7 +35,7 @@ public class AddLayersEvent extends GwtEvent<AddLayersHandler> {
 	}
 	
 	/**
-	 * TODO: document
+	 * Retrieve the layers to be added.
 	 * @return
 	 */
 	public Set<? extends Data> getLayers() {

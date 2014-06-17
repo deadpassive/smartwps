@@ -9,7 +9,6 @@ import uk.ac.glam.smartwps.wps.shared.output.ProcessOutput;
 import uk.ac.glam.smartwps.wps.shared.output.WCSProcessOutput;
 import uk.ac.glam.smartwps.wps.shared.output.WFSProcessOutput;
 
-import com.google.gwt.user.client.ui.Composite;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;

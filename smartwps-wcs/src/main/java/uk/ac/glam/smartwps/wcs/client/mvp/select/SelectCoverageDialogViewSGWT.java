@@ -2,11 +2,8 @@ package uk.ac.glam.smartwps.wcs.client.mvp.select;
 
 import uk.ac.glam.smartwps.base.client.sgwt.SGWTDialogViewWidget;
 import uk.ac.glam.smartwps.wcs.client.mvp.CoverageListGrid;
-import uk.ac.glam.smartwps.wcs.shared.v111.CoverageDescription;
-
 import com.google.gwt.user.client.ui.RadioButton;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
